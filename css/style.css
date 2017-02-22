@@ -184,3 +184,60 @@
     text-decoration: line-through;
     line-height: 1rem;
 }
+.vip-container{
+    padding-bottom: 2.4rem;
+}
+.person-photo-outwarp{
+    width: 100%;
+    height: 9rem;
+    background: url("../images/vip-bk.png") no-repeat left top;
+    background-size: 100%;
+    padding-top: .6rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.person-photo-warp{
+    margin: 0 auto;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: .2rem solid #ffffff;
+    overflow: hidden;
+}
+.person-name{
+    font-size: .75rem;
+    text-align: center;
+    color: #ffffff;
+    padding-top: .3rem;
+}
+.vip-greet{
+    font-size: .6rem;
+    text-align: center;
+    margin-top: .2rem;
+    color: #ffffff;
+}
+.person-setting-warp{
+    background: #ffffff;
+    margin-top: .5rem;
+    display: block;
+    width: 100%;
+    padding-left: .8rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: .75rem;
+    line-height: 2rem;
+    height: 2rem;
+}
+.person-setting-warp:after{
+    content: "";
+    display: block;
+    width: 100%;
+    border-top: 1px solid #cccccc;
+    color: #cccccc;
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+}
