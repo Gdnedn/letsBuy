@@ -156,7 +156,7 @@
         </div>
 
         <!-- 分页tab2 -->
-        <div id="tab2" class="weui-tab__bd-item">
+        <div id="tab2" class="weui-tab__bd-item weui-tab__bd-item--active">
             <!-- 幻灯片 -->
             <div class="swiper-container swiper-container-delicacy">
                 <div class="swiper-wrapper">
@@ -198,7 +198,7 @@
         </div>
 
         <!-- 分页tab3 -->
-        <div id="tab3" class="weui-tab__bd-item">
+        <div id="tab3" class="weui-tab__bd-item weui-tab__bd-item--active">
             <!-- 幻灯片 -->
             <div class="swiper-container swiper-container-new">
                 <div class="swiper-wrapper">
@@ -243,30 +243,35 @@
 <script src="js/jquery-weui.min.js"></script>
 <script src="js/swiper.min.js"></script>
 <script>
-    var hotSwiper = new Swiper('.swiper-container-hot',{
-        pagination : '.swiper-pagination-hot',
-        loop : true,
-    });
-    var delicacySwiper = new Swiper('.swiper-container-delicacy',{
-        pagination : '.swiper-pagination-delicacy',
-        loop : true,
-    });
-    var newSwiper = new Swiper('.swiper-container-new',{
-        pagination : '.swiper-pagination-new',
-        loop : true,
-    });
+    // 初始化banner
+    var index = {
+        init:function(){
+            var hotSwiper = new Swiper('.swiper-container-hot',{
+                pagination : '.swiper-pagination-hot',
+                loop : true,
+            });
+            var delicacySwiper = new Swiper('.swiper-container-delicacy',{
+                pagination : '.swiper-pagination-delicacy',
+                loop : true,
+                onInit: function(){
+                    $("#tab2").removeClass("weui-tab__bd-item--active");
+                }
+            });
+            var newSwiper = new Swiper('.swiper-container-new',{
+                pagination : '.swiper-pagination-new',
+                loop : true,
+                onInit: function(){
+                    $("#tab3").removeClass("weui-tab__bd-item--active");
+                }
+            });
+            var windowHeight = $(window).height(),
+                    windowWidth = $(window).width();
+            $(".swiper-wrapper").css("max-height",windowHeight);
+            $(".swiper-slide").css("max-height",windowHeight);
+        }
+    };
 
-    // 初始化swiper插件
-    /*$(".swiper-container").swiper({
-        pagination : '.swiper-pagination',
-        loop : true,
-    });*/
-    var windowHeight = $(window).height(),
-            windowWidth = $(window).width();
-    $(".swiper-wrapper").css("max-height",windowHeight);
-    $(".swiper-slide").css("max-height",windowHeight);
-
-    //
+    index.init();
 </script>
 </body>
 </html>

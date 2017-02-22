@@ -91,6 +91,7 @@ html{font-size:20px;color: #23242b}
 .swiper-wrapper{
     height: 10rem;
     height: 53.33vw;
+    width: 100%;
 }
 .weui-tab__bd-item{
     padding-bottom: 2.4rem;
