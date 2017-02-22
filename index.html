@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>主页</title>
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/jquery-weui.min.css">
+    <link rel="stylesheet" href="css/rem-fix.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- 底部导航 -->
+<div class="tabbar-warp">
+    <a href="javascript:;" class="tabbar-item-warp tabbar-item-warp-active">
+        <div class="tabbar-item">
+            <div class="tabbar-icon tabbar-index"></div>
+            <p class="tabbar-content">首页</p>
+        </div>
+    </a>
+    <a href="javascript:;" class="tabbar-item-warp">
+        <div class="tabbar-item">
+            <div class="tabbar-icon tabbar-code"></div>
+            <p class="tabbar-content">扫码</p>
+        </div>
+    </a>
+    <a href="javascript:;" class="tabbar-item-warp">
+        <div class="tabbar-item">
+            <div class="tabbar-icon tabbar-vip"></div>
+            <p class="tabbar-content">会员</p>
+        </div>
+    </a>
+    <a href="javascript:;" class="tabbar-item-warp">
+        <div class="tabbar-item">
+            <div class="tabbar-icon tabbar-order"></div>
+            <p class="tabbar-content">订单</p>
+        </div>
+    </a>
+</div>
+
+<!-- 搜索栏 -->
+<div class="weui-search-bar">
+    <form class="weui-search-bar__form">
+        <div class="weui-search-bar__box">
+            <input type="search" class="weui-search-bar__input" placeholder="搜索" required="">
+        </div>
+        <label class="weui-search-bar__label">
+            <i class="weui-icon-search"></i>
+            <span>搜索</span>
+        </label>
+    </form>
+</div>
+
+<!-- 容器 -->
+<div class="weui-tab">
+    <!-- nav -->
+    <div class="weui-navbar">
+        <a class="weui-navbar__item weui-bar__item--on" href="#tab1">热门</a>
+        <a class="weui-navbar__item" href="#tab2">精选</a>
+        <a class="weui-navbar__item" href="#tab3">最新</a>
+    </div>
+
+    <!-- 分页 -->
+    <div class="weui-tab__bd">
+        <!-- 分页tab1 -->
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+            <!-- 幻灯片 -->
+            <div class="swiper-container swiper-container-hot">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="images/banner1.png" alt=""></div>
+                    <div class="swiper-slide"><img src="images/banner2.png" alt=""></div>
+                    <div class="swiper-slide"><img src="images/banner3.png" alt=""></div>
+                </div>
+                <div class="swiper-pagination swiper-pagination-hot"></div>
+            </div>
+            <!-- 类型导航 -->
+            <div class="category-nav">
+                <a href="javascript:;">
+                    <div class="category-item">
+                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
+                        <p class="category-content">首饰</p>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="category-item">
+                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
+                        <p class="category-content">包包</p>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="category-item">
+                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
+                        <p class="category-content">围巾</p>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="category-item">
+                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
+                        <p class="category-content">眼镜</p>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="category-item">
+                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
+                        <p class="category-content">男装</p>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="category-item">
+                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
+                        <p class="category-content">女装</p>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="category-item">
+                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
+                        <p class="category-content">鞋品</p>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="category-item">
+                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
+                        <p class="category-content">数码</p>
+                    </div>
+                </a>
+            </div>
+            <!-- 商品列表 -->
+            <div class="product-container">
+                <div class="product-item-warp">
+                    <div class="product-photo-warp"><img src="images/banner1.png"></div>
+                    <div class="product-info-warp">
+                        <div class="product-title">不想做城市里的空巢族你可以选择带它回家不想做城市里的空巢族你可以选择带它回家</div>
+                        <div class="product-price">￥688.00</div>
+                        <div class="product-describe">人们忙碌一天回到家打开门就能感受到家的温暖不想做城市里的空巢族你可以选择带它回家</div>
+                        <div class="product-join">火速参团</div>
+                        <div class="product-tips">
+                            <div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>20件起拍</div>
+                            <div class="product-default-price">单价:288.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-item-warp">
+                    <div class="product-photo-warp"><img src="images/banner1.png"></div>
+                    <div class="product-info-warp">
+                        <div class="product-title">不想做城</div>
+                        <div class="product-price">￥688.00</div>
+                        <div class="product-describe">人们忙碌一</div>
+                        <div class="product-join">火速参团</div>
+                        <div class="product-tips">
+                            <div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>20件起拍</div>
+                            <div class="product-default-price">单价:288.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分页tab2 -->
+        <div id="tab2" class="weui-tab__bd-item">
+            <!-- 幻灯片 -->
+            <div class="swiper-container swiper-container-delicacy">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="images/banner1.png" alt=""></div>
+                    <div class="swiper-slide"><img src="images/banner2.png" alt=""></div>
+                    <div class="swiper-slide"><img src="images/banner3.png" alt=""></div>
+                </div>
+                <div class="swiper-pagination swiper-pagination-delicacy"></div>
+            </div>
+            <!-- 商品列表 -->
+            <div class="product-container">
+                <div class="product-item-warp">
+                    <div class="product-photo-warp"><img src="images/banner1.png"></div>
+                    <div class="product-info-warp">
+                        <div class="product-title">不想做城市里的空巢族你可以选择带它回家</div>
+                        <div class="product-price">￥688.00</div>
+                        <div class="product-describe">人们忙碌一天回到家打开门就能感受到家的温暖</div>
+                        <div class="product-join">火速参团</div>
+                        <div class="product-tips">
+                            <div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>20件起拍</div>
+                            <div class="product-default-price">单价:288.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-item-warp">
+                    <div class="product-photo-warp"><img src="images/banner1.png"></div>
+                    <div class="product-info-warp">
+                        <div class="product-title">不想做城市里的空巢族你可以选择带它回家</div>
+                        <div class="product-price">￥688.00</div>
+                        <div class="product-describe">人们忙碌一天回到家打开门就能感受到家的温暖</div>
+                        <div class="product-join">火速参团</div>
+                        <div class="product-tips">
+                            <div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>20件起拍</div>
+                            <div class="product-default-price">单价:288.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分页tab3 -->
+        <div id="tab3" class="weui-tab__bd-item">
+            <!-- 幻灯片 -->
+            <div class="swiper-container swiper-container-new">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="images/banner1.png" alt=""></div>
+                    <div class="swiper-slide"><img src="images/banner2.png" alt=""></div>
+                    <div class="swiper-slide"><img src="images/banner3.png" alt=""></div>
+                </div>
+                <div class="swiper-pagination swiper-pagination-new"></div>
+            </div>
+            <!-- 商品列表 -->
+            <div class="product-item-warp">
+                <div class="product-photo-warp"><img src="images/banner1.png"></div>
+                <div class="product-info-warp">
+                    <div class="product-title">不想做城市里的空巢族你可以选择带它回家</div>
+                    <div class="product-price">￥688.00</div>
+                    <div class="product-describe">人们忙碌一天回到家打开门就能感受到家的温暖</div>
+                    <div class="product-join">火速参团</div>
+                    <div class="product-tips">
+                        <div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>20件起拍</div>
+                        <div class="product-default-price">单价:288.00</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item-warp">
+                <div class="product-photo-warp"><img src="images/banner1.png"></div>
+                <div class="product-info-warp">
+                    <div class="product-title">不想做城市里的空巢族你可以选择带它回家</div>
+                    <div class="product-price">￥688.00</div>
+                    <div class="product-describe">人们忙碌一天回到家打开门就能感受到家的温暖</div>
+                    <div class="product-join">火速参团</div>
+                    <div class="product-tips">
+                        <div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>20件起拍</div>
+                        <div class="product-default-price">单价:288.00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script>
+    var hotSwiper = new Swiper('.swiper-container-hot',{
+        pagination : '.swiper-pagination-hot',
+        loop : true,
+    });
+    var delicacySwiper = new Swiper('.swiper-container-delicacy',{
+        pagination : '.swiper-pagination-delicacy',
+        loop : true,
+    });
+    var newSwiper = new Swiper('.swiper-container-new',{
+        pagination : '.swiper-pagination-new',
+        loop : true,
+    });
+
+    // 初始化swiper插件
+    /*$(".swiper-container").swiper({
+        pagination : '.swiper-pagination',
+        loop : true,
+    });*/
+    var windowHeight = $(window).height(),
+            windowWidth = $(window).width();
+    $(".swiper-wrapper").css("max-height",windowHeight);
+    $(".swiper-slide").css("max-height",windowHeight);
+
+    //
+</script>
+</body>
+</html>
