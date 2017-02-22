@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>订单</title>
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/jquery-weui.min.css">
+    <link rel="stylesheet" href="css/rem-fix.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- 底部导航 -->
+<div class="tabbar-warp">
+    <a href="javascript:;" class="tabbar-item-warp">
+        <div class="tabbar-item">
+            <div class="tabbar-icon tabbar-index"></div>
+            <p class="tabbar-content">首页</p>
+        </div>
+    </a>
+    <a href="javascript:;" class="tabbar-item-warp">
+        <div class="tabbar-item">
+            <div class="tabbar-icon tabbar-code"></div>
+            <p class="tabbar-content">扫码</p>
+        </div>
+    </a>
+    <a href="javascript:;" class="tabbar-item-warp">
+        <div class="tabbar-item">
+            <div class="tabbar-icon tabbar-vip"></div>
+            <p class="tabbar-content">会员</p>
+        </div>
+    </a>
+    <a href="javascript:;" class="tabbar-item-warp tabbar-item-warp-active">
+        <div class="tabbar-item">
+            <div class="tabbar-icon tabbar-order"></div>
+            <p class="tabbar-content">订单</p>
+        </div>
+    </a>
+</div>
+
+<!-- 容器 -->
+<div class="weui-tab">
+    <!-- nav -->
+    <div class="weui-navbar order-nav">
+        <a class="weui-navbar__item weui-bar__item--on" href="#tab1">全部</a>
+        <a class="weui-navbar__item" href="#tab2">待付款</a>
+        <a class="weui-navbar__item" href="#tab3">拼单中</a>
+        <a class="weui-navbar__item" href="#tab4">待发货</a>
+        <a class="weui-navbar__item" href="#tab5">待收货</a>
+    </div>
+
+    <!-- 分页 -->
+    <div class="weui-tab__bd">
+        <!-- 分页tab1 -->
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+
+            <div class="order-info-container">
+
+                <div class="order-info-item">
+                    <div class="order-state-warp">
+                        <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>20件起团</div>
+                        <div class="order-state">交易已取消</div>
+                    </div>
+                    <div class="order-product-warp">
+                        <div class="order-product-photo"><img src="images/banner1.png" alt=""></div>
+                        <div class="order-product-content-warp">
+                            <div class="order-product-title">西山勺子智能家居感应灯</div>
+                            <div class="order-product-price">￥688.00</div>
+                            <div class="order-product-number">1件</div>
+                            <div class="order-product-transport">包邮</div>
+                        </div>
+                    </div>
+                    <div class="order-total-price">合计：￥688.00</div>
+                    <div class="order-btn-warp">
+                        <a href="javascript:;" class="order-btn">查看订单详情</a>
+                    </div>
+                </div>
+
+                <div class="order-info-item">
+                    <div class="order-state-warp">
+                        <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>20件起团</div>
+                        <div class="order-state">待付款</div>
+                    </div>
+                    <div class="order-product-warp">
+                        <div class="order-product-photo"><img src="images/banner1.png" alt=""></div>
+                        <div class="order-product-content-warp">
+                            <div class="order-product-title">西山勺子智能家居感应灯</div>
+                            <div class="order-product-price">￥688.00</div>
+                            <div class="order-product-number">1件</div>
+                            <div class="order-product-transport">包邮</div>
+                        </div>
+                    </div>
+                    <div class="order-total-price">合计：￥688.00</div>
+                    <div class="order-btn-warp">
+                        <a href="javascript:;" class="order-btn order-btn-red">去支付</a>
+                        <a href="javascript:;" class="order-btn">查看订单详情</a>
+                    </div>
+                </div>
+
+                <div class="order-info-item">
+                    <div class="order-state-warp">
+                        <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>20件起团</div>
+                        <div class="order-state">拼单中</div>
+                    </div>
+                    <div class="order-product-warp">
+                        <div class="order-product-photo"><img src="images/banner1.png" alt=""></div>
+                        <div class="order-product-content-warp">
+                            <div class="order-product-title">西山勺子智能家居感应灯</div>
+                            <div class="order-product-price">￥688.00</div>
+                            <div class="order-product-number">1件</div>
+                            <div class="order-product-transport">包邮</div>
+                        </div>
+                    </div>
+                    <div class="order-total-price">合计：￥688.00</div>
+                    <div class="order-btn-warp">
+                        <a href="javascript:;" class="order-btn order-btn-red">邀请好友拼单</a>
+                        <a href="javascript:;" class="order-btn">查看订单详情</a>
+                    </div>
+                </div>
+
+                <div class="order-info-item">
+                    <div class="order-state-warp">
+                        <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>20件起团</div>
+                        <div class="order-state">待发货</div>
+                    </div>
+                    <div class="order-product-warp">
+                        <div class="order-product-photo"><img src="images/banner1.png" alt=""></div>
+                        <div class="order-product-content-warp">
+                            <div class="order-product-title">西山勺子智能家居感应灯</div>
+                            <div class="order-product-price">￥688.00</div>
+                            <div class="order-product-number">1件</div>
+                            <div class="order-product-transport">包邮</div>
+                        </div>
+                    </div>
+                    <div class="order-total-price">合计：￥688.00</div>
+                    <div class="order-btn-warp">
+                        <a href="javascript:;" class="order-btn">查看订单详情</a>
+                    </div>
+                </div>
+
+                <div class="order-info-item">
+                    <div class="order-state-warp">
+                        <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>20件起团</div>
+                        <div class="order-state">待付款</div>
+                    </div>
+                    <div class="order-product-warp">
+                        <div class="order-product-photo"><img src="images/banner1.png" alt=""></div>
+                        <div class="order-product-content-warp">
+                            <div class="order-product-title">西山勺子智能家居感应灯</div>
+                            <div class="order-product-price">￥688.00</div>
+                            <div class="order-product-number">1件</div>
+                            <div class="order-product-transport">包邮</div>
+                        </div>
+                    </div>
+                    <div class="order-total-price">合计：￥688.00</div>
+                    <div class="order-btn-warp">
+                        <a href="javascript:;" class="order-btn">查看订单详情</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- 分页tab2 -->
+        <div id="tab2" class="weui-tab__bd-item">
+
+            <!-- 无任何订单 -->
+            <div class="no-order-tips-warp">
+                <div class="no-order-photo"><img src="images/order-on.png"></div>
+                <p class="no-order-content">您还没有相关订单</p>
+                <a href="javascript:;" class="no-order-btn">去逛逛</a>
+            </div>
+
+        </div>
+
+        <!-- 分页tab3 -->
+        <div id="tab3" class="weui-tab__bd-item">
+
+        </div>
+
+        <!-- 分页tab4 -->
+        <div id="tab4" class="weui-tab__bd-item">
+
+        </div>
+
+        <!-- 分页tab5 -->
+        <div id="tab5" class="weui-tab__bd-item">
+
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+</body>
+</html>

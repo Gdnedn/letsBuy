@@ -220,6 +220,9 @@
 .person-setting-warp{
     background: #ffffff;
     margin-top: .5rem;
+}
+.person-setting-item{
+    position: relative;
     display: block;
     width: 100%;
     padding-left: .8rem;
@@ -229,15 +232,195 @@
     font-size: .75rem;
     line-height: 2rem;
     height: 2rem;
+    background: url("../images/select-right.png") no-repeat 96%;
+    background-size: auto .85rem;
 }
-.person-setting-warp:after{
+.person-setting-item:after{
     content: "";
     display: block;
+    position: absolute;
+    left: -.8rem;
+    bottom: 0;
     width: 100%;
+    padding-left: .8rem;
     border-top: 1px solid #cccccc;
     color: #cccccc;
     -webkit-transform-origin: 100% 0;
     transform-origin: 100% 0;
     -webkit-transform: scaleY(.5);
     transform: scaleY(.5);
+}
+.person-setting-item:last-child:after{
+    display: none;
+}
+
+
+.order-nav{
+    background-color: #ffffff;
+}
+.order-nav .weui-navbar__item.weui-bar__item--on{
+    background-color: #ffffff;
+    color: #eaac4c;
+}
+.order-nav .weui-bar__item--on:after{
+    width: 60%;
+    left: 20%;
+    background-color: #eaac4c;
+}
+.no-order-tips-warp{
+    position: fixed;
+    left: 50%;
+    top: 45%;
+    width: 7.5rem;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.no-order-photo{
+    width: 1.5rem;
+    height: auto;
+    margin: 0 auto;
+}
+.no-order-content{
+    display: block;
+    font-size: .7rem;
+    color: #969696;
+    text-align: center;
+    margin-top: 1rem;
+}
+.no-order-btn{
+    display: block;
+    background-color: #eaac4c;
+    font-size: .75rem;
+    line-height: 1.4rem;
+    color: #ffffff;
+    border-radius: .2rem;
+    text-align: center;
+    width: 5rem;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+.order-info-item{
+    margin-top: .5rem;
+}
+.order-state-warp{
+    background-color: #ffffff;
+    padding: 0 .8rem;
+    overflow: hidden;
+    line-height: 1.5rem;
+    height: 1.5rem;
+}
+.order-group{
+    float: left;
+    color: #969696;
+    padding-left: .85rem;
+    position: relative;
+}
+.order-group-icon{
+    display: block;
+    position: absolute;
+    left: 0;
+    top: .4rem;
+    height: .7rem;
+    width: .7rem;
+}
+.order-state{
+    float: right;
+    color: #e14a51;
+}
+.order-product-warp{
+    position: relative;
+    padding: .4rem .8rem;
+}
+.order-product-photo{
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    left: .8rem;
+    top: .4rem;
+}
+.order-product-content-warp{
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 5.8rem;
+}
+.order-product-title{
+    font-size: .75rem;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 1.4rem;
+}
+.order-product-price{
+    color: #e14a51;
+    font-size: .7rem;
+    line-height: 1.2rem;
+}
+.order-product-number{
+    font-size: .7rem;
+    color: #969696;
+    line-height: 1.2rem;
+}
+.order-product-transport{
+    font-size: .7rem;
+    color: #969696;
+    line-height: 1.2rem;
+}
+.order-total-price{
+    background-color: #ffffff;
+    padding: 0 .8rem;
+    font-size: .7rem;
+    color: #969696;
+    text-align: right;
+    line-height: 1.5rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    height: 1.5rem;
+}
+.order-total-price:after{
+    content: " ";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    color: #ccc;
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+}
+.order-btn-warp{
+    background-color: #ffffff;
+    height: 2.2rem;
+    overflow: hidden;
+    padding: .4rem .8rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.order-btn{
+    float: right;
+    text-align: center;
+    width: 6rem;
+    line-height: 1.3rem;
+    border-radius: .2rem;
+    border: 1px solid #969696;
+    color: #969696;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: .75rem;
+    margin-left: .5rem;
+}
+.order-btn-red{
+    border: 1px solid #e14a51;
+    color: #ffffff;
+    background-color: #e14a51;
 }
