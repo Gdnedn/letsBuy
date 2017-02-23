@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>付款</title>
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/jquery-weui.min.css">
+    <link rel="stylesheet" href="css/rem-fix.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- 底部导航 -->
+<div class="tabbar-warp">
+    <div class="product-tabbar-pay-price">实付款：<span class="pay-price">￥666.00</span></div>
+    <a href="javascript:;" class="product-tabbar-pay-btn">立即支付</a>
+</div>
+
+<!-- 容器 -->
+<div class="product-container">
+    <!-- 地址选择 -->
+    <div class="address-pick-warp">
+        <div class="address-icon-warp"><img src="images/address-icon.png" alt=""></div>
+        <div class="address-content">
+            <div class="address-person-info">
+                <span class="name">StefanieSun</span>
+                <span class="phone">186588888</span>
+            </div>
+            <div class="address-specific">浙江杭州酒仙桥中路26号鸿运大厦</div>
+        </div>
+    </div>
+    <!-- 商品信息 -->
+    <div class="order-info-item">
+        <div class="order-state-warp">
+            <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>20件起团</div>
+        </div>
+        <div class="order-product-warp">
+            <div class="order-product-photo"><img src="images/banner1.png" alt=""></div>
+            <div class="order-product-content-warp">
+                <div class="order-product-title">西山勺子智能家居感应灯</div>
+                <div class="order-product-price">￥688.00</div>
+                <div class="order-product-transport product-pay">包邮</div>
+            </div>
+        </div>
+        <div class="product-number-del-warp">
+            <div class="product-number-del-title">数量</div>
+            <div class="product-number-del-btn-warp">
+                <div class="sub-btn-warp"><img src="images/number-sub.png" alt=""></div>
+                <div class="number-input-warp"><input type="number" value="1"></div>
+                <div class="add-btn-warp"><img src="images/number-add.png" alt=""></div>
+            </div>
+        </div>
+        <div class="order-total-price">合计：￥688.00</div>
+    </div>
+    <!-- 支付方式 -->
+    <div class="product-pay-method-warp">
+        <div class="product-pay-method product-pay-active"><span class="product-pay-method-icon"><img src="images/wechat.png" alt=""></span>微信支付</div>
+        <div class="product-pay-method"><span class="product-pay-method-icon"><img src="images/zhifubao.png" alt=""></span>支付宝支付</div>
+    </div>
+    <!-- 支付成功 -->
+    <div class="md-pay-success">
+        <div class="md-overlay"></div>
+        <div class="md-success-icon-warp">
+            <div class="md-success-icon"><img src="images/success.png" alt=""></div>
+            <div class="md-success-content">支付成功</div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+</body>
+</html>

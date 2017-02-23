@@ -1,7 +1,7 @@
 /* 初始化 */
 body {margin:0; padding:0;font-family:"Microsoft YaHei",sans-serif;background:#f5f5f5;}
 div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,blockquote,p{padding:0; margin:0;}
-input,textarea{padding:0; margin:0;border:none;-webkit-appearance:none;} /* 去除iphone的input阴影样式-webkit-appearance:none */
+input,textarea{padding:0; margin:0;border:none;-webkit-appearance:none;outline:none;} /* 去除iphone的input阴影样式-webkit-appearance:none */
 table,td,tr,th{font-size:20px;}
 li{list-style-type:none;}
 img{vertical-align:top;border:0;width: 100%;height: 100%;}
@@ -95,4 +95,10 @@ html{font-size:20px;color: #23242b}
 }
 .weui-tab__bd-item{
     padding-bottom: 2.4rem;
+}
+.weui-search-cancel-btn {
+    margin-left: 10px;
+    line-height: 28px;
+    color: #23242b;
+    white-space: nowrap;
 }
