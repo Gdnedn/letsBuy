@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>订单详情</title>
+    <link rel="stylesheet" href="css/rem-fix.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 主体 -->
+<div class="container">
+    <!-- 地址选择 -->
+    <div class="address-pick-warp">
+        <div class="address-icon-warp"><img src="images/address-icon.png" alt=""></div>
+        <div class="address-content">
+            <div class="address-person-info">
+                <span class="name">StefanieSun</span>
+                <span class="phone">186588888</span>
+            </div>
+            <div class="address-specific">浙江杭州酒仙桥中路26号鸿运大厦</div>
+        </div>
+    </div>
+    <!-- 快递信息 -->
+    <div class="express-warp">
+        <div class="express-title">订单跟踪</div>
+        <div class="express-container">
+            <div class="express-item express-item-active">
+                <div class="express-detail">订单提交成功</div>
+                <div class="express-time">2016-09-10  17:47:39</div>
+            </div>
+            <div class="express-item">
+                <div class="express-detail">订单提交成功</div>
+                <div class="express-time">2016-09-10  17:47:39</div>
+            </div>
+            <div class="express-item">
+                <div class="express-detail">订单提交成功</div>
+                <div class="express-time">2016-09-10  17:47:39</div>
+            </div>
+            <div class="express-item">
+                <div class="express-detail">订单提交成功</div>
+                <div class="express-time">2016-09-10  17:47:39</div>
+            </div>
+            <div class="express-item">
+                <div class="express-detail">订单提交成功</div>
+                <div class="express-time">2016-09-10  17:47:39</div>
+            </div>
+        </div>
+    </div>
+    <!-- 猜你喜欢 -->
+    <div class="order-recommend-warp">
+        <div class="order-recommend-tips">猜你喜欢</div>
+        <div class="order-recommend-container">
+            <div class="order-recommend-product-outwarp">
+                <div class="order-recommend-product-innerwarp">
+                    <div class="order-recommend-product-photo"><img src="images/banner1.png" alt=""></div>
+                    <p class="order-recommend-product-title">Moleskine 告诉你，笔记本如何成为奢侈品</p>
+                    <div class="order-recommend-product-price-warp">
+                        <span class="order-recommend-product-price">￥1600.00</span>
+                        <span class="order-recommend-product-group">2人团.已团20件</span>
+                    </div>
+                </div>
+            </div>
+            <div class="order-recommend-product-outwarp">
+                <div class="order-recommend-product-innerwarp">
+                    <div class="order-recommend-product-photo"><img src="images/banner1.png" alt=""></div>
+                    <p class="order-recommend-product-title">Moleskine 告诉你，笔记本如何成为奢侈品</p>
+                    <div class="order-recommend-product-price-warp">
+                        <span class="order-recommend-product-price">￥1600.00</span>
+                        <span class="order-recommend-product-group">2人团.已团20件</span>
+                    </div>
+                </div>
+            </div>
+            <div class="order-recommend-product-outwarp">
+                <div class="order-recommend-product-innerwarp">
+                    <div class="order-recommend-product-photo"><img src="images/banner1.png" alt=""></div>
+                    <p class="order-recommend-product-title">Moleskine 告诉你，笔记本如何成为奢侈品</p>
+                    <div class="order-recommend-product-price-warp">
+                        <span class="order-recommend-product-price">￥1600.00</span>
+                        <span class="order-recommend-product-group">2人团.已团20件</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script>
+    // 初始化banner
+    var order = {
+        init:function(){
+            var $recommendProduct = $(".order-recommend-product-photo").find("img"),
+                    recommendProductWidth = $recommendProduct.width();
+            $recommendProduct.css("height",recommendProductWidth);
+        }
+    };
+
+    order.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>设计个人背景图</title>
+    <link rel="stylesheet" href="css/rem-fix.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 主体 -->
+<div class="vip-inner-container">
+
+    <div class="account-photo-warp"><img src="images/banner1.png" alt=""></div>
+    <div class="account-photo-btn-warp">
+        <a href="javascript:;" class="account-photo-btn">从相册选一张</a>
+        <a href="javascript:;" class="account-photo-btn">拍一张照片</a>
+    </div>
+
+    <a href="javascript:;" class="vip-confirm-btn">确定</a>
+</div>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script>
+    // 初始化banner
+    var account = {
+        init:function(){
+            var windowHeight = $(window).height(),
+                    windowWidth = $(window).width();
+            $(".account-photo-warp").css("height",windowWidth);
+        }
+    };
+
+    account.init();
+</script>
+</body>
+</html>
