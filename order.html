@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<!-- body 顶部加上如下代码 -->
+<div class="weui-pull-to-refresh__layer">
+    <div class='weui-pull-to-refresh__arrow'></div>
+    <div class='weui-pull-to-refresh__preloader'></div>
+    <div class="down">下拉刷新</div>
+    <div class="up">释放刷新</div>
+    <div class="refresh">正在刷新</div>
+</div>
 <!-- 底部导航 -->
 <div class="tabbar-warp">
     <a href="javascript:;" class="tabbar-item-warp">
@@ -42,7 +50,7 @@
 <div class="weui-tab">
     <!-- nav -->
     <div class="weui-navbar order-nav">
-        <a class="weui-navbar__item weui-bar__item--on" href="#tab1">全部</a>
+        <a class="weui-navbar__item weui-bar__item--on info-container-active" href="#tab1">全部</a>
         <a class="weui-navbar__item" href="#tab2">待付款</a>
         <a class="weui-navbar__item" href="#tab3">拼单中</a>
         <a class="weui-navbar__item" href="#tab4">待发货</a>
@@ -54,7 +62,7 @@
         <!-- 分页tab1 -->
         <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
 
-            <div class="order-info-container">
+            <div class="order-info-container" id="tab1Container">
 
                 <div class="order-info-item">
                     <div class="order-state-warp">
@@ -159,39 +167,259 @@
                 </div>
 
             </div>
-
+            <div id="tab1ContainerLoading" class="weui-loadmore">
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span>
+            </div>
         </div>
 
         <!-- 分页tab2 -->
         <div id="tab2" class="weui-tab__bd-item">
 
+            <div class="order-info-container" id="tab2Container">
+
+            </div>
             <!-- 无任何订单 -->
-            <div class="no-order-tips-warp">
+            <!--<div class="no-order-tips-warp">
                 <div class="no-order-photo"><img src="images/order-on.png"></div>
                 <p class="no-order-content">您还没有相关订单</p>
                 <a href="javascript:;" class="no-order-btn">去逛逛</a>
+            </div>-->
+            <div class="weui-loadmore" id="tab2ContainerLoading">
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span>
             </div>
-
         </div>
 
         <!-- 分页tab3 -->
         <div id="tab3" class="weui-tab__bd-item">
+            <div class="order-info-container" id="tab3Container">
 
+            </div>
+            <div class="weui-loadmore" id="tab3ContainerLoading">
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span>
+            </div>
         </div>
 
         <!-- 分页tab4 -->
         <div id="tab4" class="weui-tab__bd-item">
+            <div class="order-info-container" id="tab4Container">
 
+            </div>
+            <div class="weui-loadmore" id="tab4ContainerLoading">
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span>
+            </div>
         </div>
 
         <!-- 分页tab5 -->
         <div id="tab5" class="weui-tab__bd-item">
+            <div class="order-info-container" id="tab5Container">
 
+            </div>
+            <div class="weui-loadmore" id="tab5ContainerLoading">
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span>
+            </div>
         </div>
     </div>
 </div>
 
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/jquery-weui.min.js"></script>
+<script>
+    var index = {
+        loading:true,
+        tab1page:1,
+        tab2page:1,
+        tab3page:1,
+        tab4page:1,
+        tab5page:1,
+        init:function(){
+
+            $(document.body).pullToRefresh();
+            this.refreshing();
+            //  初次加载数据
+            this.productReq();
+
+            // infinite
+            this.infinite();
+
+            //  初次初始化tab精选与最新
+            this.firstTabsClick();
+        },
+        productReq:function () {
+            var page,$loading,$container,api,$active = $(".info-container-active"),tab;
+            if($active.attr("href") == '#tab1'){
+                page = index.tab1page;
+                tab = 1;
+                $loading = $("#tab1ContainerLoading");
+                $container = $("#tab1Container");
+                api = 'http://106.14.38.136/TeamBuying/WechatApi/getOrders.do?page='+page;
+                console.log('tab1')
+            }
+            else if($active.attr("href") == '#tab2'){
+                page = index.tab2page;
+                tab = 2;
+                $loading = $("#tab2ContainerLoading");
+                $container = $("#tab2Container");
+                api = 'http://106.14.38.136/TeamBuying/WechatApi/getOrders.do?type=0&page='+page;
+                console.log('tab2')
+            }
+            else if($active.attr("href") == '#tab3'){
+                page = index.tab3page;
+                tab = 3;
+                $loading = $("#tab3ContainerLoading");
+                $container = $("#tab3Container");
+                api = 'http://106.14.38.136/TeamBuying/WechatApi/getOrders.do?type=1&page='+page;
+                console.log('tab3')
+            }
+            else if($active.attr("href") == '#tab4'){
+                page = index.tab4page;
+                tab = 4;
+                $loading = $("#tab4ContainerLoading");
+                $container = $("#tab4Container");
+                api = 'http://106.14.38.136/TeamBuying/WechatApi/getOrders.do?type=2&page='+page;
+                console.log('tab4')
+            }
+            else if($active.attr("href") == '#tab5'){
+                page = index.tab5page;
+                tab = 5;
+                $loading = $("#tab5ContainerLoading");
+                $container = $("#tab5Container");
+                api = 'http://106.14.38.136/TeamBuying/WechatApi/getOrders.do?type=3&page='+page;
+                console.log('tab5')
+            }
+            $.ajax({
+                url: api,
+                type:'post',
+                dataType:'json',
+                success:function (data) {
+                    if(data.resultCode == 1000){
+                        var len = data.returnObject.length,
+                                returnObject = data.returnObject,
+                                html = '';
+                        console.log(api);
+                        if(!len){
+                            $loading.hide();
+                            if(page==1){
+                                $(document.body).pullToRefreshDone();
+                                $container.append(
+                                        '<div class="no-order-tips-warp">'+
+                                        '<div class="no-order-photo"><img src="images/order-on.png"></div>'+
+                                        '<p class="no-order-content">您还没有相关订单</p>'+
+                                        '<a href="javascript:;" class="no-order-btn">去逛逛</a>'+
+                                        '</div>'
+                                );
+                            }
+                            return;
+                        } // 没有数据则返回
+                        for(var i=0;i<len;i++){
+                            html+=  '<div class="order-info-item">'+
+                                    '<div class="order-state-warp">'+
+                                    '<div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>20件起团</div>'+
+                                    '<div class="order-state">交易已取消</div>'+
+                                    '</div>'+
+                                    '<div class="order-product-warp">'+
+                                    '<div class="order-product-photo"><img src="images/banner1.png" alt=""></div>'+
+                                    '<div class="order-product-content-warp">'+
+                                    '<div class="order-product-title">西山勺子智能家居感应灯</div>'+
+                                    '<div class="order-product-price">￥688.00</div>'+
+                                    '<div class="order-product-number">1件</div>'+
+                                    '<div class="order-product-transport">包邮</div>'+
+                                    '</div>'+
+                                    '</div>'+
+                                    '<div class="order-total-price">合计：￥688.00</div>'+
+                                    '<div class="order-btn-warp">'+
+                                    '<a href="javascript:;" class="order-btn">查看订单详情</a>'+
+                                    '</div>'+
+                                    '</div>'
+
+                        }
+                        $container.append(html);
+                        if(tab==1){index.tab1page++}
+                        else if(tab==2){index.tab2page++}
+                        else if(tab==3){index.tab3page++}
+                        else if(tab==4){index.tab4page++}
+                        else if(tab==5){index.tab5page++}
+                        index.loading=false;
+                        $(document.body).pullToRefreshDone();
+                    }else{
+                        console.log('正确码出错'+data.resultCode)
+                    }
+                },
+                fail:function () {
+                    console.log('获取信息失败')
+                }
+            })
+        },
+        // 滚动刷新
+        infinite:function () {
+            $(document.body).infinite().on("infinite", function() {
+                if(index.loading) return;
+                index.loading = true;
+                index.productReq();
+            });
+        },
+        //  首次初始化tab精选最新
+        firstTabsClick:function () {
+            var tab2First = true,tab3First = true,tab4First = true,tab5First = true;
+            $(".weui-navbar__item").click(function () {
+                $(this).addClass('info-container-active').siblings().removeClass('info-container-active');
+                if($(this).attr("href") == '#tab2'){
+                    if(tab2First){
+                        index.productReq();
+                        tab2First = false;
+                    }
+                }else if($(this).attr("href") == '#tab3'){
+                    if(tab3First){
+                        index.productReq();
+                        tab3First = false;
+                    }
+                }else if($(this).attr("href") == '#tab4'){
+                    if(tab4First){
+                        index.productReq();
+                        tab4First = false;
+                    }
+                }else if($(this).attr("href") == '#tab5'){
+                    if(tab5First){
+                        index.productReq();
+                        tab5First = false;
+                    }
+                }
+            })
+        },
+        //  下拉刷新
+        refreshing:function () {
+            $(document.body).on("pull-to-refresh", function() {
+                var $active = $(".info-container-active");
+                if($active.attr("href") == '#tab1'){
+                    $("#tab1Container").html('');
+                    index.tab1page=1;
+                }
+                else if($active.attr("href") == '#tab2'){
+                    $("#tab2Container").html('');
+                    index.tab2page=1;
+                }
+                else if($active.attr("href") == '#tab3'){
+                    $("#tab3Container").html('');
+                    index.tab3page=1;
+                }
+                else if($active.attr("href") == '#tab4'){
+                    $("#tab4Container").html('');
+                    index.tab4page=1;
+                }
+                else if($active.attr("href") == '#tab5'){
+                    $("#tab5Container").html('');
+                    index.tab5page=1;
+                }
+                index.productReq();
+            });
+        }
+    };
+
+    index.init();
+</script>
 </body>
 </html>

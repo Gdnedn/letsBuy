@@ -53,7 +53,7 @@ html{font-size:20px;color: #23242b}
     line-height: 1.8rem;
     font-size: .75rem;
 }
-.weui-navbar__item:after{
+.__item:after{
     border-right: none;
 }
 .weui-bar__item--on:after{
@@ -101,4 +101,18 @@ html{font-size:20px;color: #23242b}
     line-height: 28px;
     color: #23242b;
     white-space: nowrap;
+}
+.swiper-slide{
+    position: relative;
+    overflow: hidden;
+}
+.swiper-slide img{
+    position: absolute;
+    left: 50%;
+    width: auto;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
 }

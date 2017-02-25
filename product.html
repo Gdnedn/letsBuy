@@ -30,15 +30,15 @@
             <p class="tabbar-content">客服</p>
         </div>
     </a>
-    <a href="javascript:;" class="product-tabbar-btn-warp">
+    <!--<a href="javascript:;" class="product-tabbar-btn-warp">
         <div class="product-tabbar-yellow-item">
-            <div class="product-tabbar-price">￥1688</div>
+            <div class="product-tabbar-price">￥<span class="js-AlonePrice">1688</span></div>
             <p class="tabbar-content">单独购买</p>
         </div>
-    </a>
+    </a>-->
     <a href="javascript:;" class="product-tabbar-btn-warp">
         <div class="product-tabbar-red-item">
-            <div class="product-tabbar-price">￥688</div>
+            <div class="product-tabbar-price">￥<span class="js-OpenPrice">688</span></div>
             <p class="tabbar-content">新开团</p>
         </div>
     </a>
@@ -49,20 +49,20 @@
     <!-- 幻灯片 -->
     <div class="swiper-container swiper-container-product">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="images/banner1.png" alt=""></div>
+<!--            <div class="swiper-slide"><img src="images/banner1.png" alt=""></div>
             <div class="swiper-slide"><img src="images/banner2.png" alt=""></div>
-            <div class="swiper-slide"><img src="images/banner3.png" alt=""></div>
+            <div class="swiper-slide"><img src="images/banner3.png" alt=""></div>-->
         </div>
         <div class="swiper-pagination swiper-pagination-hot"></div>
     </div>
     <!-- 商品信息 -->
     <div class="product-detail-warp">
         <div class="product-detail-price-warp">
-            <div class="product-detail-rel-price">￥688.00</div>
-            <div class="product-detail-default-price">￥1688.00</div>
+            <div class="product-detail-rel-price">￥<span class="js-OpenPrice">688.00</span></div>
+            <div class="product-detail-default-price">￥<span class="js-MarkPrice">1688.00</span></div>
         </div>
-        <div class="product-detail-title">喜上梢智能家居感应灯</div>
-        <div class="product-detail-content">玩物君说的喜上梢，是一款感知光影与温度的生活摆件。这款产品由深圳设计师王奕程设计，他最初的想法是人们忙碌一天回到家打开门的那一刻，就能感受到家的温暖。喜鹊在中国传统文化中，为报喜的吉祥鸟，同时也是好运与福气的象征。</div>
+        <div class="product-detail-title js-ProductName">喜上梢智能家居感应灯</div>
+        <div class="product-detail-content js-ProductDec">玩物君说的喜上梢，是一款感知光影与温度的生活摆件。这款产品由深圳设计师王奕程设计，他最初的想法是人们忙碌一天回到家打开门的那一刻，就能感受到家的温暖。喜鹊在中国传统文化中，为报喜的吉祥鸟，同时也是好运与福气的象征。</div>
         <div class="product-detail-tips-warp">
             <div class="product-detail-tips">包邮</div>
             <div class="product-detail-tips">7天退换</div>
@@ -71,11 +71,11 @@
         </div>
     </div>
     <!-- 拼团信息 -->
-    <div class="product-group-warp">
-        <div class="product-group-tips">支付开团并邀请小伙伴们拼单,拼单不足9件自动退款</div>
+    <div class="product-group-warp js-opens">
+        <div class="product-group-tips">支付开团并邀请小伙伴们拼单,拼单不足<span class="js-NumOfOpen">9</span>件自动退款</div>
         <div class="product-group-person-tips">以下小伙伴正在发起团购,您可以直接参与</div>
         <div class="product-group-person-warp">
-            <div class="product-group-person-item">
+            <!--<div class="product-group-person-item">
                 <div class="product-group-person-photo"><img src="images/banner1.png" alt=""></div>
                 <div class="product-group-person-content">
                     <div class="product-group-person-top">
@@ -88,28 +88,12 @@
                     </div>
                     <a href="javascript:;" class="product-group-person-btn">去拼单</a>
                 </div>
-            </div>
-            <div class="product-group-person-item">
-                <div class="product-group-person-photo"><img src="images/banner1.png" alt=""></div>
-                <div class="product-group-person-content">
-                    <div class="product-group-person-top">
-                        <p class="product-group-person-left">红舞</p>
-                        <p class="product-group-person-right">还差3件成功</p>
-                    </div>
-                    <div class="product-group-person-bottom">
-                        <p class="product-group-person-left">杭州</p>
-                        <p class="product-group-person-right">剩余23:18:18结束</p>
-                    </div>
-                    <a href="javascript:;" class="product-group-person-btn">去拼单</a>
-                </div>
-            </div>
+            </div>-->
         </div>
     </div>
     <!-- 商品详情图 -->
     <div class="product-details-describe">
-        <div class="product-details-describe-item">
-            <img src="images/banner1.png" alt="">
-        </div>
+        <!--<div class="product-details-describe-item"><img src="images/banner1.png" alt=""></div>-->
     </div>
 </div>
 
@@ -117,6 +101,12 @@
 <script src="js/jquery-weui.min.js"></script>
 <script src="js/swiper.min.js"></script>
 <script>
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
     // 初始化banner
     var product = {
         init:function(){
@@ -128,10 +118,74 @@
                     windowWidth = $(window).width();
             $(".swiper-wrapper").css("max-height",windowWidth*0.8);
             $(".swiper-slide").css("max-height",windowWidth*0.8);
+        },
+        productReq:function () {
+            $.ajax({
+                url: "http://106.14.38.136/TeamBuying/WechatApi/GetProductInfo.do?ProductId="+GetQueryString('ProductId'),
+                type:'post',
+                dataType:'json',
+                success:function (data) {
+                    var obj = data.returnObject,productHtml='',detailHtml='',opensHtml='';
+                    if(data.resultCode == 1000){
+                        $(".js-ProductName").html(obj.ProductName);
+                        $(".js-ProductDec").html(obj.ProductDec);
+                        $(".js-OpenPrice").html(obj.OpenPrice);
+                        $(".js-MarkPrice").html(obj.MarkPrice);
+                        $(".js-NumOfOpen").html(obj.NumOfOpen);
+
+                        for(var i=0;i<obj.ProductImgs.length;i++){
+                            console.log(obj.ProductImgs[i])
+                            productHtml+='<div class="swiper-slide"><img src="'+obj.ProductImgs[i]+'" alt=""></div>'
+                        }
+                        $(".swiper-wrapper").append(productHtml)
+                        for(var j=0;j<obj.details.length;j++){
+                            detailHtml+='<div class="product-details-describe-item"><img src="'+obj.details[j]+'" alt=""></div>'
+                        }
+                        $(".product-details-describe").append(detailHtml)
+                        if(obj.opens.length==0){
+                            $(".js-opens").remove();
+                        }else{
+                            for(var k=0;k<obj.opens.length;k++){
+                                var yuxia= obj.NumOfOpen - obj.opens[k].teamNums;
+                                if(yuxia<0){
+                                    yuxia='开团成功'
+                                }else {
+                                    yuxia='还差'+yuxia+'件成功'
+                                }
+                                var allsec = obj.opens[k].leaveMilliSec/1000,
+                                        mini = parseInt(allsec/60),
+                                        sec = allsec%60;
+                                opensHtml+='<div class="product-group-person-item">'+
+                                            '<div class="product-group-person-photo"><img src="'+obj.opens[k].teamHeadImg+'" alt=""></div>'+
+                                            '<div class="product-group-person-content">'+
+                                            '<div class="product-group-person-top">'+
+                                            '<p class="product-group-person-left">'+obj.opens[k].teamName+'</p>'+
+                                            '<p class="product-group-person-right">'+yuxia+'</p>'+
+                                            '</div>'+
+                                            '<div class="product-group-person-bottom">'+
+                                            '<p class="product-group-person-left">'+obj.opens[k].teamCity+'</p>'+
+                                            '<p class="product-group-person-right">剩余'+mini+'小时'+sec+'秒结束</p>'+
+                                            '</div>'+
+                                            '<a href="javascript:;" class="product-group-person-btn">去拼单</a>'+
+                                            '</div>'+
+                                            '</div>'
+                            }
+                            $(".product-group-person-warp").append(opensHtml);
+                        }
+                        product.init()
+                    }else{
+                        console.log('正确码出错'+data.resultCode)
+                    }
+                },
+                fail:function () {
+                    console.log('获取信息失败')
+                }
+            })
         }
     };
 
-    product.init();
+
+    product.productReq();
 </script>
 </body>
 </html>

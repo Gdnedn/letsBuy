@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<!-- body 顶部加上如下代码 -->
+<div class="weui-pull-to-refresh__layer">
+    <div class='weui-pull-to-refresh__arrow'></div>
+    <div class='weui-pull-to-refresh__preloader'></div>
+    <div class="down">下拉刷新</div>
+    <div class="up">释放刷新</div>
+    <div class="refresh">正在刷新</div>
+</div>
 <!-- 底部导航 -->
 <div class="tabbar-warp">
     <a href="javascript:;" class="tabbar-item-warp tabbar-item-warp-active">
@@ -55,13 +63,15 @@
 <div class="weui-tab">
     <!-- nav -->
     <div class="weui-navbar">
-        <a class="weui-navbar__item weui-bar__item--on" href="#tab1">热门</a>
+        <a class="weui-navbar__item weui-bar__item--on info-container-active" href="#tab1">热门</a>
         <a class="weui-navbar__item" href="#tab2">精选</a>
         <a class="weui-navbar__item" href="#tab3">最新</a>
     </div>
 
     <!-- 分页 -->
     <div class="weui-tab__bd">
+
+
         <!-- 分页tab1 -->
         <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
             <!-- 幻灯片 -->
@@ -125,33 +135,24 @@
                 </a>
             </div>
             <!-- 商品列表 -->
-            <div class="product-container">
-                <div class="product-item-warp">
+            <div class="container" id="tab1Container">
+                <!--<div class="product-item-warp">
                     <div class="product-photo-warp"><img src="images/banner1.png"></div>
                     <div class="product-info-warp">
-                        <div class="product-title">不想做城市里的空巢族你可以选择带它回家不想做城市里的空巢族你可以选择带它回家</div>
+                        <div class="product-title">不想做城市里的空巢族你可以选择带它回家</div>
                         <div class="product-price">￥688.00</div>
-                        <div class="product-describe">人们忙碌一天回到家打开门就能感受到家的温暖不想做城市里的空巢族你可以选择带它回家</div>
+                        <div class="product-describe">人们忙碌一天回到家打开门就能感受到家的温暖</div>
                         <div class="product-join">火速参团</div>
                         <div class="product-tips">
                             <div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>20件起拍</div>
                             <div class="product-default-price">单价:288.00</div>
                         </div>
                     </div>
-                </div>
-                <div class="product-item-warp">
-                    <div class="product-photo-warp"><img src="images/banner1.png"></div>
-                    <div class="product-info-warp">
-                        <div class="product-title">不想做城</div>
-                        <div class="product-price">￥688.00</div>
-                        <div class="product-describe">人们忙碌一</div>
-                        <div class="product-join">火速参团</div>
-                        <div class="product-tips">
-                            <div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>20件起拍</div>
-                            <div class="product-default-price">单价:288.00</div>
-                        </div>
-                    </div>
-                </div>
+                </div>-->
+            </div>
+            <div class="weui-loadmore" id="tab1ContainerLoading">
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span>
             </div>
         </div>
 
@@ -167,33 +168,12 @@
                 <div class="swiper-pagination swiper-pagination-delicacy"></div>
             </div>
             <!-- 商品列表 -->
-            <div class="product-container">
-                <div class="product-item-warp">
-                    <div class="product-photo-warp"><img src="images/banner1.png"></div>
-                    <div class="product-info-warp">
-                        <div class="product-title">不想做城市里的空巢族你可以选择带它回家</div>
-                        <div class="product-price">￥688.00</div>
-                        <div class="product-describe">人们忙碌一天回到家打开门就能感受到家的温暖</div>
-                        <div class="product-join">火速参团</div>
-                        <div class="product-tips">
-                            <div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>20件起拍</div>
-                            <div class="product-default-price">单价:288.00</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item-warp">
-                    <div class="product-photo-warp"><img src="images/banner1.png"></div>
-                    <div class="product-info-warp">
-                        <div class="product-title">不想做城市里的空巢族你可以选择带它回家</div>
-                        <div class="product-price">￥688.00</div>
-                        <div class="product-describe">人们忙碌一天回到家打开门就能感受到家的温暖</div>
-                        <div class="product-join">火速参团</div>
-                        <div class="product-tips">
-                            <div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>20件起拍</div>
-                            <div class="product-default-price">单价:288.00</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="container" id="tab2Container">
+
+            </div>
+            <div class="weui-loadmore"  id="tab2ContainerLoading">
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span>
             </div>
         </div>
 
@@ -209,31 +189,12 @@
                 <div class="swiper-pagination swiper-pagination-new"></div>
             </div>
             <!-- 商品列表 -->
-            <div class="product-item-warp">
-                <div class="product-photo-warp"><img src="images/banner1.png"></div>
-                <div class="product-info-warp">
-                    <div class="product-title">不想做城市里的空巢族你可以选择带它回家</div>
-                    <div class="product-price">￥688.00</div>
-                    <div class="product-describe">人们忙碌一天回到家打开门就能感受到家的温暖</div>
-                    <div class="product-join">火速参团</div>
-                    <div class="product-tips">
-                        <div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>20件起拍</div>
-                        <div class="product-default-price">单价:288.00</div>
-                    </div>
-                </div>
+            <div class="container" id="tab3Container">
+
             </div>
-            <div class="product-item-warp">
-                <div class="product-photo-warp"><img src="images/banner1.png"></div>
-                <div class="product-info-warp">
-                    <div class="product-title">不想做城市里的空巢族你可以选择带它回家</div>
-                    <div class="product-price">￥688.00</div>
-                    <div class="product-describe">人们忙碌一天回到家打开门就能感受到家的温暖</div>
-                    <div class="product-join">火速参团</div>
-                    <div class="product-tips">
-                        <div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>20件起拍</div>
-                        <div class="product-default-price">单价:288.00</div>
-                    </div>
-                </div>
+            <div class="weui-loadmore" id="tab3ContainerLoading">
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span>
             </div>
         </div>
     </div>
@@ -245,6 +206,10 @@
 <script>
     // 初始化banner
     var index = {
+        loading:true,
+        tab1page:1,
+        tab2page:1,
+        tab3page:1,
         init:function(){
             var hotSwiper = new Swiper('.swiper-container-hot',{
                 pagination : '.swiper-pagination-hot',
@@ -268,6 +233,134 @@
                     windowWidth = $(window).width();
             $(".swiper-wrapper").css("max-height",windowWidth/15*8);
             $(".swiper-slide").css("max-height",windowWidth/15*8);
+
+            $(document.body).pullToRefresh();
+            this.refreshing();
+            //  初次加载数据
+            this.productReq();
+
+            // infinite
+            this.infinite();
+
+            //  初次初始化tab精选与最新
+            this.firstTabsClick();
+        },
+        productReq:function () {
+            var page,$loading,$container,api,$active = $(".info-container-active"),tab;
+            if($active.attr("href") == '#tab1'){
+                page = index.tab1page;
+                tab = 1;
+                $loading = $("#tab1ContainerLoading");
+                $container = $("#tab1Container");
+                api = 'http://106.14.38.136/TeamBuying/WechatApi/hotProducts.do?page='+page;
+                console.log('tab1')
+            }
+            else if($active.attr("href") == '#tab2'){
+                page = index.tab2page;
+                tab = 2;
+                $loading = $("#tab2ContainerLoading");
+                $container = $("#tab2Container");
+                api = 'http://106.14.38.136/TeamBuying/WechatApi/SelProducts.do?page='+page;
+                console.log('tab2')
+            }
+            else if($active.attr("href") == '#tab3'){
+                page = index.tab3page;
+                tab = 3;
+                $loading = $("#tab3ContainerLoading");
+                $container = $("#tab3Container");
+                api = 'http://106.14.38.136/TeamBuying/WechatApi/NewProducts.do?page='+page;
+                console.log('tab3')
+            }
+            $.ajax({
+                url: api,
+                type:'post',
+                dataType:'json',
+                success:function (data) {
+                    if(data.resultCode == 1000){
+                        var len = data.returnObject.length,
+                                returnObject = data.returnObject,
+                                html = '';
+                        console.log(api);
+                        if(!len){
+                            $(document.body).pullToRefreshDone();
+                            $loading.hide();
+                            return;
+                        } // 没有数据则返回
+                        for(var i=0;i<len;i++){
+                            html+=  '<div class="product-item-warp">'+
+                                    '<div class="product-photo-warp"><img src="'+returnObject[i].ProductImg1+'"></div>'+
+                                    '<div class="product-info-warp">'+
+                                    '<div class="product-title">'+returnObject[i].ProductName+'</div>'+
+                                    '<div class="product-price">'+returnObject[i].OpenPrice+'</div>'+
+                                    '<div class="product-describe">'+returnObject[i].BuyReason+'</div>'+
+                                    '<a class="product-join" href="product.html?ProductId='+returnObject[i].id+'">火速参团</a>'+
+                                    '<div class="product-tips">'+
+                                    '<div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>'+returnObject[i].NumOfOpen+'件起拍</div>'+
+                                    '<div class="product-default-price">单价:'+returnObject[i].MarkPrice+'</div>'+
+                                    '</div>'+
+                                    '</div>'+
+                                    '</div>';
+
+                        }
+                        $container.append(html);
+                        if(tab==1){index.tab1page++}
+                        else if(tab==2){index.tab2page++}
+                        else if(tab==3){index.tab3page++}
+                        index.loading=false;
+                        $(document.body).pullToRefreshDone();
+                    }else{
+                        console.log('正确码出错'+data.resultCode)
+                    }
+                },
+                fail:function () {
+                    console.log('获取信息失败')
+                }
+            })
+        },
+        // 滚动刷新
+        infinite:function () {
+            $(document.body).infinite().on("infinite", function() {
+                if(index.loading) return;
+                index.loading = true;
+                index.productReq();
+            });
+        },
+        //  首次初始化tab精选最新
+        firstTabsClick:function () {
+            var tab2First = true,tab3First = true;
+            $(".weui-navbar__item").click(function () {
+                $(this).addClass('info-container-active').siblings().removeClass('info-container-active');
+                if($(this).attr("href") == '#tab2'){
+                    if(tab2First){
+                        index.productReq();
+                        tab2First = false;
+                    }
+                }else if($(this).attr("href") == '#tab3'){
+                    if(tab3First){
+                        index.productReq();
+                        tab3First = false;
+                    }
+                }
+            })
+        },
+        //  下拉刷新
+        refreshing:function () {
+            $(document.body).on("pull-to-refresh", function() {
+                var $active = $(".info-container-active");
+                if($active.attr("href") == '#tab1'){
+                    $("#tab1Container").html('');
+                    index.tab1page=1;
+                }
+                else if($active.attr("href") == '#tab2'){
+                    $("#tab2Container").html('');
+                    index.tab2page=1;
+                }
+                else if($active.attr("href") == '#tab3'){
+                    $("#tab3Container").html('');
+                    index.tab3page=1;
+                }
+                index.productReq();
+            });
         }
     };
 
