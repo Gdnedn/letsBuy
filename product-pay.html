@@ -12,8 +12,8 @@
 <body>
 <!-- 底部导航 -->
 <div class="tabbar-warp">
-    <div class="product-tabbar-pay-price">实付款：<span class="pay-price">￥666.00</span></div>
-    <a href="javascript:;" class="product-tabbar-pay-btn">立即支付</a>
+    <div class="product-tabbar-pay-price">实付款：<span class="pay-price">￥<span class="actual-total-price">666.00</span></span></div>
+    <a href="javascript;" class="product-tabbar-pay-btn">立即支付</a>
 </div>
 
 <!-- 容器 -->
@@ -32,13 +32,13 @@
     <!-- 商品信息 -->
     <div class="order-info-item">
         <div class="order-state-warp">
-            <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>20件起团</div>
+            <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span><span class="open-number">20</span>件起团</div>
         </div>
         <div class="order-product-warp">
             <div class="order-product-photo"><img src="images/banner1.png" alt=""></div>
             <div class="order-product-content-warp">
                 <div class="order-product-title">西山勺子智能家居感应灯</div>
-                <div class="order-product-price">￥688.00</div>
+                <div class="order-product-price">￥<span class="actual-price">666.00</span></div>
                 <div class="order-product-transport product-pay">包邮</div>
             </div>
         </div>
@@ -50,7 +50,7 @@
                 <div class="add-btn-warp"><img src="images/number-add.png" alt=""></div>
             </div>
         </div>
-        <div class="order-total-price">合计：￥688.00</div>
+        <div class="order-total-price">合计：￥<span class="actual-total-price">666.00</span></div>
     </div>
     <!-- 支付方式 -->
     <div class="product-pay-method-warp">
@@ -69,5 +69,54 @@
 
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/jquery-weui.min.js"></script>
+<script type="text/javascript">
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+    var productPay={
+        OpenPrice:0,
+        //get the order info
+        init:function () {
+            $.ajax({
+                url: "http://106.14.38.136/TeamBuying/WechatApi/getPayInfo.do?ProductId="+GetQueryString('ProductId'),
+                type:'post',
+                dataType:'json',
+                success:function (data) {
+                    if(data.resultCode!=1000){//get information error
+                        console.log('正确码出错'+data.resultCode)
+                    }else{//get information successfully
+                        var obj=data.returnObject;
+                        //Address info
+                        $(".address-person-info .name").html(obj.DefaultAddress.receiptUser);
+                        $(".address-person-info .phone").html(obj.DefaultAddress.receiptPhone);
+                        $(".address-specific").html(obj.DefaultAddress.receiptCity+obj.DefaultAddress.receiptAddr);
+                        //Order info
+                        $(".order-product-title").html(obj.productName);
+                        $(".order-product-photo img").attr("src",obj.productImg);
+                        $(".open-number").html(obj.NumOfOpen);
+                        $(".actual-price").html(obj.OpenPrice);
+                        productPay.OpenPrice=obj.OpenPrice;
+                        var number=$(".number-input-warp input").val();
+                        $(".actual-total-price").html(productPay.OpenPrice*number);
+                    }
+                },
+                fail:function () {
+                    console.log('获取信息失败')
+                }
+            });
+            $(".number-input-warp input").keyup(function () {
+                var number=$(".number-input-warp input").val();
+                $(".actual-total-price").html(productPay.OpenPrice*number);
+            });
+        }
+    };
+    //on page load
+    $(function () {
+        productPay.init();
+    });
+</script>
 </body>
 </html>
