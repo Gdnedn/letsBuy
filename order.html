@@ -64,7 +64,7 @@
 
             <div class="order-info-container" id="tab1Container">
 
-                <div class="order-info-item">
+                <!--<div class="order-info-item">
                     <div class="order-state-warp">
                         <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>20件起团</div>
                         <div class="order-state">交易已取消</div>
@@ -164,7 +164,7 @@
                     <div class="order-btn-warp">
                         <a href="javascript:;" class="order-btn">查看订单详情</a>
                     </div>
-                </div>
+                </div>-->
 
             </div>
             <div id="tab1ContainerLoading" class="weui-loadmore">
@@ -316,22 +316,48 @@
                             return;
                         } // 没有数据则返回
                         for(var i=0;i<len;i++){
+                            var status,totalPrice=returnObject[i].OpenPrice * returnObject[i].Number,btnHtml = '';
+                            if(returnObject[i].Status == 0){
+                                status = "待付款";
+                                btnHtml +=  '<a href="javascript:;" class="order-btn order-btn-red">去支付</a>'
+                            }else if(returnObject[i].Status==1){
+                                status = "拼团中";
+                                btnHtml += '<a href="javascript:;" class="order-btn order-btn-red">邀请好友拼单</a>'
+
+                            }else if(returnObject[i].Status==2){
+                                status = "待发货";
+
+                            }else if(returnObject[i].Status==3){
+                                status = "待收货";
+
+                            }else if(returnObject[i].Status==4){
+                                status = "交易完成";
+
+                            }else if(returnObject[i].Status==5){
+                                status = "拼团失败退款中";
+                            }else if(returnObject[i].Status==6){
+                                status = "拼团失败退款完成";
+                            }
+                            else if(returnObject[i].Status==7){
+                                status = "已取消";
+                            }
                             html+=  '<div class="order-info-item">'+
                                     '<div class="order-state-warp">'+
-                                    '<div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>20件起团</div>'+
-                                    '<div class="order-state">交易已取消</div>'+
+                                    '<div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>'+returnObject[i].OpenNum+'件起团</div>'+
+                                    '<div class="order-state">'+status+'</div>'+
                                     '</div>'+
                                     '<div class="order-product-warp">'+
-                                    '<div class="order-product-photo"><img src="images/banner1.png" alt=""></div>'+
+                                    '<div class="order-product-photo"><img src="'+returnObject[i].ProudctImg+'" alt=""></div>'+
                                     '<div class="order-product-content-warp">'+
-                                    '<div class="order-product-title">西山勺子智能家居感应灯</div>'+
-                                    '<div class="order-product-price">￥688.00</div>'+
-                                    '<div class="order-product-number">1件</div>'+
+                                    '<div class="order-product-title">'+returnObject[i].ProudctName+'</div>'+
+                                    '<div class="order-product-price">￥'+returnObject[i].OpenPrice+'</div>'+
+                                    '<div class="order-product-number">'+returnObject[i].Number+'件</div>'+
                                     '<div class="order-product-transport">包邮</div>'+
                                     '</div>'+
                                     '</div>'+
-                                    '<div class="order-total-price">合计：￥688.00</div>'+
+                                    '<div class="order-total-price">合计：￥'+totalPrice+'</div>'+
                                     '<div class="order-btn-warp">'+
+                                    btnHtml+
                                     '<a href="javascript:;" class="order-btn">查看订单详情</a>'+
                                     '</div>'+
                                     '</div>'

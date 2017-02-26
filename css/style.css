@@ -355,6 +355,17 @@
     position: absolute;
     left: .8rem;
     top: .4rem;
+    overflow: hidden;
+}
+.order-product-photo img{
+    width: auto;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 .order-product-content-warp{
     width: 100%;
@@ -369,6 +380,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     line-height: 1.4rem;
+    white-space: nowrap;
 }
 .order-product-price{
     color: #e14a51;
@@ -699,6 +711,7 @@
 }
 .order-product-transport.product-pay{
     line-height: 2.4rem;
+    height: 2.4rem;
 }
 .product-number-del-warp{
     background-color: #ffffff;
