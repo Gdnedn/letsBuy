@@ -12,25 +12,33 @@
 <body>
 <!-- search-bar -->
 <div class="weui-search-bar weui-search-bar_focusing">
-    <form class="weui-search-bar__form">
+    <div class="weui-search-bar__form">
         <div class="weui-search-bar__box">
             <i class="weui-icon-search"></i>
             <input type="search" class="weui-search-bar__input" placeholder="搜索" required="">
         </div>
-    </form>
+    </div>
     <a href="javascript:" class="weui-search-cancel-btn" onclick="javascript:history.back(-1);">取消</a>
 </div>
 
 <!-- 热门搜索 -->
-<div class="hot-search-warp">
+<!--<div class="hot-search-warp">
     <div class="hot-search-title">热门搜索</div>
     <div class="hot-search-btn-warp">
         <a href="javascript:;" class="hot-search-btn">新款连衣裙</a>
         <a href="javascript:;" class="hot-search-btn">四件套</a>
     </div>
-</div>
+</div>-->
 
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/jquery-weui.min.js"></script>
+<script>
+    $('.weui-search-bar__input').on('keypress',function(event){
+        var val = $(this).val();
+        if(event.keyCode == 13){
+            window.location.href='index-result.html?key='+val;
+        }
+    });
+</script>
 </body>
 </html>

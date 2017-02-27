@@ -40,7 +40,7 @@
 <div class="vip-container">
     <!-- 头像 -->
     <div class="person-photo-outwarp">
-        <div class="person-photo-warp"><img src="images/banner1.png"></div>
+        <div class="person-photo-warp"><img src="images/banner1.png" id="HeadImg"></div>
         <p class="person-name">Micheal</p>
         <p class="vip-greet">早上好！</p>
     </div>
@@ -69,6 +69,32 @@
         </a>
     </div>-->
 </div>
-
+<script src="js/jquery-2.1.4.min.js"></script>
+<script>
+    var vip={
+        post:function(){
+            $.ajax({
+                url: "http://106.14.38.136/TeamBuying/WechatApi/myAccount.do",
+                type:'post',
+                dataType:'json',
+                success:function (data) {
+                    if(data.resultCode!=1000){//get information error
+                        console.log('正确码出错'+data.resultCode)
+                    }else{//get information successfully
+                        var returnObject=data.returnObject;
+                        $("#HeadImg").attr("src",returnObject.HeadImg);
+                        $(".person-photo-outwarp").css({"background-image":"url("+returnObject.BackImg+")"});
+                        $(".person-name").html(returnObject.NickName);
+                        $(".vip-greet").html(returnObject.hello);
+                    }
+                },
+                fail:function () {
+                    console.log('获取信息失败')
+                }
+            });
+        },
+    };
+    vip.post();
+</script>
 </body>
 </html>

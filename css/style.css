@@ -780,7 +780,7 @@
     line-height: 2rem;
     height: 2rem;
 }
-.product-pay-method:first-child:after{
+/*.product-pay-method:first-child:after{
     content: " ";
     position: absolute;
     right: 0;
@@ -792,7 +792,7 @@
     transform-origin: 100% 0;
     -webkit-transform: scaleY(.5);
     transform: scaleY(.5);
-}
+}*/
 .product-pay-method-icon{
     position: absolute;
     height: 1.2rem;
