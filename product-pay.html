@@ -12,8 +12,8 @@
 <body>
 <!-- 底部导航 -->
 <div class="tabbar-warp">
-    <div class="product-tabbar-pay-price">实付款：<span class="pay-price">￥<span class="actual-total-price">666.00</span></span></div>
-    <a href="javascript;" class="product-tabbar-pay-btn">立即支付</a>
+    <div class="product-tabbar-pay-price">实付款：<span class="pay-price">￥<span class="actual-total-price">0.00</span></span></div>
+    <a href="javascript;" class="product-tabbar-pay-btn pay-btn-disabled">立即支付</a>
 </div>
 
 <!-- 容器 -->
@@ -23,22 +23,22 @@
         <div class="address-icon-warp"><img src="images/address-icon.png" alt=""></div>
         <div class="address-content">
             <div class="address-person-info">
-                <span class="name">StefanieSun</span>
-                <span class="phone">186588888</span>
+                <span class="name"></span>
+                <span class="phone"></span>
             </div>
-            <div class="address-specific">浙江杭州酒仙桥中路26号鸿运大厦</div>
+            <div class="address-specific"></div>
         </div>
     </div>
     <!-- 商品信息 -->
     <div class="order-info-item">
         <div class="order-state-warp">
-            <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span><span class="open-number">20</span>件起团</div>
+            <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span><span class="open-number">0</span>件起团</div>
         </div>
         <div class="order-product-warp">
             <div class="order-product-photo"><img src="images/banner1.png" alt=""></div>
             <div class="order-product-content-warp">
-                <div class="order-product-title">西山勺子智能家居感应灯</div>
-                <div class="order-product-price">￥<span class="actual-price">666.00</span></div>
+                <div class="order-product-title"></div>
+                <div class="order-product-price">￥<span class="actual-price">0.00</span></div>
                 <div class="order-product-transport product-pay">包邮</div>
             </div>
         </div>
@@ -50,7 +50,7 @@
                 <div class="add-btn-warp"><img src="images/number-add.png" alt=""></div>
             </div>
         </div>
-        <div class="order-total-price">合计：￥<span class="actual-total-price">666.00</span></div>
+        <div class="order-total-price">合计：￥<span class="actual-total-price">0.00</span></div>
     </div>
     <!-- 支付方式 -->
     <div class="product-pay-method-warp">
@@ -78,6 +78,8 @@
     }
     var productPay={
         OpenPrice:0,
+        NumOfOpen:0,
+        $number:$(".number-input-warp input"),
         //get the order info
         init:function () {
             $.ajax({
@@ -98,8 +100,9 @@
                         $(".order-product-photo img").attr("src",obj.productImg);
                         $(".open-number").html(obj.NumOfOpen);
                         $(".actual-price").html(obj.OpenPrice);
+                        productPay.NumOfOpen=obj.NumOfOpen;
                         productPay.OpenPrice=obj.OpenPrice;
-                        var number=$(".number-input-warp input").val();
+                        var number=productPay.$number.val();
                         $(".actual-total-price").html(productPay.OpenPrice*number);
                     }
                 },
@@ -107,10 +110,32 @@
                     console.log('获取信息失败')
                 }
             });
-            $(".number-input-warp input").keyup(function () {
-                var number=$(".number-input-warp input").val();
-                $(".actual-total-price").html(productPay.OpenPrice*number);
+            $(".sub-btn-warp").click(function(){
+                var number=productPay.$number.val();
+                if(number>1){
+                    productPay.$number.val(number-1);
+                    productPay.canOpen();
+                }
             });
+            $(".add-btn-warp").click(function(){
+                var number=parseInt(productPay.$number.val());
+                productPay.$number.val(number+1);
+                productPay.canOpen();
+            });
+            $(".number-input-warp input").keyup(function () {
+                productPay.canOpen();
+            });
+        },
+        canOpen:function(){
+            $(".actual-total-price").html(productPay.OpenPrice*productPay.$number.val());
+            var $payBtn=$(".product-tabbar-pay-btn");
+            if(productPay.NumOfOpen<=productPay.$number.val()){//enable
+                $payBtn.removeClass("pay-btn-disabled");
+            }else{//disable
+                if(!$payBtn.hasClass("pay-btn-disabled")){
+                    $payBtn.addClass("pay-btn-disabled")
+                }
+            }
         }
     };
     //on page load
