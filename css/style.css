@@ -674,6 +674,9 @@
     line-height: 2.4rem;
     text-align: center;
 }
+.pay-btn-disabled{
+    background-color: #888;
+}
 .address-pick-warp{
     padding: .8rem .8rem;
     background: #ffffff url("../images/select-right.png") no-repeat 96%;
