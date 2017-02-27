@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>地址管理</title>
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/jquery-weui.min.css">
+    <link rel="stylesheet" href="css/rem-fix.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 主体 -->
+<div class="container">
+    <div class="add-address-list-warp">
+        <div class="add-address-item">
+            <div class="add-address-layout">收货人:</div>
+            <input type="text" class="add-address-content" placeholder="输入收货人" id="receiptUser">
+        </div>
+        <div class="add-address-item">
+            <div class="add-address-layout">手机号码:</div>
+            <input type="text" class="add-address-content" placeholder="输入手机号码" id="receiptPhone">
+        </div>
+        <div class="add-address-item">
+            <div class="add-address-layout">所在地区:</div>
+            <input type="text" class="add-address-content" placeholder="例如：浙江省杭州市西湖区" id="receiptCity">
+        </div>
+        <div class="add-address-item">
+            <div class="add-address-layout">详细地址:</div>
+            <input type="text" class="add-address-content" placeholder="例如：万塘路29号4单元444号" id="receiptAddr">
+        </div>
+    </div>
+
+    <a href="javascript:;" class="save-address-btn">保存地址</a>
+
+</div>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+<script>
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+    var address={
+        //get the order info
+        id:'',
+        init:function () {
+            address.getInfo();
+            address.setInfo();
+        },
+        getInfo:function(){
+            if(GetQueryString('id')){
+                address.id=GetQueryString('id');
+                $.ajax({
+                    url: "http://106.14.38.136/TeamBuying/WechatApi/getEditAddrInfo.do?id="+GetQueryString('id'),
+                    type:'post',
+                    dataType:'json',
+                    success:function (data) {
+                        if(data.resultCode!=1000){//get information error
+                            console.log('正确码出错'+data.resultCode)
+                        }else{//get information successfully
+                            var obj=data.returnObject,html = '';
+                            $("#receiptUser").val(obj.receiptUser);
+                            $("#receiptPhone").val(obj.receiptPhone);
+                            $("#receiptCity").val(obj.receiptCity);
+                            $("#receiptAddr").val(obj.receiptAddr);
+                        }
+                    },
+                    fail:function () {
+                        console.log('获取信息失败')
+                    }
+                });
+            }
+        },
+        setInfo:function(){
+            $(".save-address-btn").click(function(){
+                var receiptUser = $("#receiptUser").val(),
+                        receiptPhone=$("#receiptPhone").val(),
+                        receiptCity=$("#receiptCity").val(),
+                        receiptAddr=$("#receiptAddr").val();
+                if(receiptUser&&receiptPhone&&receiptCity&&receiptAddr){
+                    if(address.id){
+                        console.log(address.id)
+                        $.ajax({
+                            url: "http://106.14.38.136/TeamBuying/WechatApi/upDateAddr.do?id="+address.id+"&receiptUser="+receiptUser+"&receiptPhone="+receiptPhone+"&receiptCity="+receiptCity+"&receiptAddr="+receiptAddr,
+                            type:'post',
+                            dataType:'json',
+                            success:function (data) {
+                                window.location.href="vip-address.html"
+                            },
+                            fail:function () {
+                                console.log('获取信息失败')
+                            }
+                        });
+                    }else {
+                        console.log(address.id)
+                        $.ajax({
+                            url: "http://106.14.38.136/TeamBuying/WechatApi/insertNewAddr.do?id="+address.id+"&receiptUser="+receiptUser+"&receiptPhone="+receiptPhone+"&receiptCity="+receiptCity+"&receiptAddr="+receiptAddr,
+                            type:'post',
+                            dataType:'json',
+                            success:function (data) {
+                                if(data.resultCode!=1000){//get information error
+                                    console.log('正确码出错'+data.resultCode)
+                                }else{//get information successfully
+                                    window.location.href="vip-address.html"
+                                }
+                            },
+                            fail:function () {
+                                console.log('获取信息失败')
+                            }
+                        });
+                    }
+                }else {
+                    $.alert("请填写完整收货地址");
+                }
+            });
+        }
+    };
+    address.init();
+</script>
+</body>
+</html>

@@ -1082,11 +1082,23 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    padding: .3rem;
+    padding: .2rem;
 }
 .order-recommend-product-photo{
     width: 100%;
     overflow: hidden;
+    position: relative;
+}
+.order-recommend-product-photo img{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: auto;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 .order-recommend-product-title{
     overflow : hidden;
@@ -1096,13 +1108,14 @@
     -webkit-box-orient: vertical;
     font-size: .7rem;
     margin-top: .2rem;
+    min-height: 1.9rem;
 }
 .order-recommend-product-price-warp{
     overflow: hidden;
     margin-top: .2rem;
 }
 .order-recommend-product-price{
-    font-size: .7rem;
+    font-size: .65rem;
     color: #e14a51;
     float: left;
     line-height: 1rem;
@@ -1301,4 +1314,55 @@
 }
 .address-list-warp{
     padding-bottom: 2.5rem;
+}
+.add-address-list-warp{
+    background-color: #ffffff;
+}
+.add-address-item{
+    position: relative;
+    padding: 0 .8rem;
+}
+.add-address-item:after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #cccccc;
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    display: block;
+    width: 100%;
+}
+.add-address-item:last-child:after{
+    display: none;
+}
+.add-address-layout{
+    font-size: .75rem;
+    position: absolute;
+    left: .8rem;
+    line-height: 2rem;
+}
+.add-address-content{
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 3.8rem;
+    line-height: 1rem;
+    font-size: .75rem;
+    height: 2rem;
+}
+.save-address-btn{
+    height: 2rem;
+    width: 80%;
+    left: 10%;
+    text-align: center;
+    line-height: 2rem;
+    background-color: #e14a51;
+    color: #ffffff;
+    font-size: .8rem;
+    display: block;
+    margin: 1rem auto;
 }

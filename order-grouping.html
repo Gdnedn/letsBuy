@@ -15,7 +15,7 @@
         <p class="order-recommend-product-title">[ProductName]</p>
         <div class="order-recommend-product-price-warp">
             <span class="order-recommend-product-price">￥<span class="actual-recommend-price">[OpenPrice]</span></span>
-            <span class="order-recommend-product-group">[NumOfOpen]件起团 <del>单价：[MarkPrice]</del></span>
+            <span class="order-recommend-product-group">[NumOfOpen]件起团.<del>单价:[MarkPrice]</del></span>
         </div>
     </div>
 </a>
@@ -59,7 +59,7 @@
     <!-- 头部红色提醒 -->
     <div class="order-top-red-tips">
         <p class="order-top-info">拼单还未完成</p>
-        <p>让小伙伴们都来拼团吧</p>
+        <!--<p>让小伙伴们都来拼团吧</p>-->
     </div>
     <!-- 地址选择 -->
     <!-- 地址选择 -->
@@ -102,19 +102,19 @@
         orderStatus: function () {
             switch (ordergroup.orderInfo.status){
                 case 0:
-                    return "待付款";
+                    return "待付款";//去支付（红色）
                 case 1:
-                    return "拼团中";
+                    return "拼团中";//拼团详情
                 case 2:
-                    return "待发货";
+                    return "待发货";//查看快递信息
                 case 3:
-                    return "待收货";
+                    return "待收货";//查看快递信息，确认收货（红色）
                 case 4:
-                    return "交易完成";
+                    return "交易完成";//拼单详情
                 case 5:
-                    return "拼团失败退款中";
+                    return "拼团失败退款中";//拼单详情
                 case 6:
-                    return "拼团失败退款完成";
+                    return "拼团失败退款完成";//拼单详情
                 case 7:
                     return "已取消";
                 default:
@@ -160,16 +160,16 @@
                         $(".actual-total-price").html(totalPrice);
                         //getStatus
                         $(".order-state,.order-top-info").html(ordergroup.orderStatus());
+
+                        var $recommendProduct = $(".order-recommend-product-photo"),
+                                recommendProductWidth = $recommendProduct.width();
+                        $recommendProduct.css("height",recommendProductWidth);
                     }
                 },
                 fail:function () {
                     console.log('获取信息失败')
                 }
             });
-
-            var $recommendProduct = $(".order-recommend-product-photo").find("img"),
-                    recommendProductWidth = $recommendProduct.width();
-            $recommendProduct.css("height",recommendProductWidth);
         }
     };
     ordergroup.init();
