@@ -8,87 +8,78 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
+<template id="recommend-product">
+<a class="order-recommend-product-outwarp" href="product.html?ProductId=[id]">
+    <div class="order-recommend-product-innerwarp">
+        <div class="order-recommend-product-photo"><img src="[ProductImg1]" alt=""></div>
+        <p class="order-recommend-product-title">[ProductName]</p>
+        <div class="order-recommend-product-price-warp">
+            <span class="order-recommend-product-price">￥<span class="actual-recommend-price">[OpenPrice]</span></span>
+            <span class="order-recommend-product-group">[NumOfOpen]件起团 <del>单价：[MarkPrice]</del></span>
+        </div>
+    </div>
+</a>
+</template>
+<template id="order-address">
+    <div class="address-icon-warp"><img src="images/address-icon.png" alt=""></div>
+    <div class="address-content">
+        <div class="address-person-info">
+            <span class="name">[receiptUser]</span>
+            <span class="phone">[receiptPhone]</span>
+        </div>
+        <div class="address-specific">[receiptAddr]</div>
+    </div>
+</template>
+<template id="order-product">
+    <div class="order-state-warp">
+        <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>[openNum]件起团</div>
+        <div class="order-state">待发货</div>
+    </div>
+    <div class="order-product-warp">
+        <div class="order-product-photo"><img src="[proudctImg]" alt=""></div>
+        <div class="order-product-content-warp">
+            <div class="order-product-title">[proudctName]</div>
+            <div class="order-product-price">￥<span class="actual-price">[openPrice]</span></div>
+            <div class="order-product-number"><spam class="actual-number">[number]</spam>件</div>
+            <div class="order-product-transport">包邮</div>
+        </div>
+    </div>
+    <div class="order-total-price">合计：￥<span class="actual-total-price">1600.00</span></div>
+    <div class="order-btn-warp">
+        <a href="order-detail.html?OrderId=[id]" class="order-btn">查看拼单详情</a>
+    </div>
+</template>
+<template id="order-info">
+    <p>订单编号：[orderNo]</p>
+    <p>支付方式：微信</p>
+    <p>下单时间：[createTime]</p>
+</template>
 <!-- 主体 -->
 <div class="container">
     <!-- 头部红色提醒 -->
     <div class="order-top-red-tips">
-        <p>拼单还未完成</p>
+        <p class="order-top-info">拼单还未完成</p>
         <p>让小伙伴们都来拼团吧</p>
     </div>
     <!-- 地址选择 -->
+    <!-- 地址选择 -->
     <div class="address-pick-warp">
-        <div class="address-icon-warp"><img src="images/address-icon.png" alt=""></div>
-        <div class="address-content">
-            <div class="address-person-info">
-                <span class="name">StefanieSun</span>
-                <span class="phone">186588888</span>
-            </div>
-            <div class="address-specific">浙江杭州酒仙桥中路26号鸿运大厦</div>
-        </div>
+        <!--to be rendered later-->
     </div>
     <!-- 商品信息 -->
     <div class="order-info-item">
-        <div class="order-state-warp">
-            <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>20件起团</div>
-            <div class="order-state">待发货</div>
-        </div>
-        <div class="order-product-warp">
-            <div class="order-product-photo"><img src="images/banner1.png" alt=""></div>
-            <div class="order-product-content-warp">
-                <div class="order-product-title">西山勺子智能家居感应灯</div>
-                <div class="order-product-price">￥688.00</div>
-                <div class="order-product-number">1件</div>
-                <div class="order-product-transport">包邮</div>
-            </div>
-        </div>
-        <div class="order-total-price">合计：￥688.00</div>
-        <div class="order-btn-warp">
-            <a href="javascript:;" class="order-btn">查看拼单详情</a>
-        </div>
+        <!--to be rendered later-->
     </div>
     <!-- 订单信息 -->
     <div class="order-info-warp">
-        <p>订单编号：0000-000000</p>
-        <p>支付方式：微信</p>
-        <p>下单时间：2016-09-10  20:16:23</p>
+        <!--to be rendered later-->
     </div>
     <!-- 猜你喜欢 -->
     <div class="order-recommend-warp">
         <div class="order-recommend-tips">猜你喜欢</div>
         <div class="order-recommend-container">
-            <div class="order-recommend-product-outwarp">
-                <div class="order-recommend-product-innerwarp">
-                    <div class="order-recommend-product-photo"><img src="images/banner1.png" alt=""></div>
-                    <p class="order-recommend-product-title">Moleskine 告诉你，笔记本如何成为奢侈品</p>
-                    <div class="order-recommend-product-price-warp">
-                        <span class="order-recommend-product-price">￥1600.00</span>
-                        <span class="order-recommend-product-group">2人团.已团20件</span>
-                    </div>
-                </div>
-            </div>
-            <div class="order-recommend-product-outwarp">
-                <div class="order-recommend-product-innerwarp">
-                    <div class="order-recommend-product-photo"><img src="images/banner1.png" alt=""></div>
-                    <p class="order-recommend-product-title">Moleskine 告诉你，笔记本如何成为奢侈品</p>
-                    <div class="order-recommend-product-price-warp">
-                        <span class="order-recommend-product-price">￥1600.00</span>
-                        <span class="order-recommend-product-group">2人团.已团20件</span>
-                    </div>
-                </div>
-            </div>
-            <div class="order-recommend-product-outwarp">
-                <div class="order-recommend-product-innerwarp">
-                    <div class="order-recommend-product-photo"><img src="images/banner1.png" alt=""></div>
-                    <p class="order-recommend-product-title">Moleskine 告诉你，笔记本如何成为奢侈品</p>
-                    <div class="order-recommend-product-price-warp">
-                        <span class="order-recommend-product-price">￥1600.00</span>
-                        <span class="order-recommend-product-group">2人团.已团20件</span>
-                    </div>
-                </div>
-            </div>
+            <!--something will be rendered later-->
         </div>
-
     </div>
 </div>
 
@@ -96,16 +87,92 @@
 <script src="js/jquery-weui.min.js"></script>
 <script src="js/swiper.min.js"></script>
 <script>
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
     // 初始化banner
-    var order = {
+    var ordergroup = {
+        NumOfOpen:0,
+        orderInfo:'',
+        guessYouLike:'',
+        reg:new RegExp("\\[([^\\[\\]]*?)\\]", 'igm'),
+        orderStatus: function () {
+            switch (ordergroup.orderInfo.status){
+                case 0:
+                    return "待付款";
+                case 1:
+                    return "拼团中";
+                case 2:
+                    return "待发货";
+                case 3:
+                    return "待收货";
+                case 4:
+                    return "交易完成";
+                case 5:
+                    return "拼团失败退款中";
+                case 6:
+                    return "拼团失败退款完成";
+                case 7:
+                    return "已取消";
+                default:
+                    return "未定义"
+            }
+        },
         init:function(){
+            //fill the template
+            $.ajax({
+                url: "http://106.14.38.136/TeamBuying/WechatApi/getOrderDetail.do?OrderId="+GetQueryString('OrderId'),
+                dataType:'json',
+                success:function (data) {
+                    if(data.resultCode!=1000){//get information error
+                        console.log('正确码出错'+data.resultCode)
+                    }else{//get information successfully
+                        var obj=data.returnObject;
+                        var source='';
+                        var html='';
+                        ordergroup.guessYouLike=obj.GuessYouLike;
+                        ordergroup.orderInfo=obj.orderInfo;
+                        //Order address
+                        html = document.getElementById("order-address").innerHTML;
+                        source = html.replace(ordergroup.reg, function (node, key) { return ordergroup.orderInfo[key]; });
+                        $(".address-pick-warp").append(source);
+                        //Order product info
+                        html = document.getElementById("order-product").innerHTML;
+                        source = html.replace(ordergroup.reg, function (node, key) { return ordergroup.orderInfo[key]; });
+                        $(".order-info-item").append(source);
+                        //Order info
+                        html = document.getElementById("order-info").innerHTML;
+                        source = html.replace(ordergroup.reg, function (node, key) { return ordergroup.orderInfo[key]; });
+                        $(".order-info-warp").append(source);
+                        $(".order-info-warp .order-paytype").html(ordergroup.orderInfo.payType==2?"微信":"在线支付");
+                        //What you like
+                        html= document.getElementById("recommend-product").innerHTML;
+                        for(var a in ordergroup.guessYouLike){
+                            source = html.replace(ordergroup.reg, function (node, key) { return ordergroup.guessYouLike[a][key]; });
+                            $(".order-recommend-container").append(source);
+                        }
+                        //Filled ,Logic Part
+                        //total price
+                        var totalPrice=ordergroup.orderInfo.number*ordergroup.orderInfo.openPrice;
+                        $(".actual-total-price").html(totalPrice);
+                        //getStatus
+                        $(".order-state,.order-top-info").html(ordergroup.orderStatus());
+                    }
+                },
+                fail:function () {
+                    console.log('获取信息失败')
+                }
+            });
+
             var $recommendProduct = $(".order-recommend-product-photo").find("img"),
                     recommendProductWidth = $recommendProduct.width();
             $recommendProduct.css("height",recommendProductWidth);
         }
     };
-
-    order.init();
+    ordergroup.init();
 </script>
 </body>
 </html>
