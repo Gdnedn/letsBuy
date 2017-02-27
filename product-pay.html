@@ -13,7 +13,7 @@
 <!-- 底部导航 -->
 <div class="tabbar-warp">
     <div class="product-tabbar-pay-price">实付款：<span class="pay-price">￥<span class="actual-total-price">0.00</span></span></div>
-    <a href="javascript;" class="product-tabbar-pay-btn pay-btn-disabled">立即支付</a>
+    <a href="javascript:;" class="product-tabbar-pay-btn pay-btn-disabled">立即支付</a>
 </div>
 
 <!-- 容器 -->
@@ -83,7 +83,7 @@
         //get the order info
         init:function () {
             $.ajax({
-                url: "http://106.14.38.136/TeamBuying/WechatApi/getPayInfo.do?ProductId="+GetQueryString('ProductId'),
+                url: "http://106.14.38.136/TeamBuying/WechatApi/getPayInfo.do?ProductId="+GetQueryString('OrderId'),
                 type:'post',
                 dataType:'json',
                 success:function (data) {
