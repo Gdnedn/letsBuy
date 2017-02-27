@@ -15,7 +15,7 @@
         <p class="order-recommend-product-title">[ProductName]</p>
         <div class="order-recommend-product-price-warp">
             <span class="order-recommend-product-price">￥<span class="actual-recommend-price">[OpenPrice]</span></span>
-            <span class="order-recommend-product-group">[NumOfOpen]件起团 <del>单价：[MarkPrice]</del></span>
+            <span class="order-recommend-product-group">[NumOfOpen]件起团.<del>单价:[MarkPrice]</del></span>
         </div>
     </div>
 </a>
@@ -180,15 +180,14 @@
                         //getStatus
                         $(".order-state,.order-top-info").html(ordergroup.orderStatus());
                     }
+                    var $recommendProduct = $(".order-recommend-product-photo"),
+                            recommendProductWidth = $recommendProduct.width();
+                    $recommendProduct.css("height",recommendProductWidth);
                 },
                 fail:function () {
                     console.log('获取信息失败')
                 }
             });
-
-            var $recommendProduct = $(".order-recommend-product-photo").find("img"),
-                    recommendProductWidth = $recommendProduct.width();
-            $recommendProduct.css("height",recommendProductWidth);
         }
     };
     ordergroup.init();
