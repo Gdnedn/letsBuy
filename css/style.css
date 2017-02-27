@@ -687,7 +687,7 @@
     position: absolute;
     height: 1.5rem;
     left: .8rem;
-    top: 1rem;
+    top: 1.6rem;
 }
 .address-icon-warp img{
     width: auto;
@@ -1192,4 +1192,113 @@
     background-color: #e14a51;
     z-index: 10;
     border-radius: 50%;
+}
+.address-item-warp{
+    background-color: #ffffff;
+    padding: 0 .8rem;
+    margin-bottom: .5rem;
+}
+.address-person-info{
+    overflow: hidden;
+    font-size: .7rem;
+    padding-top: .5rem;
+}
+.address-person-name{
+    float: left;
+}
+.address-person-phone{
+    float: left;
+    margin-left: .3rem;
+}
+.address-person-total{
+    color: #969696;
+    font-size: .65rem;
+    position: relative;
+    padding-bottom: .5rem;
+}
+.address-person-total:after{
+    content: '';
+    display: block;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    border-top: 1px solid #cccccc;
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    height: 1px;
+    width: 100%;
+}
+.address-btn-warp{
+    overflow: hidden;
+    color: #969696;
+    font-size: .65rem;
+    line-height: 1.6rem;
+}
+.address-default{
+    float: left;
+    position: relative;
+    padding-left: 1rem;
+}
+.address-default-icon{
+    position: absolute;
+    left: 0;
+    top: .4rem;
+    width: .7rem;
+    height: .7rem;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: url("../images/success.png") no-repeat center;
+    background-size: 80%;
+}
+.address-default-active .address-default-icon{
+    background-color: #e14a51;
+    border-color: #e14a51;
+}
+.address-edit{
+    float: right;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    position: relative;
+}
+.address-edit-icon{
+    position: absolute;
+    left: 0;
+    top: .4rem;
+    width: .7rem;
+    height: .7rem;
+    background: url("../images/edit-icon.png") no-repeat center;
+    background-size: 80%;
+}
+.address-del{
+    float: right;
+    position: relative;
+    margin-left: 1rem;
+    padding-left: 1rem;
+}
+.address-del-icon{
+    position: absolute;
+    left: 0;
+    top: .4rem;
+    width: .7rem;
+    height: .7rem;
+    background: url("../images/del-icon.png") no-repeat center;
+    background-size: 80%;
+}
+.add-address-btn{
+    position: fixed;
+    height: 2rem;
+    bottom: .5rem;
+    width: 80%;
+    left: 10%;
+    text-align: center;
+    line-height: 2rem;
+    background-color: #e14a51;
+    color: #ffffff;
+    font-size: .8rem;
+    display: block;
+}
+.address-list-warp{
+    padding-bottom: 2.5rem;
 }

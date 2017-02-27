@@ -1,10 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>地址管理</title>
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/jquery-weui.min.css">
+    <link rel="stylesheet" href="css/rem-fix.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<!-- 主体 -->
+<div class="container">
+    <div class="weui-loadmore">
+        <i class="weui-loading"></i>
+        <span class="weui-loadmore__tips">数据加载中...</span>
+    </div>
+    <div class="address-list-warp">
+        <!--<div class="address-item-warp">
+            <div class="address-person-info">
+                <div class="address-person-name">郑</div>
+                <div class="address-person-phone">15555555555</div>
+            </div>
+            <div class="address-person-total">aaaaaaaaaaaaaaaaaaaa</div>
+            <div class="address-btn-warp">
+                <div class="address-default address-default-active"><span class="address-default-icon"></span>默认地址</div>
+                <div class="address-del"><span class="address-del-icon"></span>删除</div>
+                <div class="address-edit"><span class="address-edit-icon"></span>编辑</div>
+            </div>
+        </div>-->
+    </div>
+
+    <a href="javascript:;" class="add-address-btn">新增地址</a>
+
+</div>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+<script>
+    var address={
+        //get the order info
+        init:function () {
+            $.ajax({
+                url: "http://106.14.38.136/TeamBuying/WechatApi/getAdressList.do",
+                type:'post',
+                dataType:'json',
+                success:function (data) {
+                    if(data.resultCode!=1000){//get information error
+                        console.log('正确码出错'+data.resultCode)
+                    }else{//get information successfully
+                        var obj=data.returnObject,html = '';
+                        for(var i=0;i<obj.length;i++){
+                            var active = obj[i].isDefault?'address-default-active':'';
+                            html += '<div class="address-item-warp">'+
+                                    '<div class="address-person-info">'+
+                                    '<div class="address-person-name">'+obj[i].receiptUser+'</div>'+
+                                    '<div class="address-person-phone">'+obj[i].receiptPhone+'</div>'+
+                                    '</div>'+
+                                    '<div class="address-person-total">'+obj[i].receiptCity+obj[i].receiptAddr+'</div>'+
+                                    '<div class="address-btn-warp">'+
+                                    '<div class="address-default '+active+'"><span class="address-default-icon"></span>默认地址</div>'+
+                                    '<div class="address-del"><span class="address-del-icon"></span>删除</div>'+
+                                    '<div class="address-edit"><span class="address-edit-icon"></span>编辑</div>'+
+                                    '</div>'+
+                                    '</div>'
+                        }
+                        $(".address-list-warp").append(html);
+                        $(".weui-loadmore").remove();
+                        address.methods();
+                    }
+                },
+                fail:function () {
+                    console.log('获取信息失败')
+                }
+            });
+        },
+        methods:function(){
+            $(".address-list-warp").on("click",".address-del",function(){
+                var $item = $(this).parents(".address-item-warp");
+                $.confirm("确定删除？",function(){
+                    $item.remove();
+                })
+            })
+        }
+    };
+    address.init();
+</script>
 </body>
 </html>
