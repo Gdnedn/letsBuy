@@ -14,13 +14,13 @@
     <!-- 商品信息 -->
     <div class="order-info-item order-detail-product">
         <div class="order-state-warp">
-            <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>20件起团</div>
+            <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span><span class="open-number">20</span>件起团</div>
         </div>
         <div class="order-product-warp">
             <div class="order-product-photo"><img src="images/banner1.png" alt=""></div>
             <div class="order-product-content-warp">
                 <div class="order-product-title">西山勺子智能家居感应灯</div>
-                <div class="order-product-price">￥688.00<span class="order-detail-unit">/件</span></div>
+                <div class="order-product-price">￥<span class="actual-price">688.00</span><span class="order-detail-unit">/件</span></div>
                 <div class="order-product-number">
                     <div class="product-detail-tips">包邮</div>
                     <div class="product-detail-tips">7天退换</div>
@@ -89,8 +89,8 @@
                     <div class="order-recommend-product-photo"><img src="images/banner1.png" alt=""></div>
                     <p class="order-recommend-product-title">Moleskine 告诉你，笔记本如何成为奢侈品</p>
                     <div class="order-recommend-product-price-warp">
-                        <span class="order-recommend-product-price">￥1600.00</span>
-                        <span class="order-recommend-product-group">2人团.已团20件</span>
+                        <span class="order-recommend-product-price">￥<span class="actual-recommend-price">1600.00</span></span>
+                        <span class="order-recommend-product-group"><span class="open-number">20</span>人团.已团20件</span>
                     </div>
                 </div>
             </div>
@@ -99,8 +99,8 @@
                     <div class="order-recommend-product-photo"><img src="images/banner1.png" alt=""></div>
                     <p class="order-recommend-product-title">Moleskine 告诉你，笔记本如何成为奢侈品</p>
                     <div class="order-recommend-product-price-warp">
-                        <span class="order-recommend-product-price">￥1600.00</span>
-                        <span class="order-recommend-product-group">2人团.已团20件</span>
+                        <span class="order-recommend-product-price">￥<span class="actual-recommend-price">1600.00</span></span>
+                        <span class="order-recommend-product-group"><span class="open-number">20</span>人团.已团20件</span>
                     </div>
                 </div>
             </div>
@@ -109,8 +109,8 @@
                     <div class="order-recommend-product-photo"><img src="images/banner1.png" alt=""></div>
                     <p class="order-recommend-product-title">Moleskine 告诉你，笔记本如何成为奢侈品</p>
                     <div class="order-recommend-product-price-warp">
-                        <span class="order-recommend-product-price">￥1600.00</span>
-                        <span class="order-recommend-product-group">2人团.已团20件</span>
+                        <span class="order-recommend-product-price">￥<span class="actual-recommend-price">1600.00</span></span>
+                        <span class="order-recommend-product-group"><span class="open-number">20</span>人团.已团20件</span>
                     </div>
                 </div>
             </div>
@@ -124,14 +124,43 @@
 <script src="js/swiper.min.js"></script>
 <script src="js/time-limit.js"></script>
 <script>
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
     // 初始化banner
-    var order = {
+    var orderDetail = {
+        NumOfOpen:0,
+        orderInfo:'',
+        guessYouLike:'',
         init:function(){
+            $.ajax({
+                url: "http://106.14.38.136/TeamBuying/WechatApi/getOrderDetail.do?OrderId=89"+GetQueryString('ProductId'),
+                dataType:'json',
+                success:function (data) {
+                    if(data.resultCode!=1000){//get information error
+                        console.log('正确码出错'+data.resultCode)
+                    }else{//get information successfully
+                        var obj=data.returnObject;
+                        orderDetail.guessYouLike=obj.GuessYouLike;
+                        orderDetail.orderInfo=obj.orderInfo;
+                        ///Order info
+                        //number to open groupon
+                        $(".open-number").html(orderInfo.openNum);
+                        $(".actual-price").html(obj.OpenPrice);
+                        orderDetail.NumOfOpen=obj.NumOfOpen;
+                    }
+                },
+                fail:function () {
+                    console.log('获取信息失败')
+                }
+            });
             var $recommendProduct = $(".order-recommend-product-photo").find("img"),
                     recommendProductWidth = $recommendProduct.width();
             $recommendProduct.css("height",recommendProductWidth);
-
-            order.timeLimit();
+            orderDetail.timeLimit();
         },
         // 倒计时
         timeLimit:function(){
@@ -141,8 +170,9 @@
             });
         }
     };
-
-    order.init();
+    $(function(){
+        orderDetail.init();
+    })
 </script>
 </body>
 </html>
