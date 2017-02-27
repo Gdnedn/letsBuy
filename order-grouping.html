@@ -15,7 +15,7 @@
         <p class="order-recommend-product-title">[ProductName]</p>
         <div class="order-recommend-product-price-warp">
             <span class="order-recommend-product-price">￥<span class="actual-recommend-price">[OpenPrice]</span></span>
-            <span class="order-recommend-product-group">[NumOfOpen]件起团.<del>单价:[MarkPrice]</del></span>
+            <span class="order-recommend-product-group">[NumOfOpen]件起团 <del>单价：[MarkPrice]</del></span>
         </div>
     </div>
 </a>
@@ -40,13 +40,13 @@
         <div class="order-product-content-warp">
             <div class="order-product-title">[proudctName]</div>
             <div class="order-product-price">￥<span class="actual-price">[openPrice]</span></div>
-            <div class="order-product-number"><spam class="actual-number">[number]</spam>件</div>
+            <div class="order-product-number"><span class="actual-number">[number]</span>件</div>
             <div class="order-product-transport">包邮</div>
         </div>
     </div>
     <div class="order-total-price">合计：￥<span class="actual-total-price">1600.00</span></div>
     <div class="order-btn-warp">
-        <a href="order-detail.html?OrderId=[id]" class="order-btn">查看拼单详情</a>
+        <!--<a href="order-detail.html?OrderId=[id]" class="order-btn">查看拼单详情</a>-->
     </div>
 </template>
 <template id="order-info">
@@ -100,21 +100,40 @@
         guessYouLike:'',
         reg:new RegExp("\\[([^\\[\\]]*?)\\]", 'igm'),
         orderStatus: function () {
+            var $btnWarp=$(".order-btn-warp");
+            var btn= function (info,url) {
+                info=info?info:"拼单详情";
+                url=url?url:"javascript:;";
+                return"<a href='"+url+"' class='order-btn'>"+info+"</a>";
+            };
+            var btnRed= function (info,url) {
+                info=info?info:"拼单详情";
+                url=url?url:"javascript:;";
+                return"<a href='"+url+"' class='order-btn order-btn-red'>"+info+"</a>";
+            };
+            var orderid=ordergroup.orderInfo.id;
             switch (ordergroup.orderInfo.status){
                 case 0:
-                    return "待付款";//去支付（红色）
+                    $btnWarp.append(btnRed("去支付","product-pay.html?OrderId="+orderid));
+                    return "待付款";
                 case 1:
-                    return "拼团中";//拼团详情
+                    $btnWarp.append(btn("拼团详情","order-detail.html?OrderId="+orderid));
+                    return "拼团中";
                 case 2:
-                    return "待发货";//查看快递信息
+                    $btnWarp.append(btn("查看快递信息","order-express.html?OrderId="+orderid));
+                    return "待发货";
                 case 3:
-                    return "待收货";//查看快递信息，确认收货（红色）
+                    $btnWarp.append(btnRed("确认收货","product-pay.html?OrderId="+orderid));
+                    return "待收货";
                 case 4:
-                    return "交易完成";//拼单详情
+                    $btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
+                    return "交易完成";
                 case 5:
-                    return "拼团失败退款中";//拼单详情
+                    $btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
+                    return "拼团失败退款中";
                 case 6:
-                    return "拼团失败退款完成";//拼单详情
+                    $btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
+                    return "拼团失败退款完成";
                 case 7:
                     return "已取消";
                 default:
@@ -160,16 +179,16 @@
                         $(".actual-total-price").html(totalPrice);
                         //getStatus
                         $(".order-state,.order-top-info").html(ordergroup.orderStatus());
-
-                        var $recommendProduct = $(".order-recommend-product-photo"),
-                                recommendProductWidth = $recommendProduct.width();
-                        $recommendProduct.css("height",recommendProductWidth);
                     }
                 },
                 fail:function () {
                     console.log('获取信息失败')
                 }
             });
+
+            var $recommendProduct = $(".order-recommend-product-photo").find("img"),
+                    recommendProductWidth = $recommendProduct.width();
+            $recommendProduct.css("height",recommendProductWidth);
         }
     };
     ordergroup.init();
