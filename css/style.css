@@ -684,7 +684,7 @@
     position: absolute;
     height: 1.5rem;
     left: .8rem;
-    top: 1rem;
+    top: 1.6rem;
 }
 .address-icon-warp img{
     width: auto;
@@ -1193,6 +1193,7 @@
 .address-item-warp{
     background-color: #ffffff;
     padding: 0 .8rem;
+    margin-bottom: .5rem;
 }
 .address-person-info{
     overflow: hidden;
@@ -1281,4 +1282,20 @@
     height: .7rem;
     background: url("../images/del-icon.png") no-repeat center;
     background-size: 80%;
+}
+.add-address-btn{
+    position: fixed;
+    height: 2rem;
+    bottom: .5rem;
+    width: 80%;
+    left: 10%;
+    text-align: center;
+    line-height: 2rem;
+    background-color: #e14a51;
+    color: #ffffff;
+    font-size: .8rem;
+    display: block;
+}
+.address-list-warp{
+    padding-bottom: 2.5rem;
 }
