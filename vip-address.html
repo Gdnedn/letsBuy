@@ -77,10 +77,9 @@
             });
         },
         methods:function(){
-            $(".address-list-warp").on("click",".address-del-icon",function(){
-                console.log(1)
+            $(".address-list-warp").on("click",".address-del",function(){
                 var $item = $(this).parents(".address-item-warp");
-                $.modal("确定删除？",function(){
+                $.confirm("确定删除？",function(){
                     $item.remove();
                 })
             })

@@ -116,3 +116,6 @@ html{font-size:20px;color: #23242b}
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
 }
+.weui-dialog__btn{
+    color: #eaac4c;
+}
