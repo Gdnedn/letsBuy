@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>商品</title>
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/jquery-weui.min.css">
+    <link rel="stylesheet" href="css/rem-fix.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- body 顶部加上如下代码 -->
+<div class="weui-pull-to-refresh__layer">
+    <div class='weui-pull-to-refresh__arrow'></div>
+    <div class='weui-pull-to-refresh__preloader'></div>
+    <div class="down">下拉刷新</div>
+    <div class="up">释放刷新</div>
+    <div class="refresh">正在刷新</div>
+</div>
+
+<!-- 容器 -->
+<div class="container">
+    <!--<div class="product-item-warp">
+        <div class="product-photo-warp"><img src="images/banner1.png"></div>
+        <div class="product-info-warp">
+            <div class="product-title">不想做城市里的空巢族你可以选择带它回家</div>
+            <div class="product-price">￥688.00</div>
+            <div class="product-describe">人们忙碌一天回到家打开门就能感受到家的温暖</div>
+            <div class="product-join">火速参团</div>
+            <div class="product-tips">
+                <div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>20件起拍</div>
+                <div class="product-default-price">单价:288.00</div>
+            </div>
+        </div>
+    </div>-->
+</div>
+<div class="weui-loadmore">
+    <i class="weui-loading"></i>
+    <span class="weui-loadmore__tips">正在加载</span>
+</div>
+
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script>
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+    var indexCategory={
+        page:1,
+        loading:false,
+        //get the order info
+        init:function () {
+            indexCategory.post();
+            $(document.body).pullToRefresh();
+            indexCategory.refreshing();
+        },
+        post:function(){
+            $.ajax({
+                url: "http://106.14.38.136/TeamBuying/WechatApi/ScanCodeProducts.do?code="+GetQueryString('code')+"&page="+indexCategory.page,
+                type:'post',
+                dataType:'json',
+                success:function (data) {
+                    if(data.resultCode!=1000){//get information error
+                        console.log('正确码出错'+data.resultCode)
+                    }else{//get information successfully
+                        var returnObject=data.returnObject,html = '';
+                        for(var i=0;i<returnObject.length;i++){
+                            html += '<div class="product-item-warp">'+
+                                    '<div class="product-photo-warp"><img src="'+returnObject[i].ProductImg1+'"></div>'+
+                                    '<div class="product-info-warp">'+
+                                    '<div class="product-title">'+returnObject[i].ProductName+'</div>'+
+                                    '<div class="product-price">'+returnObject[i].OpenPrice+'</div>'+
+                                    '<div class="product-describe">'+returnObject[i].BuyReason+'</div>'+
+                                    '<a class="product-join" href="product.html?ProductId='+returnObject[i].id+'">火速参团</a>'+
+                                    '<div class="product-tips">'+
+                                    '<div class="product-number"><span class="product-number-icon"><img src="images/join.png"></span>'+returnObject[i].NumOfOpen+'件起拍</div>'+
+                                    '<div class="product-default-price">单价:'+returnObject[i].MarkPrice+'</div>'+
+                                    '</div>'+
+                                    '</div>'+
+                                    '</div>';
+                        }
+                        if(returnObject.length < 10){
+                            $(".weui-loadmore").hide();
+                            $(document.body).destroyInfinite()
+                        }
+                        $(".container").append(html);
+                        $(document.body).pullToRefreshDone();
+                    }
+                },
+                fail:function () {
+                    console.log('获取信息失败')
+                }
+            });
+        },
+        refreshing:function () {
+            $(document.body).on("pull-to-refresh", function() {
+                $(".container").html('');
+                indexCategory.page=1;
+                indexCategory.post();
+            });
+        },
+        infinite:function () {
+            $(document.body).infinite().on("infinite", function() {
+                if(indexCategory.loading) return;
+                indexCategory.loading = true;
+                indexCategory.post();
+            });
+        },
+    };
+    //on page load
+    indexCategory.init();
+
+</script>
+</body>
+</html>
