@@ -1174,10 +1174,13 @@
     padding-left: 2.3rem;
     color: #969696;
     padding-bottom: 1rem;
+    padding-right: .8rem;
+    word-break: break-all;
 }
 .express-detail{
     font-size: .7rem;
-    line-height: .7rem;
+    line-height: .85rem;
+    padding-bottom: .2rem;
 }
 .express-time{
     font-size: .6rem;
@@ -1193,7 +1196,7 @@
     top: 0;
     display: block;
 }
-.express-item-active:before{
+.express-item:first-child:before{
     content: '';
     position: absolute;
     display: block;
@@ -1364,4 +1367,10 @@
     font-size: .8rem;
     display: block;
     margin: 1rem auto;
+}
+.express-company-warp .address-content{
+    padding-left: 2.6rem;
+}
+.express-company-warp{
+    background-image: none;
 }
