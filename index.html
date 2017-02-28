@@ -10,14 +10,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<!-- body 顶部加上如下代码 -->
-<div class="weui-pull-to-refresh__layer">
-    <div class='weui-pull-to-refresh__arrow'></div>
-    <div class='weui-pull-to-refresh__preloader'></div>
-    <div class="down">下拉刷新</div>
-    <div class="up">释放刷新</div>
-    <div class="refresh">正在刷新</div>
-</div>
 <!-- 底部导航 -->
 <div class="tabbar-warp">
     <a href="javascript:;" class="tabbar-item-warp tabbar-item-warp-active">
@@ -72,7 +64,14 @@
 
     <!-- 分页 -->
     <div class="weui-tab__bd">
-
+        <!-- body 顶部加上如下代码 -->
+        <div class="weui-pull-to-refresh__layer">
+            <div class='weui-pull-to-refresh__arrow'></div>
+            <div class='weui-pull-to-refresh__preloader'></div>
+            <div class="down">下拉刷新</div>
+            <div class="up">释放刷新</div>
+            <div class="refresh">正在刷新</div>
+        </div>
 
         <!-- 分页tab1 -->
         <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
@@ -203,7 +202,7 @@
 </div>
 
 <script src="js/jquery-2.1.4.min.js"></script>
-<script src="js/jquery-weui.min.js"></script>
+<script src="js/jquery-weui.js"></script>
 <script src="js/swiper.min.js"></script>
 <script>
     // 初始化banner
@@ -236,7 +235,7 @@
             $(".swiper-wrapper").css("max-height",windowWidth/15*8);
             $(".swiper-slide").css("max-height",windowWidth/15*8);
 
-            $(document.body).pullToRefresh();
+            $(".weui-tab__bd").pullToRefresh();
             this.refreshing();
             //  初次加载数据
             this.productReq();
@@ -284,11 +283,16 @@
                                 html = '';
                         console.log(api);
                         if(!len){
-                            $(document.body).pullToRefreshDone();
+                            $(".weui-tab__bd").pullToRefreshDone();
                             $loading.hide();
                             return;
                         } // 没有数据则返回
                         for(var i=0;i<len;i++){
+                            if(len<10){
+                                $loading.hide()
+                            }else {
+                                $loading.show()
+                            }
                             html+=  '<div class="product-item-warp">'+
                                     '<div class="product-photo-warp"><img src="'+returnObject[i].ProductImg1+'"></div>'+
                                     '<div class="product-info-warp">'+
@@ -309,7 +313,7 @@
                         else if(tab==2){index.tab2page++}
                         else if(tab==3){index.tab3page++}
                         index.loading=false;
-                        $(document.body).pullToRefreshDone();
+                        $(".weui-tab__bd").pullToRefreshDone();
                     }else{
                         console.log('正确码出错'+data.resultCode)
                     }

@@ -46,6 +46,7 @@ html{font-size:20px;color: #23242b}
 
 .weui-navbar{
     background-color: #eaac4c;
+    top: 50px;
 }
 .weui-navbar__item{
     color: #23242b;
