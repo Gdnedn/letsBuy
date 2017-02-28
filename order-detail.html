@@ -8,62 +8,63 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
+<!-- 拼团商品信息模板 -->
+<template id="open-product-info">
+    <div class="order-state-warp">
+        <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>[OpenNum]件起团</div>
+    </div>
+    <div class="order-product-warp">
+        <div class="order-product-photo"><img src="[ProudctImg]" alt=""></div>
+        <div class="order-product-content-warp">
+            <div class="order-product-title">[ProudctName]</div>
+            <div class="order-product-price">￥[OpenPrice]<span class="order-detail-unit">/件</span></div>
+            <div class="order-product-number">
+                <div class="product-detail-tips">包邮</div>
+                <div class="product-detail-tips">7天退换</div>
+            </div>
+            <div class="order-product-transport">
+                <div class="product-detail-tips">假一倍十</div>
+                <div class="product-detail-tips">48小时发货</div>
+            </div>
+        </div>
+    </div>
+    <div class="order-total-price"></div>
+</template>
+<!-- 拼团信息模板 -->
+<template id="open-info">
+    <div class="order-leader-photo"><img src="[HeadImg]" alt=""></div>
+    <div class="order-leader-tips">团长</div>
+    <div class="order-leader-name">[headUser]</div>
+    <div class="order-leader-time">于 [createTime] 开团</div>
+</template>
+<!-- 猜你喜欢模板 -->
+<template id="open-recommend">
+    <a class="order-recommend-product-outwarp" href="product.html?ProductId=[id]">
+        <div class="order-recommend-product-innerwarp">
+            <div class="order-recommend-product-photo"><img src="[ProductImg1]" alt=""></div>
+            <p class="order-recommend-product-title">[ProductName]</p>
+            <div class="order-recommend-product-price-warp">
+                <span class="order-recommend-product-price">￥[OpenPrice]</span>
+                <span class="order-recommend-product-group">[NumOfOpen]件起团.<del>单价:[MarkPrice]</del></span>
+            </div>
+        </div>
+    </a>
+</template>
 <!-- 主体 -->
 <div class="container">
     <!-- 商品信息 -->
     <div class="order-info-item order-detail-product">
-        <div class="order-state-warp">
-            <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span><span class="open-number">20</span>件起团</div>
-        </div>
-        <div class="order-product-warp">
-            <div class="order-product-photo"><img src="images/banner1.png" alt=""></div>
-            <div class="order-product-content-warp">
-                <div class="order-product-title">西山勺子智能家居感应灯</div>
-                <div class="order-product-price">￥<span class="actual-price">688.00</span><span class="order-detail-unit">/件</span></div>
-                <div class="order-product-number">
-                    <div class="product-detail-tips">包邮</div>
-                    <div class="product-detail-tips">7天退换</div>
-                </div>
-                <div class="order-product-transport">
-                    <div class="product-detail-tips">假一倍十</div>
-                    <div class="product-detail-tips">48小时发货</div>
-                </div>
-            </div>
-        </div>
-        <div class="order-total-price"></div>
+        <!--to be rendered-->
     </div>
     <!-- 拼团信息 -->
     <div class="order-group-info-warp">
         <div class="order-leader-info">
-            <div class="order-leader-photo"><img src="images/banner1.png" alt=""></div>
-            <div class="order-leader-tips">团长</div>
-            <div class="order-leader-name">Mickol</div>
-            <div class="order-leader-time">于 2016-09-09 16:15:34 开团</div>
+            <!--to be rendered-->
         </div>
-        <div class="order-group-person-number">11/20</div>
+        <div class="order-group-person-number"></div>
         <div class="order-group-person-number-tips-outwarp">
             <div class="order-group-person-number-tips-innerwarp">
-                <div class="person-number-round-warp person-number-round-warp-red"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp person-number-round-warp-red"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp person-number-round-warp-red"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp person-number-round-warp-red"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
-                <div class="person-number-round-warp"><div class="person-number-round"></div></div>
+                <!--to be rendered-->
             </div>
         </div>
         <div class="order-group-limit-warp">
@@ -79,43 +80,13 @@
         </div>
     </div>
     <!-- 剩余拼团成功人数 -->
-    <div class="order-group-remaining-tips">还差9人拼单成功，去邀请</div>
+    <div class="order-group-remaining-tips"><!--to be rendered--></div>
     <!-- 猜你喜欢 -->
     <div class="order-recommend-warp">
         <div class="order-recommend-tips">猜你喜欢</div>
         <div class="order-recommend-container">
-            <div class="order-recommend-product-outwarp">
-                <div class="order-recommend-product-innerwarp">
-                    <div class="order-recommend-product-photo"><img src="images/banner1.png" alt=""></div>
-                    <p class="order-recommend-product-title">Moleskine 告诉你，笔记本如何成为奢侈品</p>
-                    <div class="order-recommend-product-price-warp">
-                        <span class="order-recommend-product-price">￥<span class="actual-recommend-price">1600.00</span></span>
-                        <span class="order-recommend-product-group"><span class="open-number">20</span>人团.已团20件</span>
-                    </div>
-                </div>
-            </div>
-            <div class="order-recommend-product-outwarp">
-                <div class="order-recommend-product-innerwarp">
-                    <div class="order-recommend-product-photo"><img src="images/banner1.png" alt=""></div>
-                    <p class="order-recommend-product-title">Moleskine 告诉你，笔记本如何成为奢侈品</p>
-                    <div class="order-recommend-product-price-warp">
-                        <span class="order-recommend-product-price">￥<span class="actual-recommend-price">1600.00</span></span>
-                        <span class="order-recommend-product-group"><span class="open-number">20</span>人团.已团20件</span>
-                    </div>
-                </div>
-            </div>
-            <div class="order-recommend-product-outwarp">
-                <div class="order-recommend-product-innerwarp">
-                    <div class="order-recommend-product-photo"><img src="images/banner1.png" alt=""></div>
-                    <p class="order-recommend-product-title">Moleskine 告诉你，笔记本如何成为奢侈品</p>
-                    <div class="order-recommend-product-price-warp">
-                        <span class="order-recommend-product-price">￥<span class="actual-recommend-price">1600.00</span></span>
-                        <span class="order-recommend-product-group"><span class="open-number">20</span>人团.已团20件</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+            <!--to be rendered-->
+         </div>
     </div>
 </div>
 
@@ -133,34 +104,74 @@
     // 初始化banner
     var orderDetail = {
         NumOfOpen:0,
-        orderInfo:'',
-        guessYouLike:'',
+        OpenInfo:'',
+        GuessYouLike:'',
+        reg:new RegExp("\\[([^\\[\\]]*?)\\]", 'igm'),
+        opendraw: function () {
+            var rednode='<div class="person-number-round-warp person-number-round-warp-red"><div class="person-number-round"></div></div>';
+            var greynode='<div class="person-number-round-warp"><div class="person-number-round"></div></div>';
+            var rednodeN=0;
+            var greynodeN=0;
+            if(orderDetail.OpenInfo.OpenNum>=20){
+                rednodeN=20*orderDetail.OpenInfo.Number/orderDetail.OpenInfo.OpenNum;
+                greynodeN=20-rednodeN;
+            }else{
+                rednodeN=orderDetail.OpenInfo.Number;
+                greynodeN=orderDetail.OpenInfo.OpenNum-rednodeN;
+            }
+            for(var a=0;a<rednodeN;a++){
+                $(".order-group-person-number-tips-innerwarp").append(rednode);
+            }
+            for(var a=0;a<greynodeN;a++){
+                $(".order-group-person-number-tips-innerwarp").append(greynode);
+            }
+        },
         init:function(){
             $.ajax({
-                url: "http://106.14.38.136/TeamBuying/WechatApi/getOrderDetail.do?OrderId=89"+GetQueryString('ProductId'),
+                url: "http://106.14.38.136/TeamBuying/WechatApi/getOpenDetail.do?OrderId="+GetQueryString('OrderId'),
                 dataType:'json',
                 success:function (data) {
                     if(data.resultCode!=1000){//get information error
                         console.log('正确码出错'+data.resultCode)
                     }else{//get information successfully
                         var obj=data.returnObject;
-                        orderDetail.guessYouLike=obj.GuessYouLike;
-                        orderDetail.orderInfo=obj.orderInfo;
-                        ///Order info
-                        //number to open groupon
-                        $(".open-number").html(orderInfo.openNum);
-                        $(".actual-price").html(obj.OpenPrice);
-                        orderDetail.NumOfOpen=obj.NumOfOpen;
+                        var source='';
+                        var html='';
+                        orderDetail.GuessYouLike=obj.GuessYouLike;
+                        orderDetail.OpenInfo=obj.OpenInfo;
+                        //Open product info
+                        html = document.getElementById("open-product-info").innerHTML;
+                        source = html.replace(orderDetail.reg, function (node, key) { return orderDetail.OpenInfo[key]; });
+                        $(".order-detail-product").append(source);
+                        //Open info
+                        html = document.getElementById("open-info").innerHTML;
+                        source = html.replace(orderDetail.reg, function (node, key) { return orderDetail.OpenInfo[key]; });
+                        $(".order-leader-info").append(source);
+                        //Open recommend
+                        html = document.getElementById("open-recommend").innerHTML;
+                        for(var a in orderDetail.GuessYouLike) {
+                            source = html.replace(orderDetail.reg, function (node, key) {
+                                return orderDetail.GuessYouLike[a][key];
+                            });
+                            $(".order-recommend-container").append(source);
+                        }
+                        //Open draw
+                        $(".order-group-person-number").append(orderDetail.OpenInfo.Number+"/"+orderDetail.OpenInfo.OpenNum);
+                        orderDetail.opendraw();
+                        //order-group-remaining-tips
+                        $(".order-group-remaining-tips").append("还差"+(orderDetail.OpenInfo.OpenNum-orderDetail.OpenInfo.Number)+"人拼单成功，去邀请");
+                        //Filled
+
                     }
+                    var $recommendProduct = $(".order-recommend-product-photo"),
+                            recommendProductWidth = $recommendProduct.width();
+                    $recommendProduct.css("height",recommendProductWidth);
+                    orderDetail.timeLimit();
                 },
                 fail:function () {
                     console.log('获取信息失败')
                 }
             });
-            var $recommendProduct = $(".order-recommend-product-photo").find("img"),
-                    recommendProductWidth = $recommendProduct.width();
-            $recommendProduct.css("height",recommendProductWidth);
-            orderDetail.timeLimit();
         },
         // 倒计时
         timeLimit:function(){

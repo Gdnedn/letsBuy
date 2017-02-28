@@ -36,7 +36,7 @@
         <div class="order-state">待发货</div>
     </div>
     <div class="order-product-warp">
-        <div class="order-product-photo"><img src="[proudctImg]" alt=""></div>
+        <div class="order-product-photo"><img src="[productImg]" alt=""></div>
         <div class="order-product-content-warp">
             <div class="order-product-title">[proudctName]</div>
             <div class="order-product-price">￥<span class="actual-price">[openPrice]</span></div>
@@ -112,17 +112,19 @@
                 return"<a href='"+url+"' class='order-btn order-btn-red'>"+info+"</a>";
             };
             var orderid=ordergroup.orderInfo.id;
+            var openId=ordergroup.orderInfo.OpenId;
             switch (ordergroup.orderInfo.status){
                 case 0:
                     $btnWarp.append(btnRed("去支付","product-pay.html?OrderId="+orderid));
                     return "待付款";
                 case 1:
-                    $btnWarp.append(btn("拼团详情","order-detail.html?OrderId="+orderid));
+                    $btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
                     return "拼团中";
                 case 2:
-                    $btnWarp.append(btn("查看快递信息","order-express.html?OrderId="+orderid));
+                    $btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
                     return "待发货";
                 case 3:
+                    $btnWarp.append(btn("查看快递信息","order-express.html?OrderId="+orderid));
                     $btnWarp.append(btnRed("确认收货","product-pay.html?OrderId="+orderid));
                     return "待收货";
                 case 4:
