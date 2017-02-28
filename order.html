@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/jquery-weui.min.css">
     <link rel="stylesheet" href="css/rem-fix.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 </head>
 <body>
 <!-- body 顶部加上如下代码 -->
@@ -26,7 +27,7 @@
             <p class="tabbar-content">首页</p>
         </div>
     </a>
-    <a href="javascript:;" class="tabbar-item-warp">
+    <a href="javascript:;" id="scanQRCodeBtn" class="tabbar-item-warp">
         <div class="tabbar-item">
             <div class="tabbar-icon tabbar-code"></div>
             <p class="tabbar-content">扫码</p>
@@ -444,10 +445,63 @@
                 }
                 index.productReq();
             });
-        }
+        },
+        initScanQRCode: function() {
+					var api = "http://106.14.38.136/TeamBuying/WechatApi/getOrderScanQRCode.do";
+					$.ajax({
+						url: api,
+						type: 'post',
+						dataType: 'json',
+						success: function(data) {
+							if(data.resultCode == 1000) {
+								wx.config({
+									debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+									appId: 'wxf6ee2596d1530867', // 必填，公众号的唯一标识
+									timestamp: data.returnObject.timestamp, // 必填，生成签名的时间戳
+									nonceStr: data.returnObject.nonceStr, // 必填，生成签名的随机串
+									signature: data.returnObject.signature, // 必填，签名，见附录1
+									jsApiList: ['scanQRCode']
+										// 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+								});
+							} else {
+								console.log('正确码出错' + data.resultCode)
+							}
+						},
+						fail: function() {
+							console.log('获取信息失败')
+						}
+					})
+				},
+				clickScanQRCode: function() {
+					wx.scanQRCode({
+						// 默认为0，扫描结果由微信处理，1则直接返回扫描结果
+						needResult: 1,
+						desc: 'scanQRCode desc',
+						success: function(res) {
+							//扫码后获取结果参数赋值给Input
+							var url = res.resultStr;
+							//							//商品条形码，取","后面的
+							if(url.indexOf(",") >= 0) {
+								var tempArray = url.split(',');
+								var tempNum = tempArray[1];
+								location.href = "index-code.html?page=1&code=" + tempNum;
+								//								alert("tempNum=" + tempNum);
+							} else {
+								//location.href实现客户端页面的跳转  
+								location.href = "index-code.html?page=1&code=" + url;
+								//								alert("url=" + url);
+							}
+						}
+					});
+				}
     };
 
     index.init();
+    index.initScanQRCode();
+
+			$("#scanQRCodeBtn").click(function() {
+				index.clickScanQRCode();
+			});
 </script>
 </body>
 </html>

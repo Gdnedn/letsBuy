@@ -1,198 +1,248 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>订单详情</title>
-    <link rel="stylesheet" href="css/rem-fix.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<template id="recommend-product">
-<a class="order-recommend-product-outwarp" href="product.html?ProductId=[id]">
-    <div class="order-recommend-product-innerwarp">
-        <div class="order-recommend-product-photo"><img src="[ProductImg1]" alt=""></div>
-        <p class="order-recommend-product-title">[ProductName]</p>
-        <div class="order-recommend-product-price-warp">
-            <span class="order-recommend-product-price">￥<span class="actual-recommend-price">[OpenPrice]</span></span>
-            <span class="order-recommend-product-group">[NumOfOpen]件起团.<del>单价:[MarkPrice]</del></span>
-        </div>
-    </div>
-</a>
-</template>
-<template id="order-address">
-    <div class="address-icon-warp"><img src="images/address-icon.png" alt=""></div>
-    <div class="address-content">
-        <div class="address-person-info">
-            <span class="name">[receiptUser]</span>
-            <span class="phone">[receiptPhone]</span>
-        </div>
-        <div class="address-specific">[receiptAddr]</div>
-    </div>
-</template>
-<template id="order-product">
-    <div class="order-state-warp">
-        <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>[openNum]件起团</div>
-        <div class="order-state">待发货</div>
-    </div>
-    <div class="order-product-warp">
-        <div class="order-product-photo"><img src="[productImg]" alt=""></div>
-        <div class="order-product-content-warp">
-            <div class="order-product-title">[proudctName]</div>
-            <div class="order-product-price">￥<span class="actual-price">[openPrice]</span></div>
-            <div class="order-product-number"><span class="actual-number">[number]</span>件</div>
-            <div class="order-product-transport">包邮</div>
-        </div>
-    </div>
-    <div class="order-total-price">合计：￥<span class="actual-total-price">1600.00</span></div>
-    <div class="order-btn-warp">
-        <!--<a href="order-detail.html?OrderId=[id]" class="order-btn">查看拼单详情</a>-->
-    </div>
-</template>
-<template id="order-info">
-    <p>订单编号：[orderNo]</p>
-    <p>支付方式：微信</p>
-    <p>下单时间：[createTime]</p>
-</template>
-<!-- 主体 -->
-<div class="container">
-    <!-- 头部红色提醒 -->
-    <div class="order-top-red-tips">
-        <p class="order-top-info">拼单还未完成</p>
-        <!--<p>让小伙伴们都来拼团吧</p>-->
-    </div>
-    <!-- 地址选择 -->
-    <!-- 地址选择 -->
-    <div class="address-pick-warp">
-        <!--to be rendered later-->
-    </div>
-    <!-- 商品信息 -->
-    <div class="order-info-item">
-        <!--to be rendered later-->
-    </div>
-    <!-- 订单信息 -->
-    <div class="order-info-warp">
-        <!--to be rendered later-->
-    </div>
-    <!-- 猜你喜欢 -->
-    <div class="order-recommend-warp">
-        <div class="order-recommend-tips">猜你喜欢</div>
-        <div class="order-recommend-container">
-            <!--something will be rendered later-->
-        </div>
-    </div>
-</div>
 
-<script src="js/jquery-2.1.4.min.js"></script>
-<script src="js/jquery-weui.min.js"></script>
-<script src="js/swiper.min.js"></script>
-<script>
-    function GetQueryString(name)
-    {
-        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
-        if(r!=null)return  unescape(r[2]); return null;
-    }
-    // 初始化banner
-    var ordergroup = {
-        NumOfOpen:0,
-        orderInfo:'',
-        guessYouLike:'',
-        reg:new RegExp("\\[([^\\[\\]]*?)\\]", 'igm'),
-        orderStatus: function () {
-            var $btnWarp=$(".order-btn-warp");
-            var btn= function (info,url) {
-                info=info?info:"拼单详情";
-                url=url?url:"javascript:;";
-                return"<a href='"+url+"' class='order-btn'>"+info+"</a>";
-            };
-            var btnRed= function (info,url) {
-                info=info?info:"拼单详情";
-                url=url?url:"javascript:;";
-                return"<a href='"+url+"' class='order-btn order-btn-red'>"+info+"</a>";
-            };
-            var orderid=ordergroup.orderInfo.id;
-            var openId=ordergroup.orderInfo.OpenId;
-            switch (ordergroup.orderInfo.status){
-                case 0:
-                    $btnWarp.append(btnRed("去支付","product-pay.html?OrderId="+orderid));
-                    return "待付款";
-                case 1:
-                    $btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
-                    return "拼团中";
-                case 2:
-                    $btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
-                    return "待发货";
-                case 3:
-                    $btnWarp.append(btn("查看快递信息","order-express.html?OrderId="+orderid));
-                    $btnWarp.append(btnRed("确认收货","product-pay.html?OrderId="+orderid));
-                    return "待收货";
-                case 4:
-                    $btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
-                    return "交易完成";
-                case 5:
-                    $btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
-                    return "拼团失败退款中";
-                case 6:
-                    $btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
-                    return "拼团失败退款完成";
-                case 7:
-                    return "已取消";
-                default:
-                    return "未定义"
-            }
-        },
-        init:function(){
-            //fill the template
-            $.ajax({
-                url: "http://106.14.38.136/TeamBuying/WechatApi/getOrderDetail.do?OrderId="+GetQueryString('OrderId'),
-                dataType:'json',
-                success:function (data) {
-                    if(data.resultCode!=1000){//get information error
-                        console.log('正确码出错'+data.resultCode)
-                    }else{//get information successfully
-                        var obj=data.returnObject;
-                        var source='';
-                        var html='';
-                        ordergroup.guessYouLike=obj.GuessYouLike;
-                        ordergroup.orderInfo=obj.orderInfo;
-                        //Order address
-                        html = document.getElementById("order-address").innerHTML;
-                        source = html.replace(ordergroup.reg, function (node, key) { return ordergroup.orderInfo[key]; });
-                        $(".address-pick-warp").append(source);
-                        //Order product info
-                        html = document.getElementById("order-product").innerHTML;
-                        source = html.replace(ordergroup.reg, function (node, key) { return ordergroup.orderInfo[key]; });
-                        $(".order-info-item").append(source);
-                        //Order info
-                        html = document.getElementById("order-info").innerHTML;
-                        source = html.replace(ordergroup.reg, function (node, key) { return ordergroup.orderInfo[key]; });
-                        $(".order-info-warp").append(source);
-                        $(".order-info-warp .order-paytype").html(ordergroup.orderInfo.payType==2?"微信":"在线支付");
-                        //What you like
-                        html= document.getElementById("recommend-product").innerHTML;
-                        for(var a in ordergroup.guessYouLike){
-                            source = html.replace(ordergroup.reg, function (node, key) { return ordergroup.guessYouLike[a][key]; });
-                            $(".order-recommend-container").append(source);
-                        }
-                        //Filled ,Logic Part
-                        //total price
-                        var totalPrice=ordergroup.orderInfo.number*ordergroup.orderInfo.openPrice;
-                        $(".actual-total-price").html(totalPrice);
-                        //getStatus
-                        $(".order-state,.order-top-info").html(ordergroup.orderStatus());
-                    }
-                    var $recommendProduct = $(".order-recommend-product-photo"),
-                            recommendProductWidth = $recommendProduct.width();
-                    $recommendProduct.css("height",recommendProductWidth);
-                },
-                fail:function () {
-                    console.log('获取信息失败')
-                }
-            });
-        }
-    };
-    ordergroup.init();
-</script>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title>订单详情</title>
+		<link rel="stylesheet" href="css/rem-fix.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+
+	<body>
+		<template id="recommend-product">
+			<a class="order-recommend-product-outwarp" href="product.html?ProductId=[id]">
+				<div class="order-recommend-product-innerwarp">
+					<div class="order-recommend-product-photo"><img src="[ProductImg1]" alt=""></div>
+					<p class="order-recommend-product-title">[ProductName]</p>
+					<div class="order-recommend-product-price-warp">
+						<span class="order-recommend-product-price">￥<span class="actual-recommend-price">[OpenPrice]</span></span>
+						<span class="order-recommend-product-group">[NumOfOpen]件起团.<del>单价:[MarkPrice]</del></span>
+					</div>
+				</div>
+			</a>
+		</template>
+		<template id="order-address">
+			<div class="address-icon-warp"><img src="images/address-icon.png" alt=""></div>
+			<div class="address-content">
+				<div class="address-person-info">
+					<span class="name">[receiptUser]</span>
+					<span class="phone">[receiptPhone]</span>
+				</div>
+				<div class="address-specific">[receiptAddr]</div>
+			</div>
+		</template>
+		<template id="order-product">
+			<div class="order-state-warp">
+				<div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span>[openNum]件起团</div>
+				<div class="order-state">待发货</div>
+			</div>
+			<div class="order-product-warp">
+				<div class="order-product-photo"><img src="[proudctImg]" alt=""></div>
+				<div class="order-product-content-warp">
+					<div class="order-product-title">[proudctName]</div>
+					<div class="order-product-price">￥<span class="actual-price">[openPrice]</span></div>
+					<div class="order-product-number"><span class="actual-number">[number]</span>件</div>
+					<div class="order-product-transport">包邮</div>
+				</div>
+			</div>
+			<div class="order-total-price">合计：￥<span class="actual-total-price">1600.00</span></div>
+			<div class="order-btn-warp">
+				<!--<a href="order-detail.html?OrderId=[id]" class="order-btn">查看拼单详情</a>-->
+			</div>
+		</template>
+		<template id="order-info">
+			<p>订单编号：[orderNo]</p>
+			<p>支付方式：微信</p>
+			<p>下单时间：[createTime]</p>
+		</template>
+		<!-- 主体 -->
+		<div class="container">
+			<!-- 头部红色提醒 -->
+			<div class="order-top-red-tips">
+				<p class="order-top-info">拼单还未完成</p>
+				<!--<p>让小伙伴们都来拼团吧</p>-->
+			</div>
+			<!-- 地址选择 -->
+			<!-- 地址选择 -->
+			<div class="address-pick-warp">
+				<!--to be rendered later-->
+			</div>
+			<!-- 商品信息 -->
+			<div class="order-info-item">
+				<!--to be rendered later-->
+			</div>
+			<!-- 订单信息 -->
+			<div class="order-info-warp">
+				<!--to be rendered later-->
+			</div>
+			<!-- 猜你喜欢 -->
+			<div class="order-recommend-warp">
+				<div class="order-recommend-tips">猜你喜欢</div>
+				<div class="order-recommend-container">
+					<!--something will be rendered later-->
+				</div>
+			</div>
+		</div>
+
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script>
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+			// 初始化banner
+			var ordergroup = {
+				NumOfOpen: 0,
+				orderInfo: '',
+				guessYouLike: '',
+				reg: new RegExp("\\[([^\\[\\]]*?)\\]", 'igm'),
+				orderStatus: function() {
+					var $btnWarp = $(".order-btn-warp");
+					var btn = function(info, url) {
+						info = info ? info : "拼单详情";
+						url = url ? url : "javascript:;";
+						return "<a href='" + url + "' class='order-btn'>" + info + "</a>";
+					};
+					var btnRed = function(info, url) {
+						info = info ? info : "拼单详情";
+						url = url ? url : "javascript:;";
+						return "<a href='" + url + "' class='order-btn order-btn-red'>" + info + "</a>";
+					};
+					var btnRedId = function(OrderId, info, url) {
+						info = info ? info : "拼单详情";
+						url = "javascript:;";
+						return "<a href='javascript:ordergroup.PaymentOrder("+OrderId+");'  class='order-btn order-btn-red'>" + info + "</a>";
+					};
+					var orderid = ordergroup.orderInfo.id;
+					switch(ordergroup.orderInfo.status) {
+						case 0:
+							$btnWarp.append(btnRed("去支付","product-pay.html?OrderId="+orderid));
+							return "待付款";
+						case 1:
+							$btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
+							return "拼团中";
+						case 2:
+							$btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
+							return "待发货";
+						case 3:
+							$btnWarp.append(btn("查看快递信息","order-express.html?OrderId="+orderid));
+							$btnWarp.append(btnRed("确认收货","product-pay.html?OrderId="+orderid));
+							return "待收货";
+						case 4:
+							$btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
+							return "交易完成";
+						case 5:
+							$btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
+							return "拼团失败退款中";
+						case 6:
+							$btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
+							return "拼团失败退款完成";
+						case 7:
+							return "已取消";
+						default:
+							return "未定义"
+					}
+				},
+				init: function() {
+					//fill the template
+					$.ajax({
+						url: "http://106.14.38.136/TeamBuying/WechatApi/getOrderDetail.do?OrderId=" + GetQueryString('OrderId'),
+						dataType: 'json',
+						success: function(data) {
+							if(data.resultCode != 1000) { //get information error
+								console.log('正确码出错' + data.resultCode)
+							} else { //get information successfully
+								var obj = data.returnObject;
+								var source = '';
+								var html = '';
+								ordergroup.guessYouLike = obj.GuessYouLike;
+								ordergroup.orderInfo = obj.orderInfo;
+								//Order address
+								html = document.getElementById("order-address").innerHTML;
+								source = html.replace(ordergroup.reg, function(node, key) {
+									return ordergroup.orderInfo[key];
+								});
+								$(".address-pick-warp").append(source);
+								//Order product info
+								html = document.getElementById("order-product").innerHTML;
+								source = html.replace(ordergroup.reg, function(node, key) {
+									return ordergroup.orderInfo[key];
+								});
+								$(".order-info-item").append(source);
+								//Order info
+								html = document.getElementById("order-info").innerHTML;
+								source = html.replace(ordergroup.reg, function(node, key) {
+									return ordergroup.orderInfo[key];
+								});
+								$(".order-info-warp").append(source);
+								$(".order-info-warp .order-paytype").html(ordergroup.orderInfo.payType == 2 ? "支付宝" : "微信");
+								//What you like
+								html = document.getElementById("recommend-product").innerHTML;
+								for(var a in ordergroup.guessYouLike) {
+									source = html.replace(ordergroup.reg, function(node, key) {
+										return ordergroup.guessYouLike[a][key];
+									});
+									$(".order-recommend-container").append(source);
+								}
+								//Filled ,Logic Part
+								//total price
+								var totalPrice = ordergroup.orderInfo.number * ordergroup.orderInfo.openPrice;
+								$(".actual-total-price").html(totalPrice);
+								//getStatus
+								$(".order-state,.order-top-info").html(ordergroup.orderStatus());
+							}
+							var $recommendProduct = $(".order-recommend-product-photo"),
+								recommendProductWidth = $recommendProduct.width();
+							$recommendProduct.css("height", recommendProductWidth);
+						},
+						fail: function() {
+							console.log('获取信息失败')
+						}
+					});
+				},
+				PaymentOrder : function(OrderId){
+						var api = "http://106.14.38.136/TeamBuying/WechatApi/PaymentOrder.do?OrderId="+OrderId;
+						$.ajax({
+							url: api,
+							type: 'post',
+							dataType: 'json',
+							success: function(data) {
+								if(data.resultCode == 1000) {
+									ordergroup.onBridgeReady(OrderId, data.returnObject.map.appId, data.returnObject.map.timeStamp, data.returnObject.map.nonceStr, data.returnObject.map.packages, data.returnObject.map.signType, data.returnObject.map.paySign);
+								} else {
+									$.confirm(data.returnObject.erroMsg, function() {
+										location.href = "order-grouping.html?OrderId=" + GetQueryString('OrderId');
+									});
+								}
+							},
+							fail: function() {
+								console.log('获取信息失败')
+							}
+						})
+
+				},
+				onBridgeReady: function(orderId, appId, timeStamp, nonceStr, packages, signType, paySign) {
+					WeixinJSBridge.invoke('getBrandWCPayRequest', {
+						"appId": appId,
+						"timeStamp": timeStamp,
+						"nonceStr": nonceStr,
+						"package": packages,
+						"signType": signType,
+						"paySign": paySign
+					}, function(res) {
+						location.href = "order-grouping.html?OrderId=" + GetQueryString('OrderId');
+						if(res.err_msg == "get_brand_wcpay_request：ok") {} // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+					});
+				}
+			};
+			ordergroup.init();
+
+		</script>
+	</body>
+
 </html>
