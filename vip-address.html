@@ -70,8 +70,9 @@
                             obj[a].active = obj[a].isDefault?'address-default-active':'';
                             if(productId){
                                 //if skipped from product pay page.
-                                obj[a].addrLink="product-pay.html?ProductId="+productId+"&AddrId="+obj[a].id;
+                                addrLink="product-pay.html?ProductId="+productId+"&AddrId="+obj[a].id;
                             }
+                            obj[a].addrLink=addrLink;
                             source = html.replace(address.reg, function (node, key) { return obj[a][key]; });
                             $(".address-list-warp").append(source);
                         }
