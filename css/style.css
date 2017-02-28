@@ -270,6 +270,7 @@
 
 .order-nav{
     background-color: #ffffff;
+    top: 50px;
 }
 .order-nav .weui-navbar__item.weui-bar__item--on{
     background-color: #ffffff;
@@ -281,9 +282,8 @@
     background-color: #eaac4c;
 }
 .no-order-tips-warp{
-    position: fixed;
-    left: 50%;
-    top: 45%;
+    margin-left: 50%;
+    margin-top: 50%;
     width: 7.5rem;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);

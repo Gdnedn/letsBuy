@@ -10,14 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<!-- body 顶部加上如下代码 -->
-<div class="weui-pull-to-refresh__layer">
-    <div class='weui-pull-to-refresh__arrow'></div>
-    <div class='weui-pull-to-refresh__preloader'></div>
-    <div class="down">下拉刷新</div>
-    <div class="up">释放刷新</div>
-    <div class="refresh">正在刷新</div>
-</div>
+
 <!-- 底部导航 -->
 <div class="tabbar-warp">
     <a href="index.html" class="tabbar-item-warp">
@@ -59,6 +52,14 @@
 
     <!-- 分页 -->
     <div class="weui-tab__bd">
+        <!-- body 顶部加上如下代码 -->
+        <div class="weui-pull-to-refresh__layer">
+            <div class='weui-pull-to-refresh__arrow'></div>
+            <div class='weui-pull-to-refresh__preloader'></div>
+            <div class="down">下拉刷新</div>
+            <div class="up">释放刷新</div>
+            <div class="refresh">正在刷新</div>
+        </div>
         <!-- 分页tab1 -->
         <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
 
@@ -227,7 +228,7 @@
 </div>
 
 <script src="js/jquery-2.1.4.min.js"></script>
-<script src="js/jquery-weui.min.js"></script>
+<script src="js/jquery-weui.js"></script>
 <script>
     var index = {
         loading:true,
@@ -238,7 +239,7 @@
         tab5page:1,
         init:function(){
 
-            $(document.body).pullToRefresh();
+            $(".weui-tab__bd").pullToRefresh();
             this.refreshing();
             //  初次加载数据
             this.productReq();
@@ -304,7 +305,7 @@
                         if(!len){
                             $loading.hide();
                             if(page==1){
-                                $(document.body).pullToRefreshDone();
+                                $(".weui-tab__bd").pullToRefreshDone();
                                 $container.append(
                                         '<div class="no-order-tips-warp">'+
                                         '<div class="no-order-photo"><img src="images/order-on.png"></div>'+
@@ -316,6 +317,11 @@
                             return;
                         } // 没有数据则返回
                         for(var i=0;i<len;i++){
+                            if(len<10){
+                                $loading.hide()
+                            }else {
+                                $loading.show()
+                            }
                             var status,totalPrice=returnObject[i].OpenPrice * returnObject[i].Number,btnHtml = '';
                             if(returnObject[i].Status == 0){
                                 status = "待付款";
@@ -372,7 +378,7 @@
                         else if(tab==4){index.tab4page++}
                         else if(tab==5){index.tab5page++}
                         index.loading=false;
-                        $(document.body).pullToRefreshDone();
+                        $(".weui-tab__bd").pullToRefreshDone();
                     }else{
                         console.log('正确码出错'+data.resultCode)
                     }
