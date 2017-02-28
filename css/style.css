@@ -686,7 +686,7 @@
     position: absolute;
     height: 1.5rem;
     left: .8rem;
-    top: 1.6rem;
+    top: 1.1rem;
 }
 .address-icon-warp img{
     width: auto;
@@ -701,6 +701,7 @@
 }
 .address-person-info{
     font-size: .65rem;
+    min-height: 1.1rem;
 }
 .address-person-info .phone{
     margin-left: .4rem;
@@ -710,6 +711,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: normal;
+    min-height: 1.1rem;
 }
 .order-product-transport.product-pay{
     line-height: 2.4rem;
@@ -1213,13 +1215,12 @@
 }
 .address-item-warp{
     background-color: #ffffff;
-    padding: 0 .8rem;
+    padding: .5rem .8rem 0 .5rem;
     margin-bottom: .5rem;
 }
 .address-person-info{
     overflow: hidden;
     font-size: .7rem;
-    padding-top: .5rem;
 }
 .address-person-name{
     float: left;

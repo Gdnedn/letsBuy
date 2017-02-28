@@ -15,11 +15,11 @@
     <div class="vip-modification-warp">
         <span class="vip-modification-title">性别</span>
         <div type="text" class="vip-modification-input">
-            <div class="vip-modification-sex vip-modification-sex-active">
+            <div class="vip-modification-sex" id="1">
                 <span class="vip-modification-sex-icon"></span>
                 <p class="vip-modification-sex-content">男</p>
             </div>
-            <div class="vip-modification-sex">
+            <div class="vip-modification-sex" id="2">
                 <span class="vip-modification-sex-icon"></span>
                 <p class="vip-modification-sex-content">女</p>
             </div>
@@ -28,6 +28,63 @@
 
     <a href="javascript:;" class="vip-confirm-btn">确定</a>
 </div>
-
+<script src="js/jquery-2.1.4.min.js"></script>
+<script>
+    var account = {
+        init:function () {
+            $.ajax({
+                url: "http://106.14.38.136/TeamBuying/WechatApi/getUserInfo.do",
+                type:'post',
+                dataType:'json',
+                success:function (data) {
+                    if(data.resultCode!=1000){//get information error
+                        console.log('正确码出错'+data.resultCode)
+                    }else{//get information successfully
+                        if(data.returnObject.Sex=='男'){
+                            $("#1").addClass("vip-modification-sex-active");
+                        }else{
+                            $("#2").addClass("vip-modification-sex-active");
+                        }
+                    }
+                },
+                fail:function () {
+                    console.log('获取信息失败')
+                }
+            });
+            account.change();
+            account.sexBtn();
+        },
+        change:function () {
+            $(".vip-confirm-btn").click(function () {
+                var val = $(".vip-modification-sex-active").attr("id");
+                if(!val){
+                    alert("请选择正确性别！")
+                }else {
+                    $.ajax({
+                        url: "http://106.14.38.136/TeamBuying/WechatApi/ModifySex.do?Sex="+val,
+                        type:'post',
+                        dataType:'json',
+                        success:function (data) {
+                            if(data.resultCode!=1000){//get information error
+                                console.log('正确码出错'+data.resultCode)
+                            }else{//get information successfully
+                                window.location.href="vip.html";
+                            }
+                        },
+                        fail:function () {
+                            console.log('获取信息失败')
+                        }
+                    });
+                }
+            })
+        },
+        sexBtn:function () {
+            $(".vip-modification-sex").click(function () {
+                $(this).addClass("vip-modification-sex-active").siblings().removeClass("vip-modification-sex-active");
+            })
+        }
+    }
+    account.init();
+</script>
 </body>
 </html>

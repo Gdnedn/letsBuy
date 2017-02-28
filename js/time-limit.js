@@ -1,10 +1,6 @@
 $.extend($.fn, {
-    fnTimeCountDown: function (d,reltime, callback) {
-
-        var personTime = new Date();
-        var relTime = new Date(reltime);
-        var difTime=relTime-personTime.getTime();
-
+    fnTimeCountDown: function (limitTime, callback) {
+        var mss = limitTime;
         this.each(function () {
             var $this = $(this);
             var o = {
@@ -34,13 +30,10 @@ $.extend($.fn, {
                     }
                 },
                 dv: function () {
-                    //d = d || Date.UTC(2050, 0, 1); //如果未定义时间，则我们设定倒计时日期是2050年1月1日
-                    var _d = $this.data("end") || d;
-                    var now = new Date(),
-                        endDate = new Date(_d);
                     //现在将来秒差值
                     //alert(future.getTimezoneOffset());
-                    var dur = (endDate - now.getTime()-difTime) / 1000, mss = endDate - now.getTime()-difTime, pms = {
+                    mss -= 1000;
+                    var dur = mss / 1000, pms = {
                         hm: "000",
                         sec: "00",
                         mini: "00",
@@ -95,7 +88,7 @@ $.extend($.fn, {
                     if (o.year) {
                         o.year.html(pms.year);
                     }
-                    setTimeout(f.ui, 1);
+                    setTimeout(f.ui, 1000);
                 }
             };
             f.ui();
