@@ -121,25 +121,26 @@
 					var orderid = ordergroup.orderInfo.id;
 					switch(ordergroup.orderInfo.status) {
 						case 0:
-							$btnWarp.append(btnRedId(orderid, "去支付", "product-pay.html?OrderId=" + orderid));
+							$btnWarp.append(btnRed("去支付","product-pay.html?OrderId="+orderid));
 							return "待付款";
 						case 1:
-							$btnWarp.append(btn("拼团详情", "order-detail.html?OrderId=" + orderid));
+							$btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
 							return "拼团中";
 						case 2:
-							$btnWarp.append(btn("查看快递信息", "order-express.html?OrderId=" + orderid));
+							$btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
 							return "待发货";
 						case 3:
-							$btnWarp.append(btnRed("确认收货", "product-pay.html?OrderId=" + orderid));
+							$btnWarp.append(btn("查看快递信息","order-express.html?OrderId="+orderid));
+							$btnWarp.append(btnRed("确认收货","product-pay.html?OrderId="+orderid));
 							return "待收货";
 						case 4:
-							$btnWarp.append(btn("拼单详情", "order-detail.html?OrderId=" + orderid));
+							$btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
 							return "交易完成";
 						case 5:
-							$btnWarp.append(btn("拼单详情", "order-detail.html?OrderId=" + orderid));
+							$btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
 							return "拼团失败退款中";
 						case 6:
-							$btnWarp.append(btn("拼单详情", "order-detail.html?OrderId=" + orderid));
+							$btnWarp.append(btn("拼单详情","order-detail.html?OrderId="+orderid));
 							return "拼团失败退款完成";
 						case 7:
 							return "已取消";
@@ -223,7 +224,7 @@
 								console.log('获取信息失败')
 							}
 						})
-					
+
 				},
 				onBridgeReady: function(orderId, appId, timeStamp, nonceStr, packages, signType, paySign) {
 					WeixinJSBridge.invoke('getBrandWCPayRequest', {
@@ -235,7 +236,7 @@
 						"paySign": paySign
 					}, function(res) {
 						location.href = "order-grouping.html?OrderId=" + GetQueryString('OrderId');
-						if(res.err_msg == "get_brand_wcpay_request：ok") {} // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+						if(res.err_msg == "get_brand_wcpay_request：ok") {} // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
 					});
 				}
 			};
