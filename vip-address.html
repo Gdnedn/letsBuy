@@ -12,11 +12,13 @@
 <body>
 <template id="address-item">
     <div class="address-item-warp">
+        <a href="[addrLink]">
         <div class="address-person-info">
             <div class="address-person-name">[receiptUser]</div>
             <div class="address-person-phone">[receiptPhone]</div>
         </div>
         <div class="address-person-total">[receiptCity][receiptAddr]</div>
+        </a>
         <div class="address-btn-warp" addrid="[id]">
             <a href="javascript:;" class="address-default [active]"><span class="address-default-icon"></span>默认地址</a>
             <div class="address-del"><span class="address-del-icon"></span>删除</div>
@@ -41,6 +43,12 @@
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/jquery-weui.min.js"></script>
 <script>
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
     var address={
         addrid:0,
         reg:new RegExp("\\[([^\\[\\]]*?)\\]", 'igm'),
@@ -55,9 +63,15 @@
                         console.log('正确码出错'+data.resultCode)
                     }else{//get information successfully
                         var obj=data.returnObject,html = '',source='';
+                        var productId=GetQueryString("ProductId");
+                        var addrLink="javascript:;"
                         html= document.getElementById("address-item").innerHTML;
                         for(var a in obj){
                             obj[a].active = obj[a].isDefault?'address-default-active':'';
+                            if(productId){
+                                //if skipped from product pay page.
+                                obj[a].addrLink="product-pay.html?ProductId="+productId+"&AddrId="+obj[a].id;
+                            }
                             source = html.replace(address.reg, function (node, key) { return obj[a][key]; });
                             $(".address-list-warp").append(source);
                         }
