@@ -1,147 +1,198 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>付款</title>
-    <link rel="stylesheet" href="css/weui.min.css">
-    <link rel="stylesheet" href="css/jquery-weui.min.css">
-    <link rel="stylesheet" href="css/rem-fix.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<!-- 底部导航 -->
-<div class="tabbar-warp">
-    <div class="product-tabbar-pay-price">实付款：<span class="pay-price">￥<span class="actual-total-price">0.00</span></span></div>
-    <a href="javascript:;" class="product-tabbar-pay-btn pay-btn-disabled">立即支付</a>
-</div>
 
-<!-- 容器 -->
-<div class="product-container">
-    <!-- 地址选择 -->
-    <div class="address-pick-warp">
-        <div class="address-icon-warp"><img src="images/address-icon.png" alt=""></div>
-        <div class="address-content">
-            <div class="address-person-info">
-                <span class="name"></span>
-                <span class="phone"></span>
-            </div>
-            <div class="address-specific"></div>
-        </div>
-    </div>
-    <!-- 商品信息 -->
-    <div class="order-info-item">
-        <div class="order-state-warp">
-            <div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span><span class="open-number">0</span>件起团</div>
-        </div>
-        <div class="order-product-warp">
-            <div class="order-product-photo"><img src="images/banner1.png" alt=""></div>
-            <div class="order-product-content-warp">
-                <div class="order-product-title"></div>
-                <div class="order-product-price">￥<span class="actual-price">0.00</span></div>
-                <div class="order-product-transport product-pay">包邮</div>
-            </div>
-        </div>
-        <div class="product-number-del-warp">
-            <div class="product-number-del-title">数量</div>
-            <div class="product-number-del-btn-warp">
-                <div class="sub-btn-warp"><img src="images/number-sub.png" alt=""></div>
-                <div class="number-input-warp"><input type="number" value="1"></div>
-                <div class="add-btn-warp"><img src="images/number-add.png" alt=""></div>
-            </div>
-        </div>
-        <div class="order-total-price">合计：￥<span class="actual-total-price">0.00</span></div>
-    </div>
-    <!-- 支付方式 -->
-    <div class="product-pay-method-warp">
-        <div class="product-pay-method product-pay-active"><span class="product-pay-method-icon"><img src="images/wechat.png" alt=""></span>微信支付</div>
-        <!--<div class="product-pay-method"><span class="product-pay-method-icon"><img src="images/zhifubao.png" alt=""></span>支付宝支付</div>-->
-    </div>
-    <!-- 支付成功 -->
-    <!--<div class="md-pay-success">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title>付款</title>
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.min.css">
+		<link rel="stylesheet" href="css/rem-fix.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+
+	<body>
+		<!-- 底部导航 -->
+		<div class="tabbar-warp">
+			<div class="product-tabbar-pay-price">实付款：<span class="pay-price">￥<span class="actual-total-price">0.00</span></span>
+			</div>
+			<a href="javascript:;" id="nowPayBtn" class="product-tabbar-pay-btn pay-btn-disabled">立即支付</a>
+		</div>
+
+		<!-- 容器 -->
+		<div class="product-container">
+			<!-- 地址选择 -->
+			<div class="address-pick-warp">
+				<div class="address-icon-warp"><img src="images/address-icon.png" alt=""></div>
+				<div class="address-content">
+					<div class="address-person-info">
+						<span class="name"></span>
+						<span class="phone"></span>
+					</div>
+					<div class="address-specific"></div>
+				</div>
+			</div>
+			<!-- 商品信息 -->
+			<div class="order-info-item">
+				<div class="order-state-warp">
+					<div class="order-group"><span class="order-group-icon"><img src="images/join.png"></span><span class="open-number">0</span>件起团</div>
+				</div>
+				<div class="order-product-warp">
+					<div class="order-product-photo"><img src="images/banner1.png" alt=""></div>
+					<div class="order-product-content-warp">
+						<div class="order-product-title"></div>
+						<div class="order-product-price">￥<span class="actual-price">0.00</span></div>
+						<div class="order-product-transport product-pay">包邮</div>
+					</div>
+				</div>
+				<div class="product-number-del-warp">
+					<div class="product-number-del-title">数量</div>
+					<div class="product-number-del-btn-warp">
+						<div class="sub-btn-warp"><img src="images/number-sub.png" alt=""></div>
+						<div class="number-input-warp"><input type="number" value="1"></div>
+						<div class="add-btn-warp"><img src="images/number-add.png" alt=""></div>
+					</div>
+				</div>
+				<div class="order-total-price">合计：￥<span class="actual-total-price">0.00</span></div>
+			</div>
+			<!-- 支付方式 -->
+			<div class="product-pay-method-warp">
+				<div class="product-pay-method product-pay-active"><span class="product-pay-method-icon"><img src="images/wechat.png" alt=""></span>微信支付</div>
+				<!--<div class="product-pay-method"><span class="product-pay-method-icon"><img src="images/zhifubao.png" alt=""></span>支付宝支付</div>-->
+			</div>
+			<!-- 支付成功 -->
+			<!--<div class="md-pay-success">
         <div class="md-overlay"></div>
         <div class="md-success-icon-warp">
             <div class="md-success-icon"><img src="images/success.png" alt=""></div>
             <div class="md-success-content">支付成功</div>
         </div>
     </div>-->
-</div>
+		</div>
 
-<script src="js/jquery-2.1.4.min.js"></script>
-<script src="js/jquery-weui.min.js"></script>
-<script type="text/javascript">
-    function GetQueryString(name)
-    {
-        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
-        if(r!=null)return  unescape(r[2]); return null;
-    }
-    var productPay={
-        OpenPrice:0,
-        NumOfOpen:0,
-        $number:$(".number-input-warp input"),
-        //get the order info
-        init:function () {
-            $.ajax({
-                url: "http://106.14.38.136/TeamBuying/WechatApi/getPayInfo.do?ProductId="+GetQueryString('OrderId'),
-                type:'post',
-                dataType:'json',
-                success:function (data) {
-                    if(data.resultCode!=1000){//get information error
-                        console.log('正确码出错'+data.resultCode)
-                    }else{//get information successfully
-                        var obj=data.returnObject;
-                        //Address info
-                        $(".address-person-info .name").html(obj.DefaultAddress.receiptUser);
-                        $(".address-person-info .phone").html(obj.DefaultAddress.receiptPhone);
-                        $(".address-specific").html(obj.DefaultAddress.receiptCity+obj.DefaultAddress.receiptAddr);
-                        //Order info
-                        $(".order-product-title").html(obj.productName);
-                        $(".order-product-photo img").attr("src",obj.productImg);
-                        $(".open-number").html(obj.NumOfOpen);
-                        $(".actual-price").html(obj.OpenPrice);
-                        productPay.NumOfOpen=obj.NumOfOpen;
-                        productPay.OpenPrice=obj.OpenPrice;
-                        var number=productPay.$number.val();
-                        $(".actual-total-price").html(productPay.OpenPrice*number);
-                    }
-                },
-                fail:function () {
-                    console.log('获取信息失败')
-                }
-            });
-            $(".sub-btn-warp").click(function(){
-                var number=productPay.$number.val();
-                if(number>1){
-                    productPay.$number.val(number-1);
-                    productPay.canOpen();
-                }
-            });
-            $(".add-btn-warp").click(function(){
-                var number=parseInt(productPay.$number.val());
-                productPay.$number.val(number+1);
-                productPay.canOpen();
-            });
-            $(".number-input-warp input").keyup(function () {
-                productPay.canOpen();
-            });
-        },
-        canOpen:function(){
-            $(".actual-total-price").html(productPay.OpenPrice*productPay.$number.val());
-            var $payBtn=$(".product-tabbar-pay-btn");
-            if(productPay.NumOfOpen<=productPay.$number.val()){//enable
-                $payBtn.removeClass("pay-btn-disabled");
-            }else{//disable
-                if(!$payBtn.hasClass("pay-btn-disabled")){
-                    $payBtn.addClass("pay-btn-disabled")
-                }
-            }
-        }
-    };
-    //on page load
-    $(function () {
-        productPay.init();
-    });
-</script>
-</body>
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script type="text/javascript">
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+			var productPay = {
+				OpenPrice: 0,
+				NumOfOpen: 0,
+				$number: $(".number-input-warp input"),
+				//get the order info
+				init: function() {
+					$.ajax({
+						url: "http://106.14.38.136/TeamBuying/WechatApi/getPayInfo.do?ProductId=" + GetQueryString('ProductId'),
+						type: 'post',
+						dataType: 'json',
+						success: function(data) {
+							if(data.resultCode != 1000) { //get information error
+								console.log('正确码出错' + data.resultCode)
+							} else { //get information successfully
+								var obj = data.returnObject;
+								//Address info
+								$(".address-person-info .name").html(obj.DefaultAddress.receiptUser);
+								$(".address-person-info .phone").html(obj.DefaultAddress.receiptPhone);
+								$(".address-specific").html(obj.DefaultAddress.receiptCity + obj.DefaultAddress.receiptAddr);
+								//Order info
+								$(".order-product-title").html(obj.productName);
+								$(".order-product-photo img").attr("src", obj.productImg);
+								$(".open-number").html(obj.NumOfOpen);
+								$(".actual-price").html(obj.OpenPrice);
+								productPay.NumOfOpen = obj.NumOfOpen;
+								productPay.OpenPrice = obj.OpenPrice;
+								var number = productPay.$number.val();
+								$(".actual-total-price").html(productPay.OpenPrice * number);
+							}
+						},
+						fail: function() {
+							console.log('获取信息失败')
+						}
+					});
+					$(".sub-btn-warp").click(function() {
+						var number = productPay.$number.val();
+						if(number > 1) {
+							productPay.$number.val(number - 1);
+							productPay.canOpen();
+						}
+					});
+					$(".add-btn-warp").click(function() {
+						var number = parseInt(productPay.$number.val());
+						productPay.$number.val(number + 1);
+						productPay.canOpen();
+					});
+					$(".number-input-warp input").keyup(function() {
+						productPay.canOpen();
+					});
+				},
+				canOpen: function() {
+					$(".actual-total-price").html(productPay.OpenPrice * productPay.$number.val());
+					var $payBtn = $(".product-tabbar-pay-btn");
+					if(productPay.NumOfOpen <= productPay.$number.val()) { //enable
+						$payBtn.removeClass("pay-btn-disabled");
+					} else { //disable
+						if(!$payBtn.hasClass("pay-btn-disabled")) {
+							$payBtn.addClass("pay-btn-disabled")
+						}
+					}
+				},
+				NowPay: function() {
+					var receiptName = $(".address-person-info .name").html();
+					var receiptPhone = $(".address-person-info .phone").html();
+					var receiptAddress = $(".address-specific").html();
+					if(receiptName == "") {
+						alert("请填写收货地址");
+					} else {
+						var number = productPay.$number.val();
+						var api = GetQueryString('OpenId') == null ? "http://106.14.38.136/TeamBuying/WechatApi/OpenTeam.do?ProductId=" + GetQueryString('ProductId') + "&num=" + number + "&receiptUser=" + receiptName + "&receiptPhone=" + receiptPhone + "&receiptAddr=" + receiptAddress : "http://106.14.38.136/TeamBuying/WechatApi/JoinTeam.do?openid=" + GetQueryString('OpenId') + "&num=" + number + "&receiptUser=" + receiptName + "&receiptPhone=" + receiptPhone + "&receiptAddr=" + receiptAddress;
+						$.ajax({
+							url: api,
+							type: 'post',
+							dataType: 'json',
+							success: function(data) {
+								if(data.resultCode == 1000) {
+									productPay.onBridgeReady(data.returnObject.OrderId, data.returnObject.payInfo.appId, data.returnObject.payInfo.timeStamp, data.returnObject.payInfo.nonceStr, data.returnObject.payInfo.packages, data.returnObject.payInfo.signType, data.returnObject.payInfo.paySign);
+								} else {
+									$.confirm(data.returnObject.msg, function() {
+										location.href = "order-grouping.html?OrderId=" + data.returnObject.join.id;
+									});
+								}
+							},
+							fail: function() {
+								console.log('获取信息失败')
+							}
+						})
+					}
+				},
+				onBridgeReady: function(orderId, appId, timeStamp, nonceStr, packages, signType, paySign) {
+					WeixinJSBridge.invoke('getBrandWCPayRequest', {
+						"appId": appId,
+						"timeStamp": timeStamp,
+						"nonceStr": nonceStr,
+						"package": packages,
+						"signType": signType,
+						"paySign": paySign
+					}, function(res) {
+						location.href = "order-grouping.html?OrderId=" + orderId;
+						//						alert("res.err_msg=" + res.err_msg);
+						if(res.err_msg == "get_brand_wcpay_request：ok") {} // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+					});
+				}
+
+			};
+			//on page load
+			$(function() {
+				productPay.init();
+			});
+
+			$("#nowPayBtn").click(function() {
+				productPay.NowPay();
+			});
+		</script>
+	</body>
+
 </html>

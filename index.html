@@ -1,143 +1,145 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>主页</title>
-    <link rel="stylesheet" href="css/weui.min.css">
-    <link rel="stylesheet" href="css/jquery-weui.min.css">
-    <link rel="stylesheet" href="css/rem-fix.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<!-- 底部导航 -->
-<div class="tabbar-warp">
-    <a href="javascript:;" class="tabbar-item-warp tabbar-item-warp-active">
-        <div class="tabbar-item">
-            <div class="tabbar-icon tabbar-index"></div>
-            <p class="tabbar-content">首页</p>
-        </div>
-    </a>
-    <a href="javascript:;" class="tabbar-item-warp">
-        <div class="tabbar-item">
-            <div class="tabbar-icon tabbar-code"></div>
-            <p class="tabbar-content">扫码</p>
-        </div>
-    </a>
-    <a href="vip.html" class="tabbar-item-warp">
-        <div class="tabbar-item">
-            <div class="tabbar-icon tabbar-vip"></div>
-            <p class="tabbar-content">会员</p>
-        </div>
-    </a>
-    <a href="order.html" class="tabbar-item-warp">
-        <div class="tabbar-item">
-            <div class="tabbar-icon tabbar-order"></div>
-            <p class="tabbar-content">订单</p>
-        </div>
-    </a>
-</div>
 
-<!-- 搜索栏 -->
-<a href="index-search.html">
-    <div class="weui-search-bar">
-        <form class="weui-search-bar__form">
-            <div class="weui-search-bar__box">
-                <input type="search" class="weui-search-bar__input" placeholder="搜索" required="">
-            </div>
-            <label class="weui-search-bar__label">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title>主页</title>
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.min.css">
+		<link rel="stylesheet" href="css/rem-fix.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	</head>
+
+	<body>
+		<!-- 底部导航 -->
+		<div class="tabbar-warp">
+			<a href="javascript:;" class="tabbar-item-warp tabbar-item-warp-active">
+				<div class="tabbar-item">
+					<div class="tabbar-icon tabbar-index"></div>
+					<p class="tabbar-content">首页</p>
+				</div>
+			</a>
+			<a href="javascript:;" id="scanQRCodeBtn" class="tabbar-item-warp">
+				<div class="tabbar-item">
+					<div class="tabbar-icon tabbar-code"></div>
+					<p class="tabbar-content">扫码</p>
+				</div>
+			</a>
+			<a href="vip.html" class="tabbar-item-warp">
+				<div class="tabbar-item">
+					<div class="tabbar-icon tabbar-vip"></div>
+					<p class="tabbar-content">会员</p>
+				</div>
+			</a>
+			<a href="order.html" class="tabbar-item-warp">
+				<div class="tabbar-item">
+					<div class="tabbar-icon tabbar-order"></div>
+					<p class="tabbar-content">订单</p>
+				</div>
+			</a>
+		</div>
+
+		<!-- 搜索栏 -->
+		<a href="index-search.html">
+			<div class="weui-search-bar">
+				<form class="weui-search-bar__form">
+					<div class="weui-search-bar__box">
+						<input type="search" class="weui-search-bar__input" placeholder="搜索" required="">
+					</div>
+					<label class="weui-search-bar__label">
                 <i class="weui-icon-search"></i>
                 <span>搜索</span>
             </label>
-        </form>
-    </div>
-</a>
+				</form>
+			</div>
+		</a>
 
-<!-- 容器 -->
-<div class="weui-tab">
-    <!-- nav -->
-    <div class="weui-navbar">
-        <a class="weui-navbar__item weui-bar__item--on info-container-active" href="#tab1">热门</a>
-        <a class="weui-navbar__item" href="#tab2">精选</a>
-        <a class="weui-navbar__item" href="#tab3">最新</a>
-    </div>
+		<!-- 容器 -->
+		<div class="weui-tab">
+			<!-- nav -->
+			<div class="weui-navbar">
+				<a class="weui-navbar__item weui-bar__item--on info-container-active" href="#tab1">热门</a>
+				<a class="weui-navbar__item" href="#tab2">精选</a>
+				<a class="weui-navbar__item" href="#tab3">最新</a>
+			</div>
 
-    <!-- 分页 -->
-    <div class="weui-tab__bd">
-        <!-- body 顶部加上如下代码 -->
-        <div class="weui-pull-to-refresh__layer">
-            <div class='weui-pull-to-refresh__arrow'></div>
-            <div class='weui-pull-to-refresh__preloader'></div>
-            <div class="down">下拉刷新</div>
-            <div class="up">释放刷新</div>
-            <div class="refresh">正在刷新</div>
-        </div>
-
-        <!-- 分页tab1 -->
-        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
-            <!-- 幻灯片 -->
-            <div class="swiper-container swiper-container-hot">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="images/banner1.png" alt=""></div>
-                    <div class="swiper-slide"><img src="images/banner2.png" alt=""></div>
-                    <div class="swiper-slide"><img src="images/banner3.png" alt=""></div>
-                </div>
-                <div class="swiper-pagination swiper-pagination-hot"></div>
-            </div>
-            <!-- 类型导航 -->
-            <div class="category-nav">
-                <a href="index-category.html?classId=1">
-                    <div class="category-item">
-                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
-                        <p class="category-content">首饰</p>
-                    </div>
-                </a>
-                <a href="index-category.html?classId=2">
-                    <div class="category-item">
-                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
-                        <p class="category-content">包包</p>
-                    </div>
-                </a>
-                <a href="index-category.html?classId=3">
-                    <div class="category-item">
-                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
-                        <p class="category-content">围巾</p>
-                    </div>
-                </a>
-                <a href="index-category.html?classId=4">
-                    <div class="category-item">
-                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
-                        <p class="category-content">眼镜</p>
-                    </div>
-                </a>
-                <a href="index-category.html?classId=5">
-                    <div class="category-item">
-                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
-                        <p class="category-content">男装</p>
-                    </div>
-                </a>
-                <a href="index-category.html?classId=6">
-                    <div class="category-item">
-                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
-                        <p class="category-content">女装</p>
-                    </div>
-                </a>
-                <a href="index-category.html?classId=7">
-                    <div class="category-item">
-                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
-                        <p class="category-content">鞋品</p>
-                    </div>
-                </a>
-                <a href="index-category.html?classId=8">
-                    <div class="category-item">
-                        <div class="category-photo-wrap"><img src="images/category.jpg"></div>
-                        <p class="category-content">数码</p>
-                    </div>
-                </a>
-            </div>
-            <!-- 商品列表 -->
-            <div class="container" id="tab1Container">
-                <!--<div class="product-item-warp">
+			<!-- 分页 -->
+			<div class="weui-tab__bd">
+				<!-- body 顶部加上如下代码 -->
+				<div class="weui-pull-to-refresh__layer">
+					<div class='weui-pull-to-refresh__arrow'></div>
+					<div class='weui-pull-to-refresh__preloader'></div>
+					<div class="down">下拉刷新</div>
+					<div class="up">释放刷新</div>
+					<div class="refresh">正在刷新</div>
+				</div>
+				<!-- 分页tab1 -->
+				<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+					<!-- 幻灯片 -->
+					<div class="swiper-container swiper-container-hot">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide"><img src="images/banner1.png" alt=""></div>
+							<div class="swiper-slide"><img src="images/banner2.png" alt=""></div>
+							<div class="swiper-slide"><img src="images/banner3.png" alt=""></div>
+						</div>
+						<div class="swiper-pagination swiper-pagination-hot"></div>
+					</div>
+					<!-- 类型导航 -->
+					<div class="category-nav">
+						<a href="index-category.html?classId=1">
+							<div class="category-item">
+								<div class="category-photo-wrap"><img src="images/category.jpg"></div>
+								<p class="category-content">首饰</p>
+							</div>
+						</a>
+						<a href="index-category.html?classId=2">
+							<div class="category-item">
+								<div class="category-photo-wrap"><img src="images/category.jpg"></div>
+								<p class="category-content">包包</p>
+							</div>
+						</a>
+						<a href="index-category.html?classId=3">
+							<div class="category-item">
+								<div class="category-photo-wrap"><img src="images/category.jpg"></div>
+								<p class="category-content">围巾</p>
+							</div>
+						</a>
+						<a href="index-category.html?classId=4">
+							<div class="category-item">
+								<div class="category-photo-wrap"><img src="images/category.jpg"></div>
+								<p class="category-content">眼镜</p>
+							</div>
+						</a>
+						<a href="index-category.html?classId=5">
+							<div class="category-item">
+								<div class="category-photo-wrap"><img src="images/category.jpg"></div>
+								<p class="category-content">男装</p>
+							</div>
+						</a>
+						<a href="index-category.html?classId=6">
+							<div class="category-item">
+								<div class="category-photo-wrap"><img src="images/category.jpg"></div>
+								<p class="category-content">女装</p>
+							</div>
+						</a>
+						<a href="index-category.html?classId=7">
+							<div class="category-item">
+								<div class="category-photo-wrap"><img src="images/category.jpg"></div>
+								<p class="category-content">鞋品</p>
+							</div>
+						</a>
+						<a href="index-category.html?classId=8">
+							<div class="category-item">
+								<div class="category-photo-wrap"><img src="images/category.jpg"></div>
+								<p class="category-content">数码</p>
+							</div>
+						</a>
+					</div>
+					<!-- 商品列表 -->
+					<div class="container" id="tab1Container">
+						<!--<div class="product-item-warp">
                     <div class="product-photo-warp"><img src="images/banner1.png"></div>
                     <div class="product-info-warp">
                         <div class="product-title">不想做城市里的空巢族你可以选择带它回家</div>
@@ -150,98 +152,98 @@
                         </div>
                     </div>
                 </div>-->
-            </div>
-            <div class="weui-loadmore" id="tab1ContainerLoading">
-                <i class="weui-loading"></i>
-                <span class="weui-loadmore__tips">正在加载</span>
-            </div>
-        </div>
+					</div>
+					<div class="weui-loadmore" id="tab1ContainerLoading">
+						<i class="weui-loading"></i>
+						<span class="weui-loadmore__tips">正在加载</span>
+					</div>
+				</div>
 
-        <!-- 分页tab2 -->
-        <div id="tab2" class="weui-tab__bd-item weui-tab__bd-item--active">
-            <!-- 幻灯片 -->
-            <div class="swiper-container swiper-container-delicacy">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="images/banner1.png" alt=""></div>
-                    <div class="swiper-slide"><img src="images/banner2.png" alt=""></div>
-                    <div class="swiper-slide"><img src="images/banner3.png" alt=""></div>
-                </div>
-                <div class="swiper-pagination swiper-pagination-delicacy"></div>
-            </div>
-            <!-- 商品列表 -->
-            <div class="container" id="tab2Container">
+				<!-- 分页tab2 -->
+				<div id="tab2" class="weui-tab__bd-item weui-tab__bd-item--active">
+					<!-- 幻灯片 -->
+					<div class="swiper-container swiper-container-delicacy">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide"><img src="images/banner1.png" alt=""></div>
+							<div class="swiper-slide"><img src="images/banner2.png" alt=""></div>
+							<div class="swiper-slide"><img src="images/banner3.png" alt=""></div>
+						</div>
+						<div class="swiper-pagination swiper-pagination-delicacy"></div>
+					</div>
+					<!-- 商品列表 -->
+					<div class="container" id="tab2Container">
 
-            </div>
-            <div class="weui-loadmore"  id="tab2ContainerLoading">
-                <i class="weui-loading"></i>
-                <span class="weui-loadmore__tips">正在加载</span>
-            </div>
-        </div>
+					</div>
+					<div class="weui-loadmore" id="tab2ContainerLoading">
+						<i class="weui-loading"></i>
+						<span class="weui-loadmore__tips">正在加载</span>
+					</div>
+				</div>
 
-        <!-- 分页tab3 -->
-        <div id="tab3" class="weui-tab__bd-item weui-tab__bd-item--active">
-            <!-- 幻灯片 -->
-            <div class="swiper-container swiper-container-new">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="images/banner1.png" alt=""></div>
-                    <div class="swiper-slide"><img src="images/banner2.png" alt=""></div>
-                    <div class="swiper-slide"><img src="images/banner3.png" alt=""></div>
-                </div>
-                <div class="swiper-pagination swiper-pagination-new"></div>
-            </div>
-            <!-- 商品列表 -->
-            <div class="container" id="tab3Container">
+				<!-- 分页tab3 -->
+				<div id="tab3" class="weui-tab__bd-item weui-tab__bd-item--active">
+					<!-- 幻灯片 -->
+					<div class="swiper-container swiper-container-new">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide"><img src="images/banner1.png" alt=""></div>
+							<div class="swiper-slide"><img src="images/banner2.png" alt=""></div>
+							<div class="swiper-slide"><img src="images/banner3.png" alt=""></div>
+						</div>
+						<div class="swiper-pagination swiper-pagination-new"></div>
+					</div>
+					<!-- 商品列表 -->
+					<div class="container" id="tab3Container">
 
-            </div>
-            <div class="weui-loadmore" id="tab3ContainerLoading">
-                <i class="weui-loading"></i>
-                <span class="weui-loadmore__tips">正在加载</span>
-            </div>
-        </div>
-    </div>
-</div>
+					</div>
+					<div class="weui-loadmore" id="tab3ContainerLoading">
+						<i class="weui-loading"></i>
+						<span class="weui-loadmore__tips">正在加载</span>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<script src="js/jquery-2.1.4.min.js"></script>
-<script src="js/jquery-weui.min.js"></script>
-<script src="js/swiper.min.js"></script>
-<script>
-    // 初始化banner
-    var index = {
-        loading:true,
-        tab1page:1,
-        tab2page:1,
-        tab3page:1,
-        init:function(){
-            var hotSwiper = new Swiper('.swiper-container-hot',{
-                pagination : '.swiper-pagination-hot',
-                loop : true,
-            });
-            var delicacySwiper = new Swiper('.swiper-container-delicacy',{
-                pagination : '.swiper-pagination-delicacy',
-                loop : true,
-                onInit: function(){
-                    $("#tab2").removeClass("weui-tab__bd-item--active");
-                }
-            });
-            var newSwiper = new Swiper('.swiper-container-new',{
-                pagination : '.swiper-pagination-new',
-                loop : true,
-                onInit: function(){
-                    $("#tab3").removeClass("weui-tab__bd-item--active");
-                }
-            });
-            var windowHeight = $(window).height(),
-                    windowWidth = $(window).width();
-            $(".swiper-wrapper").css("max-height",windowWidth/15*8);
-            $(".swiper-slide").css("max-height",windowWidth/15*8);
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script>
+			// 初始化banner
+			var index = {
+				loading: true,
+				tab1page: 1,
+				tab2page: 1,
+				tab3page: 1,
+				init: function() {
+					var hotSwiper = new Swiper('.swiper-container-hot', {
+						pagination: '.swiper-pagination-hot',
+						loop: true,
+					});
+					var delicacySwiper = new Swiper('.swiper-container-delicacy', {
+						pagination: '.swiper-pagination-delicacy',
+						loop: true,
+						onInit: function() {
+							$("#tab2").removeClass("weui-tab__bd-item--active");
+						}
+					});
+					var newSwiper = new Swiper('.swiper-container-new', {
+						pagination: '.swiper-pagination-new',
+						loop: true,
+						onInit: function() {
+							$("#tab3").removeClass("weui-tab__bd-item--active");
+						}
+					});
+					var windowHeight = $(window).height(),
+						windowWidth = $(window).width();
+					$(".swiper-wrapper").css("max-height", windowWidth / 15 * 8);
+					$(".swiper-slide").css("max-height", windowWidth / 15 * 8);
 
-            $(".weui-tab__bd").pullToRefresh();
-            this.refreshing();
-            //  初次加载数据
-            this.productReq();
+                    $(".weui-tab__bd").pullToRefresh();
+                    this.refreshing();
+                    //  初次加载数据
+                    this.productReq();
 
-            // infinite
-            this.infinite();
+					// infinite
+					this.infinite();
 
             //  初次初始化tab精选与最新
             this.firstTabsClick();
@@ -307,70 +309,127 @@
                                     '</div>'+
                                     '</div>';
 
-                        }
-                        $container.append(html);
-                        if(tab==1){index.tab1page++}
-                        else if(tab==2){index.tab2page++}
-                        else if(tab==3){index.tab3page++}
-                        index.loading=false;
-                        $(".weui-tab__bd").pullToRefreshDone();
-                    }else{
-                        console.log('正确码出错'+data.resultCode)
-                    }
-                },
-                fail:function () {
-                    console.log('获取信息失败')
-                }
-            })
-        },
-        // 滚动刷新
-        infinite:function () {
-            $(document.body).infinite().on("infinite", function() {
-                if(index.loading) return;
-                index.loading = true;
-                index.productReq();
-            });
-        },
-        //  首次初始化tab精选最新
-        firstTabsClick:function () {
-            var tab2First = true,tab3First = true;
-            $(".weui-navbar__item").click(function () {
-                $(this).addClass('info-container-active').siblings().removeClass('info-container-active');
-                if($(this).attr("href") == '#tab2'){
-                    if(tab2First){
-                        index.productReq();
-                        tab2First = false;
-                    }
-                }else if($(this).attr("href") == '#tab3'){
-                    if(tab3First){
-                        index.productReq();
-                        tab3First = false;
-                    }
-                }
-            })
-        },
-        //  下拉刷新
-        refreshing:function () {
-            $(document.body).on("pull-to-refresh", function() {
-                var $active = $(".info-container-active");
-                if($active.attr("href") == '#tab1'){
-                    $("#tab1Container").html('');
-                    index.tab1page=1;
-                }
-                else if($active.attr("href") == '#tab2'){
-                    $("#tab2Container").html('');
-                    index.tab2page=1;
-                }
-                else if($active.attr("href") == '#tab3'){
-                    $("#tab3Container").html('');
-                    index.tab3page=1;
-                }
-                index.productReq();
-            });
-        }
-    };
+								}
+								$container.append(html);
+								if(tab == 1) {
+									index.tab1page++
+								} else if(tab == 2) {
+									index.tab2page++
+								} else if(tab == 3) {
+									index.tab3page++
+								}
+								index.loading = false;
+								$(document.body).pullToRefreshDone();
+							} else {
+								console.log('正确码出错' + data.resultCode)
+							}
+						},
+						fail: function() {
+							console.log('获取信息失败')
+						}
+					})
+				},
+				// 滚动刷新
+				infinite: function() {
+					$(document.body).infinite().on("infinite", function() {
+						if(index.loading) return;
+						index.loading = true;
+						index.productReq();
+					});
+				},
+				//  首次初始化tab精选最新
+				firstTabsClick: function() {
+					var tab2First = true,
+						tab3First = true;
+					$(".weui-navbar__item").click(function() {
+						$(this).addClass('info-container-active').siblings().removeClass('info-container-active');
+						if($(this).attr("href") == '#tab2') {
+							if(tab2First) {
+								index.productReq();
+								tab2First = false;
+							}
+						} else if($(this).attr("href") == '#tab3') {
+							if(tab3First) {
+								index.productReq();
+								tab3First = false;
+							}
+						}
+					})
+				},
+				//  下拉刷新
+				refreshing: function() {
+					$(document.body).on("pull-to-refresh", function() {
+						var $active = $(".info-container-active");
+						if($active.attr("href") == '#tab1') {
+							$("#tab1Container").html('');
+							index.tab1page = 1;
+						} else if($active.attr("href") == '#tab2') {
+							$("#tab2Container").html('');
+							index.tab2page = 1;
+						} else if($active.attr("href") == '#tab3') {
+							$("#tab3Container").html('');
+							index.tab3page = 1;
+						}
+						index.productReq();
+					});
+				},
+				initScanQRCode: function() {
+					var api = "http://106.14.38.136/TeamBuying/WechatApi/getHomeScanQRCode.do";
+					$.ajax({
+						url: api,
+						type: 'post',
+						dataType: 'json',
+						success: function(data) {
+							if(data.resultCode == 1000) {
+								wx.config({
+									debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+									appId: 'wxf6ee2596d1530867', // 必填，公众号的唯一标识
+									timestamp: data.returnObject.timestamp, // 必填，生成签名的时间戳
+									nonceStr: data.returnObject.nonceStr, // 必填，生成签名的随机串
+									signature: data.returnObject.signature, // 必填，签名，见附录1
+									jsApiList: ['scanQRCode']
+										// 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+								});
+							} else {
+								console.log('正确码出错' + data.resultCode)
+							}
+						},
+						fail: function() {
+							console.log('获取信息失败')
+						}
+					})
+				},
+				clickScanQRCode: function() {
+					wx.scanQRCode({
+						// 默认为0，扫描结果由微信处理，1则直接返回扫描结果
+						needResult: 1,
+						desc: 'scanQRCode desc',
+						success: function(res) {
+							//扫码后获取结果参数赋值给Input
+							var url = res.resultStr;
+//							//商品条形码，取","后面的
+							if(url.indexOf(",") >= 0) {
+								var tempArray = url.split(',');
+								var tempNum = tempArray[1];
+								location.href = "index-code.html?page=1&code="+tempNum;
+//								alert("tempNum=" + tempNum);
+							} else {
+								//location.href实现客户端页面的跳转
+								location.href = "index-code.html?page=1&code="+url;
+//								alert("url=" + url);
+							}
+						}
+					});
+				}
+			};
 
-    index.init();
-</script>
-</body>
+			index.init();
+			index.initScanQRCode();
+
+			$("#scanQRCodeBtn").click(function() {
+				index.clickScanQRCode();
+			});
+		</script>
+	</body>
+
 </html>
