@@ -95,9 +95,13 @@
 							} else { //get information successfully
 								var obj = data.returnObject;
 								//Address info
-								$(".address-person-info .name").html(obj.DefaultAddress.receiptUser);
-								$(".address-person-info .phone").html(obj.DefaultAddress.receiptPhone);
-								$(".address-specific").html(obj.DefaultAddress.receiptCity + obj.DefaultAddress.receiptAddr);
+								if(obj.DefaultAddress){
+									$(".address-person-info .name").html(obj.DefaultAddress.receiptUser);
+									$(".address-person-info .phone").html(obj.DefaultAddress.receiptPhone);
+									$(".address-specific").html(obj.DefaultAddress.receiptCity + obj.DefaultAddress.receiptAddr);
+								}/*else {
+									$(".address-person-info").html("请填写地址");
+								}*/
 								//If Address was selected by the user,fill the custom address.
 								var AddrId=GetQueryString('AddrId');
 								if(AddrId){
