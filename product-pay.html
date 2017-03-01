@@ -16,7 +16,7 @@
 		<div class="tabbar-warp">
 			<div class="product-tabbar-pay-price">实付款：<span class="pay-price">￥<span class="actual-total-price">0.00</span></span>
 			</div>
-			<a href="javascript:;" id="nowPayBtn" class="product-tabbar-pay-btn pay-btn-disabled">立即支付</a>
+			<a href="javascript:;" id="nowPayBtn" class="product-tabbar-pay-btn">立即支付</a>
 		</div>
 
 		<!-- 容器 -->
@@ -98,6 +98,11 @@
 								$(".address-person-info .name").html(obj.DefaultAddress.receiptUser);
 								$(".address-person-info .phone").html(obj.DefaultAddress.receiptPhone);
 								$(".address-specific").html(obj.DefaultAddress.receiptCity + obj.DefaultAddress.receiptAddr);
+								//If Address was selected by the user,fill the custom address.
+								var AddrId=GetQueryString('AddrId');
+								if(AddrId){
+                                    productPay.fillCustomAddr(AddrId);
+								}
 								//Order info
 								$(".order-product-title").html(obj.productName);
 								$(".order-product-photo img").attr("src", obj.productImg);
@@ -128,17 +133,36 @@
 					$(".number-input-warp input").keyup(function() {
 						productPay.canOpen();
 					});
+					$(".address-pick-warp").click(function () {
+						window.location.href="vip-address.html?ProductId="+GetQueryString('ProductId');
+                    });
 				},
+				fillCustomAddr:function (AddrId) {
+                    $.ajax({
+                        url:"http://106.14.38.136/TeamBuying/WechatApi/getEditAddrInfo.do?id="+AddrId,
+                        dataType:'json',
+                        success:function (data) {
+                            if(data.resultCode!=1000){//get information error
+                                console.log('正确码出错'+data.resultCode)
+                            }else{//get information successfully
+								var obj=data.returnObject;
+                                $(".address-person-info .name").html(obj.receiptUser);
+                                $(".address-person-info .phone").html(obj.receiptPhone);
+                                $(".address-specific").html(obj.receiptCity + obj.receiptAddr);
+                            }
+                        },
+                    })
+                },
 				canOpen: function() {
 					$(".actual-total-price").html(productPay.OpenPrice * productPay.$number.val());
-					var $payBtn = $(".product-tabbar-pay-btn");
-					if(productPay.NumOfOpen <= productPay.$number.val()) { //enable
-						$payBtn.removeClass("pay-btn-disabled");
-					} else { //disable
-						if(!$payBtn.hasClass("pay-btn-disabled")) {
-							$payBtn.addClass("pay-btn-disabled")
-						}
-					}
+//					var $payBtn = $(".product-tabbar-pay-btn");
+//					if(productPay.NumOfOpen <= productPay.$number.val()) { //enable
+//						$payBtn.removeClass("pay-btn-disabled");
+//					} else { //disable
+//						if(!$payBtn.hasClass("pay-btn-disabled")) {
+//							$payBtn.addClass("pay-btn-disabled")
+//						}
+//					}
 				},
 				NowPay: function() {
 					var receiptName = $(".address-person-info .name").html();
