@@ -159,7 +159,7 @@
                         $(".order-group-person-number").append(orderDetail.OpenInfo.Number+"/"+orderDetail.OpenInfo.OpenNum);
                         orderDetail.opendraw();
                         //order-group-remaining-tips
-                        $(".order-group-remaining-tips").append(orderDetail.OpenMsg);
+                        $(".order-group-remaining-tips").html(data.returnObject.OpenMsg);
                         //Filled
 
                         //mmd add
