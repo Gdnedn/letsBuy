@@ -14,13 +14,13 @@
 	<body>
 		<!-- 底部导航 -->
 		<div class="tabbar-warp">
-			<a href="javascript:;" class="product-tabbar-icon-warp">
+			<a href="index.html" class="product-tabbar-icon-warp">
 				<div class="tabbar-item">
 					<div class="tabbar-icon tabbar-index"></div>
 					<p class="tabbar-content">首页</p>
 				</div>
 			</a>
-			<a href="javascript:;" class="product-tabbar-icon-warp">
+			<a href="javascript:;" class="product-tabbar-icon-warp" id="collectProduct">
 				<div class="tabbar-item">
 					<div class="tabbar-icon tabbar-collect"></div>
 					<p class="tabbar-content">收藏</p>
@@ -60,11 +60,11 @@
 			<!-- 商品信息 -->
 			<div class="product-detail-warp">
 				<div class="product-detail-price-warp">
-					<div class="product-detail-rel-price">￥<span class="js-OpenPrice">688.00</span></div>
-					<div class="product-detail-default-price">￥<span class="js-MarkPrice">1688.00</span></div>
+					<div class="product-detail-rel-price">￥<span class="js-OpenPrice">.00</span></div>
+					<div class="product-detail-default-price">￥<span class="js-MarkPrice">.00</span></div>
 				</div>
-				<div class="product-detail-title js-ProductName">喜上梢智能家居感应灯</div>
-				<div class="product-detail-content js-ProductDec">玩物君说的喜上梢，是一款感知光影与温度的生活摆件。这款产品由深圳设计师王奕程设计，他最初的想法是人们忙碌一天回到家打开门的那一刻，就能感受到家的温暖。喜鹊在中国传统文化中，为报喜的吉祥鸟，同时也是好运与福气的象征。</div>
+				<div class="product-detail-title js-ProductName"></div>
+				<div class="product-detail-content js-ProductDec"></div>
 				<div class="product-detail-tips-warp">
 					<div class="product-detail-tips">包邮</div>
 					<div class="product-detail-tips">7天退换</div>
@@ -74,7 +74,7 @@
 			</div>
 			<!-- 拼团信息 -->
 			<div class="product-group-warp js-opens">
-				<div class="product-group-tips">支付开团并邀请小伙伴们拼单,拼单不足<span class="js-NumOfOpen">9</span>件自动退款</div>
+				<div class="product-group-tips">支付开团并邀请小伙伴们拼单,拼单不足<span class="js-NumOfOpen">0</span>件自动退款</div>
 				<div class="product-group-person-tips">以下小伙伴正在发起团购,您可以直接参与</div>
 				<div class="product-group-person-warp">
 					<!--<div class="product-group-person-item">
@@ -120,6 +120,8 @@
 						windowWidth = $(window).width();
 					$(".swiper-wrapper").css("max-height", windowWidth * 0.8);
 					$(".swiper-slide").css("max-height", windowWidth * 0.8);
+
+					product.collectProduct();
 				},
 				productReq: function() {
 					$.ajax({
@@ -190,6 +192,25 @@
 						fail: function() {
 							console.log('获取信息失败')
 						}
+					})
+				},
+				collectProduct:function(){
+					$("#collectProduct").click(function(){
+						$.ajax({
+							url: "http://106.14.38.136/TeamBuying/WechatApi/CollectionProduct.do?productId=" + GetQueryString('ProductId'),
+							type: 'post',
+							dataType: 'json',
+							success: function(data) {
+								if(data.resultCode == 1000) {
+									$.toast(data.returnObject)
+								} else {
+									console.log('正确码出错' + data.resultCode)
+								}
+							},
+							fail: function() {
+								console.log('获取信息失败')
+							}
+						})
 					})
 				}
 			};

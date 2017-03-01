@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>商品</title>
+    <title>我的收藏</title>
     <link rel="stylesheet" href="css/weui.min.css">
     <link rel="stylesheet" href="css/jquery-weui.min.css">
     <link rel="stylesheet" href="css/rem-fix.css">
@@ -59,36 +59,10 @@
             indexCategory.post();
             $(document.body).pullToRefresh();
             indexCategory.refreshing();
-
-            var classId = GetQueryString('classId'),$title = $("title");
-            if(classId == 1){
-                $title.html('首饰');
-            }
-            else if(classId == 2){
-                $title.html('包包');
-            }
-            else if(classId == 3){
-                $title.html('围巾');
-            }
-            else if(classId == 4){
-                $title.html('眼镜');
-            }
-            else if(classId == 5){
-                $title.html('男装');
-            }
-            else if(classId == 6){
-                $title.html('女装');
-            }
-            else if(classId == 7){
-                $title.html('鞋品');
-            }
-            else if(classId == 8){
-                $title.html('数码');
-            }
         },
         post:function(){
             $.ajax({
-                url: "http://106.14.38.136/TeamBuying/WechatApi/productByClass.do?classId="+GetQueryString('classId')+"&page="+indexCategory.page,
+                url: "http://106.14.38.136/TeamBuying/WechatApi/getCollectionList.do?page="+indexCategory.page,
                 type:'post',
                 dataType:'json',
                 success:function (data) {
