@@ -151,7 +151,7 @@
 				init: function() {
 					//fill the template
 					$.ajax({
-						url: "http://106.14.38.136/TeamBuying/WechatApi/getOrderDetail.do?OrderId=" + GetQueryString('OrderId'),
+						url: "http://www.hejizhihe.com/TeamBuying/WechatApi/getOrderDetail.do?OrderId=" + GetQueryString('OrderId'),
 						dataType: 'json',
 						success: function(data) {
 							if(data.resultCode != 1000) { //get information error
@@ -206,7 +206,7 @@
 					});
 				},
 				PaymentOrder : function(OrderId){
-						var api = "http://106.14.38.136/TeamBuying/WechatApi/PaymentOrder.do?OrderId="+OrderId;
+						var api = "http://www.hejizhihe.com/TeamBuying/WechatApi/PaymentOrder.do?OrderId="+OrderId;
 						$.ajax({
 							url: api,
 							type: 'post',

@@ -86,7 +86,7 @@
 				//get the order info
 				init: function() {
 					$.ajax({
-						url: "http://106.14.38.136/TeamBuying/WechatApi/getPayInfo.do?ProductId=" + GetQueryString('ProductId'),
+						url: "http://www.hejizhihe.com/TeamBuying/WechatApi/getPayInfo.do?ProductId=" + GetQueryString('ProductId'),
 						type: 'post',
 						dataType: 'json',
 						success: function(data) {
@@ -139,7 +139,7 @@
 				},
 				fillCustomAddr:function (AddrId) {
                     $.ajax({
-                        url:"http://106.14.38.136/TeamBuying/WechatApi/getEditAddrInfo.do?id="+AddrId,
+                        url:"http://www.hejizhihe.com/TeamBuying/WechatApi/getEditAddrInfo.do?id="+AddrId,
                         dataType:'json',
                         success:function (data) {
                             if(data.resultCode!=1000){//get information error
@@ -172,7 +172,7 @@
 						alert("请填写收货地址");
 					} else {
 						var number = productPay.$number.val();
-						var api = GetQueryString('OpenId') == null ? "http://106.14.38.136/TeamBuying/WechatApi/OpenTeam.do?ProductId=" + GetQueryString('ProductId') + "&num=" + number + "&receiptUser=" + receiptName + "&receiptPhone=" + receiptPhone + "&receiptAddr=" + receiptAddress : "http://106.14.38.136/TeamBuying/WechatApi/JoinTeam.do?openid=" + GetQueryString('OpenId') + "&num=" + number + "&receiptUser=" + receiptName + "&receiptPhone=" + receiptPhone + "&receiptAddr=" + receiptAddress;
+						var api = GetQueryString('OpenId') == null ? "http://www.hejizhihe.com/TeamBuying/WechatApi/OpenTeam.do?ProductId=" + GetQueryString('ProductId') + "&num=" + number + "&receiptUser=" + receiptName + "&receiptPhone=" + receiptPhone + "&receiptAddr=" + receiptAddress : "http://www.hejizhihe.com/TeamBuying/WechatApi/JoinTeam.do?openid=" + GetQueryString('OpenId') + "&num=" + number + "&receiptUser=" + receiptName + "&receiptPhone=" + receiptPhone + "&receiptAddr=" + receiptAddress;
 						$.ajax({
 							url: api,
 							type: 'post',

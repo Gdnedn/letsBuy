@@ -255,7 +255,7 @@
                 tab = 1;
                 $loading = $("#tab1ContainerLoading");
                 $container = $("#tab1Container");
-                api = 'http://106.14.38.136/TeamBuying/WechatApi/hotProducts.do?page='+page;
+                api = 'http://www.hejizhihe.com/TeamBuying/WechatApi/hotProducts.do?page='+page;
                 console.log('tab1')
             }
             else if($active.attr("href") == '#tab2'){
@@ -263,7 +263,7 @@
                 tab = 2;
                 $loading = $("#tab2ContainerLoading");
                 $container = $("#tab2Container");
-                api = 'http://106.14.38.136/TeamBuying/WechatApi/SelProducts.do?page='+page;
+                api = 'http://www.hejizhihe.com/TeamBuying/WechatApi/SelProducts.do?page='+page;
                 console.log('tab2')
             }
             else if($active.attr("href") == '#tab3'){
@@ -271,7 +271,7 @@
                 tab = 3;
                 $loading = $("#tab3ContainerLoading");
                 $container = $("#tab3Container");
-                api = 'http://106.14.38.136/TeamBuying/WechatApi/NewProducts.do?page='+page;
+                api = 'http://www.hejizhihe.com/TeamBuying/WechatApi/NewProducts.do?page='+page;
                 console.log('tab3')
             }
             $.ajax({
@@ -374,7 +374,7 @@
 					});
 				},
 				initScanQRCode: function() {
-					var api = "http://106.14.38.136/TeamBuying/WechatApi/getHomeScanQRCode.do";
+					var api = "http://www.hejizhihe.com/TeamBuying/WechatApi/getHomeScanQRCode.do";
 					$.ajax({
 						url: api,
 						type: 'post',
