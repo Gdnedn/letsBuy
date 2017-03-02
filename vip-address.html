@@ -66,11 +66,19 @@
                         var productId=GetQueryString("ProductId");
                         var addrLink="javascript:;"
                         html= document.getElementById("address-item").innerHTML;
+                        if(productId){
+                            //if skipped from product pay page.
+                            var addAddressBtn = "vip-address-add.html?ProductId="+productId
+                            $(".add-address-btn").attr("href",addAddressBtn)
+                        }
                         for(var a in obj){
                             obj[a].active = obj[a].isDefault?'address-default-active':'';
                             if(productId){
                                 //if skipped from product pay page.
                                 addrLink="product-pay.html?ProductId="+productId+"&AddrId="+obj[a].id;
+                                var addAddressBtn = "vip-address-add.html?ProductId="+productId
+                                console.log(addAddressBtn)
+                                $(".add-address-btn").attr("href",addAddressBtn)
                             }
                             obj[a].addrLink=addrLink;
                             source = html.replace(address.reg, function (node, key) { return obj[a][key]; });

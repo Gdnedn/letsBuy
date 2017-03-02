@@ -90,7 +90,12 @@
                             type:'post',
                             dataType:'json',
                             success:function (data) {
-                                window.location.href="vip-address.html"
+                                if(GetQueryString(ProductId)){
+                                    window.location.href="vip-address.html?ProductId="+GetQueryString(ProductId)
+                                }else {
+                                    window.location.href="vip-address.html"
+
+                                }
                             },
                             fail:function () {
                                 console.log('获取信息失败')
